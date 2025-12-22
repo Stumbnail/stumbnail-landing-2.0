@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.figma.com)",
+      "Bash(claude mcp add:*)",
+      "Bash(claude mcp:*)",
+      "WebSearch",
+      "WebFetch(domain:developers.figma.com)",
+      "WebFetch(domain:mcp.figma.com)",
+      "mcp__figma__get_design_context",
+      "mcp__figma__get_screenshot",
+      "Bash(cat:*)",
+      "mcp__figma__get_metadata",
+      "Bash(npm init -y)",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --app --no-src-dir --import-alias \"@/*\")",
+      "Bash(rm:*)",
+      "Bash(npm install:*)",
+      "Bash(mkdir:*)",
+      "Bash(curl:*)",
+      "Bash(npx tailwindcss:*)",
+      "Bash(npm run dev:*)",
+      "Bash(wc:*)",
+      "Bash(ls:*)"
+    ]
+  }
+}

@@ -1,26 +1,172 @@
 @import "tailwindcss";
 
+@theme {
+  /* Primary Colors */
+  --color-primary: #ff6f61;
+  --color-primary-hover: #e85a4d;
+
+  /* Light Theme */
+  --color-background-light: #ffffff;
+  --color-background-alt-light: #fffaff;
+  --color-text-light: #141414;
+  --color-text-muted-light: #666666;
+  --color-border-light: #d5d5d5;
+  --color-button-bg-light: #f5f5f5;
+
+  /* Dark Theme */
+  --color-background-dark: #0c0b0b;
+  --color-background-alt-dark: #1a1a1a;
+  --color-text-dark: #FAFAFA;
+  --color-text-muted-dark: #A3A3A3;
+  --color-button-bg-dark: #2d2d2d;
+  --color-border-dark: #3d3d3d;
+
+  /* Fonts */
+  --font-sans: var(--font-space-grotesk);
+  --font-heading: var(--font-lexend);
+
+  /* Transitions */
+  --transition-fast: all 0.15s ease;
+  --transition-medium: all 0.3s ease;
+}
+
+/* Dynamic Theme Classes */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-background: var(--color-background-dark);
+  --color-background-alt: var(--color-background-alt-dark);
+  --color-foreground: var(--color-text-dark);
+  --color-text-muted: var(--color-text-muted-dark);
+  --color-border: var(--color-border-dark);
+  --color-button-bg: var(--color-button-bg-dark);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.light {
+  --color-background: var(--color-background-light);
+  --color-background-alt: var(--color-background-alt-light);
+  --color-foreground: var(--color-text-light);
+  --color-text-muted: var(--color-text-muted-light);
+  --color-border: var(--color-border-light);
+  --color-button-bg: var(--color-button-bg-light);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.dark {
+  --color-background: var(--color-background-dark);
+  --color-background-alt: var(--color-background-alt-dark);
+  --color-foreground: var(--color-text-dark);
+  --color-text-muted: var(--color-text-muted-dark);
+  --color-border: var(--color-border-dark);
+  --color-button-bg: var(--color-button-bg-dark);
+}
+
+/* Base Styles */
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+}
+
+/* Interactive elements should have pointer cursor */
+a,
+button,
+[role="button"] {
+  cursor: pointer;
+}
+
+/* Custom Utility Classes */
+.btn-transition {
+  transition: var(--transition-fast);
+}
+
+.island-shadow {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.dark .island-shadow {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Hide scrollbar but allow scrolling */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Backdrop Blur Support */
+.backdrop-blur-lg {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Infinite Scroller Animation */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.animate-scroll {
+  animation: scroll 20s linear infinite;
+}
+
+.animate-scroll-slow {
+  animation: scroll 30s linear infinite;
+}
+
+.animate-scroll-thumbnails {
+  animation: scroll 60s linear infinite;
+  transition: animation-duration 0.5s ease-out;
+}
+
+.animate-scroll-thumbnails.paused {
+  animation-play-state: paused;
+  animation-duration: 300s;
+  /* Slow down dramatically before pausing */
+}
+
+/* Float Animations for Hero Thumbnails */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(-5deg);
+  }
+
+  50% {
+    transform: translateY(-20px) rotate(-5deg);
+  }
+}
+
+@keyframes float-delayed {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(5deg);
+  }
+
+  50% {
+    transform: translateY(-15px) rotate(5deg);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-delayed 6s ease-in-out 0.5s infinite;
+}
+
+/* Hover state for animations */
+@media (hover: hover) {
+  .hover-pause:hover {
+    animation-play-state: paused;
+  }
 }
