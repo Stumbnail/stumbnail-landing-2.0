@@ -130,7 +130,11 @@ export function PartnersSection() {
                                 alt={partner.name}
                                 width={300}
                                 height={120}
-                                className="w-auto h-24 md:h-32 lg:h-40 object-contain transition-all duration-300 grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 pointer-events-none"
+                                className="w-auto h-24 md:h-32 lg:h-40 object-contain transition-all duration-300 pointer-events-none"
+                                style={{
+                                    filter: 'var(--logo-filter)',
+                                    opacity: 0.7,
+                                }}
                                 draggable={false}
                             />
                         </div>

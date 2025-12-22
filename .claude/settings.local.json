@@ -20,7 +20,8 @@
       "Bash(npx tailwindcss:*)",
       "Bash(npm run dev:*)",
       "Bash(wc:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(git restore:*)"
     ]
   }
 }

@@ -73,25 +73,10 @@ export function YouTubeLinkCard() {
                 fill
                 className="object-cover"
               />
-              {/* Play button overlay */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div
-                  className="flex items-center justify-center rounded-lg"
-                  style={{
-                    width: '40px',
-                    height: '28px',
-                    backgroundColor: 'rgba(255, 0, 0, 0.9)',
-                  }}
-                >
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                </div>
-              </div>
             </div>
 
             {/* Right Side: Title + Input */}
-            <div className="flex-1 flex flex-col justify-center">
+            <div className="flex-1 flex flex-col justify-center min-w-0 overflow-hidden">
               {/* Card Header */}
               <div className="mb-3">
                 <h3
@@ -107,12 +92,13 @@ export function YouTubeLinkCard() {
 
               {/* URL Input Mockup */}
               <div
-                className="flex items-center gap-3 px-4"
+                className="flex items-center gap-3 px-4 overflow-hidden"
                 style={{
                   height: '56px',
                   backgroundColor: 'var(--color-button-bg)',
                   borderRadius: '12px',
                   border: '1px solid var(--color-border)',
+                  maxWidth: '100%',
                 }}
               >
                 {/* Link Icon */}

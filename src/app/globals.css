@@ -38,6 +38,7 @@
   --color-text-muted: var(--color-text-muted-dark);
   --color-border: var(--color-border-dark);
   --color-button-bg: var(--color-button-bg-dark);
+  --logo-filter: invert(1) grayscale(1);
 }
 
 .light {
@@ -47,6 +48,7 @@
   --color-text-muted: var(--color-text-muted-light);
   --color-border: var(--color-border-light);
   --color-button-bg: var(--color-button-bg-light);
+  --logo-filter: grayscale(1);
 }
 
 .dark {
@@ -56,6 +58,7 @@
   --color-text-muted: var(--color-text-muted-dark);
   --color-border: var(--color-border-dark);
   --color-button-bg: var(--color-button-bg-dark);
+  --logo-filter: invert(1) grayscale(1);
 }
 
 /* Base Styles */
