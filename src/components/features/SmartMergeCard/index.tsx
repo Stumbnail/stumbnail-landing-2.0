@@ -359,29 +359,6 @@ export function SmartMergeCard() {
                                         fill
                                         className="object-cover"
                                     />
-                                    {/* Selection Checkmark */}
-                                    <div
-                                        className="absolute top-2 right-2 flex items-center justify-center rounded-full"
-                                        style={{
-                                            width: '26px',
-                                            height: '26px',
-                                            backgroundColor: '#ff6f61',
-                                            transform: isSelected ? 'scale(1)' : 'scale(0)',
-                                            opacity: isSelected ? 1 : 0,
-                                            transition: 'all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                                            boxShadow: '0 2px 8px rgba(255, 111, 97, 0.5)',
-                                        }}
-                                    >
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                                            <path
-                                                d="M20 6L9 17L4 12"
-                                                stroke="white"
-                                                strokeWidth="3"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            />
-                                        </svg>
-                                    </div>
                                     {/* Asset label */}
                                     <div
                                         className="absolute bottom-0 left-0 right-0 px-2 py-1"

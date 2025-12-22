@@ -1,9 +1,10 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import { SmartMergeCard } from '@/components/features/SmartMergeCard'
 import { YouTubeLinkCard } from '@/components/features/YouTubeLinkCard'
 import { CreateWithPromptCard } from '@/components/features/CreateWithPromptCard'
+import { Button } from '@/components/ui/Button'
 
 type FeatureTab = 'smart-merge' | 'youtube-link' | 'prompt'
 
@@ -74,7 +75,7 @@ const features: FeatureInfo[] = [
 ]
 
 export function MainFeaturesSection() {
-    const [activeTab, setActiveTab] = React.useState<FeatureTab>('smart-merge')
+    const [activeTab, setActiveTab] = useState<FeatureTab>('smart-merge')
 
     const activeFeature = features.find((f) => f.id === activeTab) || features[0]
 
@@ -108,7 +109,7 @@ export function MainFeaturesSection() {
                             <button
                                 key={feature.id}
                                 onClick={() => setActiveTab(feature.id)}
-                                className="relative flex items-center gap-2 px-4 py-3 md:px-6 md:py-3.5 rounded-xl transition-all duration-300"
+                                className="relative flex items-center gap-2 px-4 py-3 md:px-6 md:py-3.5 rounded-xl transition-all duration-200"
                                 style={{
                                     fontFamily: 'var(--font-heading)',
                                     fontSize: '14px',
@@ -119,7 +120,7 @@ export function MainFeaturesSection() {
                                 }}
                             >
                                 <span
-                                    className="hidden sm:block"
+                                    className="hidden sm:block transition-colors duration-300"
                                     style={{
                                         color: activeTab === feature.id ? 'white' : '#ff6f61',
                                     }}
@@ -184,21 +185,26 @@ export function MainFeaturesSection() {
                         >
                             {activeFeature.description}
                         </p>
+
+                        <Button
+                            variant="primary"
+                            className="h-[56px] px-10 text-lg rounded-2xl w-fit"
+                            icon="/assets/icons/sparkle.svg"
+                            style={{
+                                fontFamily: 'var(--font-heading)',
+                                fontWeight: 600,
+                                backgroundColor: '#ff6f61',
+                            }}
+                        >
+                            Try for free
+                        </Button>
                     </div>
 
                     {/* Right: Feature Card/Demo */}
                     <div className="order-1 lg:order-2">
-                        <div
-                            className="transition-all duration-500"
-                            style={{
-                                opacity: 1,
-                                transform: 'translateY(0)',
-                            }}
-                        >
-                            {activeTab === 'smart-merge' && <SmartMergeCard />}
-                            {activeTab === 'youtube-link' && <YouTubeLinkCard />}
-                            {activeTab === 'prompt' && <CreateWithPromptCard />}
-                        </div>
+                        {activeTab === 'smart-merge' && <SmartMergeCard />}
+                        {activeTab === 'youtube-link' && <YouTubeLinkCard />}
+                        {activeTab === 'prompt' && <CreateWithPromptCard />}
                     </div>
                 </div>
             </div>

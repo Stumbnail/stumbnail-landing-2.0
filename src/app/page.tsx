@@ -5,6 +5,7 @@ import { HeroThumbnails } from '@/components/hero/HeroThumbnails'
 import { InfiniteScroller } from '@/components/hero/InfiniteScroller'
 import { PartnersSection } from '@/components/sections/PartnersSection'
 import { MainFeaturesSection } from '@/components/sections/MainFeaturesSection'
+import { CommunityGallerySection } from '@/components/sections/CommunityGallerySection'
 
 export default function HomePage() {
   return (
@@ -22,6 +23,8 @@ export default function HomePage() {
       <PartnersSection />
 
       <MainFeaturesSection />
+
+      <CommunityGallerySection />
     </main>
   )
 }
