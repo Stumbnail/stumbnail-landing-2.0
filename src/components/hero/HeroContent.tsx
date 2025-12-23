@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
 
 export function HeroContent() {
@@ -29,19 +30,21 @@ export function HeroContent() {
 
       {/* CTA Button */}
       <div className="flex justify-center mb-5 md:mb-6">
-        <Button
-          variant="primary"
-          className="h-[60px] md:h-[68px] px-8 md:px-10 text-lg md:text-xl rounded-2xl"
-          icon="/assets/icons/try-stumbnail.svg"
-          style={{
-            fontFamily: 'var(--font-heading)',
-            fontWeight: 600,
-            backgroundColor: '#ff6f61',
-            minWidth: '260px',
-          }}
-        >
-          Try Stumbnail
-        </Button>
+        <Link href="https://app.stumbnail.com/login">
+          <Button
+            variant="primary"
+            className="h-[60px] md:h-[68px] px-8 md:px-10 text-lg md:text-xl rounded-2xl"
+            icon="/assets/icons/try-stumbnail.svg"
+            style={{
+              fontFamily: 'var(--font-heading)',
+              fontWeight: 600,
+              backgroundColor: '#ff6f61',
+              minWidth: '260px',
+            }}
+          >
+            Try Stumbnail
+          </Button>
+        </Link>
       </div>
 
       {/* Distinct badge style for "No design skills needed" */}

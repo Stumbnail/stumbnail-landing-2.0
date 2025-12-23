@@ -1,4 +1,5 @@
 import { IslandHeader } from '@/components/layout/IslandHeader'
+import { Footer } from '@/components/layout/Footer'
 import { HeroSection } from '@/components/hero/HeroSection'
 import { HeroContent } from '@/components/hero/HeroContent'
 import { HeroThumbnails } from '@/components/hero/HeroThumbnails'
@@ -6,6 +7,7 @@ import { InfiniteScroller } from '@/components/hero/InfiniteScroller'
 import { PartnersSection } from '@/components/sections/PartnersSection'
 import { MainFeaturesSection } from '@/components/sections/MainFeaturesSection'
 import { CommunityGallerySection } from '@/components/sections/CommunityGallerySection'
+import { PricingSection } from '@/components/sections/PricingSection'
 
 export default function HomePage() {
   return (
@@ -25,6 +27,10 @@ export default function HomePage() {
       <MainFeaturesSection />
 
       <CommunityGallerySection />
+
+      <PricingSection />
+
+      <Footer />
     </main>
   )
 }

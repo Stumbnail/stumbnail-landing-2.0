@@ -42,8 +42,8 @@ const COMMUNITY_THUMBNAILS = [
     },
     {
         id: 8,
-        src: '/assets/images/thumbnails/YouTube-thumbnail-featuring-Mark-Zuckerberg-wearin.webp',
-        username: '@MetaReviews',
+        src: '/assets/images/thumbnails/Alone.Stranded..webp',
+        username: '@SurvivalPro',
     },
     {
         id: 9,

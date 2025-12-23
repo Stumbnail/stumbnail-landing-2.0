@@ -6,12 +6,33 @@ import { Button } from '@/components/ui/Button'
 import { Logo } from '@/components/ui/Logo'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
 import { useTheme } from '@/components/providers/ThemeProvider'
-import { NAV_ITEMS } from '@/lib/constants'
+import { PricingDialog } from '@/components/sections/PricingDialog'
+
+const NAV_ITEMS = [
+  { label: 'Blog', href: '/blog', type: 'coming-soon' as const },
+  { label: 'Pricing', href: '#', type: 'pricing-dialog' as const },
+  { label: 'About Us', href: '/about', type: 'link' as const },
+  { label: 'Contact', href: '/contact', type: 'link' as const },
+]
 
 export function IslandHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [pricingOpen, setPricingOpen] = useState(false)
   const { theme } = useTheme()
   const isDark = theme === 'dark'
+
+  const handleNavClick = (item: typeof NAV_ITEMS[0], e: React.MouseEvent) => {
+    if (item.type === 'coming-soon') {
+      e.preventDefault()
+      // Don't navigate - just show tooltip/badge
+      return
+    }
+    if (item.type === 'pricing-dialog') {
+      e.preventDefault()
+      setPricingOpen(true)
+      setMobileMenuOpen(false)
+    }
+  }
 
   return (
     <>
@@ -45,8 +66,9 @@ export function IslandHeader() {
           <nav className="hidden lg:flex items-center gap-1" aria-label="Main navigation">
             {NAV_ITEMS.map((item) => (
               <Link
-                key={item.href}
+                key={item.href + item.label}
                 href={item.href}
+                onClick={(e) => handleNavClick(item, e)}
                 className="group relative px-4 py-2 text-sm font-medium transition-all duration-200"
                 style={{
                   fontFamily: 'var(--font-heading)',
@@ -68,9 +90,20 @@ export function IslandHeader() {
                 />
                 {/* Text with hover color */}
                 <span
-                  className="relative transition-colors duration-200 group-hover:text-[#ff6f61]"
+                  className="relative transition-colors duration-200 group-hover:text-[#ff6f61] flex items-center gap-2"
                 >
                   {item.label}
+                  {item.type === 'coming-soon' && (
+                    <span
+                      className="text-[10px] font-semibold px-1.5 py-0.5 rounded-full"
+                      style={{
+                        backgroundColor: 'rgba(255, 111, 97, 0.15)',
+                        color: '#ff6f61',
+                      }}
+                    >
+                      Soon
+                    </span>
+                  )}
                 </span>
               </Link>
             ))}
@@ -80,22 +113,26 @@ export function IslandHeader() {
           <div className="flex items-center gap-2">
             <ThemeToggle />
 
-            <Button
-              variant="ghost"
-              className="hidden md:inline-flex h-[36px] px-4 text-sm rounded-full"
-              style={{
-                color: isDark ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.7)',
-              }}
-            >
-              Start Free Trial
-            </Button>
+            <Link href="https://app.stumbnail.com/login">
+              <Button
+                variant="ghost"
+                className="hidden md:inline-flex h-[36px] px-4 text-sm rounded-full"
+                style={{
+                  color: isDark ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.7)',
+                }}
+              >
+                Start Free Trial
+              </Button>
+            </Link>
 
-            <Button
-              variant="primary"
-              className="hidden sm:inline-flex h-[36px] px-5 text-sm rounded-full"
-            >
-              Login
-            </Button>
+            <Link href="https://app.stumbnail.com/login">
+              <Button
+                variant="primary"
+                className="hidden sm:inline-flex h-[36px] px-5 text-sm rounded-full"
+              >
+                Login
+              </Button>
+            </Link>
 
             {/* Mobile Menu Button */}
             <button
@@ -153,16 +190,32 @@ export function IslandHeader() {
         >
           {NAV_ITEMS.map((item) => (
             <Link
-              key={item.href}
+              key={item.href + item.label}
               href={item.href}
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={(e) => {
+                handleNavClick(item, e)
+                if (item.type === 'link') setMobileMenuOpen(false)
+              }}
               className="block px-4 py-3 text-base font-medium rounded-xl transition-all duration-200"
               style={{
                 fontFamily: 'var(--font-heading)',
                 color: isDark ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.7)',
               }}
             >
-              {item.label}
+              <span className="flex items-center gap-2">
+                {item.label}
+                {item.type === 'coming-soon' && (
+                  <span
+                    className="text-[10px] font-semibold px-1.5 py-0.5 rounded-full"
+                    style={{
+                      backgroundColor: 'rgba(255, 111, 97, 0.15)',
+                      color: '#ff6f61',
+                    }}
+                  >
+                    Soon
+                  </span>
+                )}
+              </span>
             </Link>
           ))}
 
@@ -170,21 +223,28 @@ export function IslandHeader() {
             className="pt-3 mt-3 space-y-2"
             style={{ borderTop: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.08)' }}
           >
-            <Button
-              variant="secondary"
-              className="w-full h-[44px] text-sm rounded-xl"
-            >
-              Start Free Trial
-            </Button>
-            <Button
-              variant="primary"
-              className="w-full h-[44px] text-sm rounded-xl"
-            >
-              Login / Signup
-            </Button>
+            <Link href="https://app.stumbnail.com/login">
+              <Button
+                variant="secondary"
+                className="w-full h-[44px] text-sm rounded-xl"
+              >
+                Start Free Trial
+              </Button>
+            </Link>
+            <Link href="https://app.stumbnail.com/login">
+              <Button
+                variant="primary"
+                className="w-full h-[44px] text-sm rounded-xl"
+              >
+                Login / Signup
+              </Button>
+            </Link>
           </div>
         </nav>
       </div>
+
+      {/* Pricing Dialog */}
+      <PricingDialog open={pricingOpen} onClose={() => setPricingOpen(false)} />
     </>
   )
 }

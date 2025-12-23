@@ -1,0 +1,40 @@
+<svg width="800" height="500" viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="chaos-gradient" x1="0" y1="0" x2="800" y2="500" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2d2d2d" />
+      <stop offset="1" stop-color="#1a1a1a" />
+    </linearGradient>
+    <pattern id="grid-pattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#3d3d3d" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="500" fill="url(#chaos-gradient)" />
+  <rect width="800" height="500" fill="url(#grid-pattern)" opacity="0.3"/>
+
+  <!-- Chaotic Elements -->
+  <g transform="translate(400, 250)">
+    <!-- Broken Clock components representing wasted time -->
+    <circle cx="-150" cy="-80" r="40" stroke="#FF6F61" stroke-width="2" stroke-dasharray="4 4" opacity="0.6" />
+    <path d="M-150 -80 L-130 -100" stroke="#FF6F61" stroke-width="2" stroke-linecap="round" />
+    <path d="M-150 -80 L-170 -70" stroke="#FF6F61" stroke-width="2" stroke-linecap="round" />
+
+    <!-- Layer Stack (messy) -->
+    <rect x="-60" y="-120" width="120" height="80" rx="4" fill="#3D3D3D" stroke="#FF6F61" stroke-width="2" transform="rotate(-15)" opacity="0.8"/>
+    <rect x="-40" y="-100" width="120" height="80" rx="4" fill="#2A2A2A" stroke="#FF6F61" stroke-width="2" transform="rotate(5)" opacity="0.9"/>
+    <rect x="-50" y="-80" width="120" height="80" rx="4" fill="#1F1F1F" stroke="#FF6F61" stroke-width="2" transform="rotate(-5)"/>
+    
+    <!-- Error/Frustration Symbols -->
+    <path d="M180 -50 L220 -10" stroke="#FF6F61" stroke-width="4" stroke-linecap="round" />
+    <path d="M220 -50 L180 -10" stroke="#FF6F61" stroke-width="4" stroke-linecap="round" />
+    
+    <!-- Money flying away -->
+    <rect x="150" y="80" width="60" height="30" rx="2" stroke="#FF6F61" stroke-width="1.5" fill="none" transform="rotate(20)" opacity="0.5"/>
+    <rect x="180" y="100" width="60" height="30" rx="2" stroke="#FF6F61" stroke-width="1.5" fill="none" transform="rotate(45)" opacity="0.4"/>
+
+    <!-- Text (Abstract lines) -->
+    <line x1="-200" y1="150" x2="200" y2="150" stroke="#555" stroke-width="2" stroke-linecap="round"/>
+    <line x1="-180" y1="170" x2="100" y2="170" stroke="#555" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+  </g>
+</svg>

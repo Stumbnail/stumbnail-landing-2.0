@@ -13,7 +13,6 @@ export const THUMBNAIL_IMAGES = [
   'asdqwe.webp',
   'YouTube-thumbnail-featuring-Drake-holding-a-phone-.webp',
   'YouTube-thumbnail-featuring-Kanye-West-mid-gesture.webp',
-  'YouTube-thumbnail-featuring-Mark-Zuckerberg-holdin.webp',
   'YouTube-thumbnail-featuring-Robert-Downey-Jr-point.webp',
   'YouTube-thumbnail-featuring-Dwayne-Johnson-sitting.webp',
   'YouTube-thumbnail-featuring-Mahatma-Gandhi-angrily.webp',
@@ -26,7 +25,8 @@ export const THUMBNAIL_IMAGES = [
   'YouTube-thumbnail-featuring-Socrates-pointing-at-t.webp',
   'YouTube-thumbnail-featuring-Socrates-pointing-at-t (1).webp',
   'YouTube-thumbnail-featuring-Isaac-Newton-pointing-.webp',
-  'YouTube-thumbnail-featuring-Mark-Zuckerberg-wearin.webp',
+  'Alone.Stranded..webp',
+  'Only HOpe.webp',
 ] as const
 
 export const COLORS = {
