@@ -21,7 +21,9 @@
       "Bash(npm run dev:*)",
       "Bash(wc:*)",
       "Bash(ls:*)",
-      "Bash(git restore:*)"
+      "Bash(git restore:*)",
+      "Bash(npx next build)",
+      "Bash(powershell -Command \"$word = New-Object -ComObject Word.Application; $doc = $word.Documents.Open\\(''C:\\\\Users\\\\Ahdfa\\\\OneDrive\\\\Desktop\\\\Projects\\\\stumbnail-landing-page\\\\stumbnail_seo_optimized_copy.docx''\\); $doc.Content.Text; $doc.Close\\(\\); $word.Quit\\(\\)\")"
     ]
   }
 }

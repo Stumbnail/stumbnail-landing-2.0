@@ -3,13 +3,6 @@ import { IslandHeader } from '@/components/layout/IslandHeader'
 import { Footer } from '@/components/layout/Footer'
 import { Button } from '@/components/ui/Button'
 import Image from 'next/image'
-import { ProblemIllustration } from '@/components/illustrations/ProblemIllustration'
-import { SolutionIllustration } from '@/components/illustrations/SolutionIllustration'
-import { CreatorIllustration } from '@/components/illustrations/CreatorIllustration'
-import { MultiModelIcon } from '@/components/illustrations/MultiModelIcon'
-import { TunedIcon } from '@/components/illustrations/TunedIcon'
-import { AffordableIcon } from '@/components/illustrations/AffordableIcon'
-import { CommunityThumbnail } from '@/components/illustrations/CommunityThumbnail'
 
 export const metadata: Metadata = {
     title: 'About Us - Stumbnail',
@@ -90,7 +83,12 @@ export default function AboutPage() {
                                 backgroundColor: 'var(--color-button-bg)',
                             }}
                         >
-                            <ProblemIllustration />
+                            <Image
+                                src="/assets/about/problem.png"
+                                alt="The Problem - Chaos of traditional workflow"
+                                fill
+                                className="object-cover"
+                            />
                         </div>
 
                         {/* Right - Content */}
@@ -208,7 +206,12 @@ export default function AboutPage() {
                             <div
                                 className="relative rounded-xl overflow-hidden w-full h-[300px] md:h-[360px]"
                             >
-                                <SolutionIllustration />
+                                <Image
+                                    src="/assets/about/solution.png"
+                                    alt="Stumbnail Solution"
+                                    fill
+                                    className="object-cover"
+                                />
                             </div>
                         </div>
                     </div>
@@ -243,38 +246,59 @@ export default function AboutPage() {
 
                     <div className="grid md:grid-cols-3 gap-6">
                         <div className="p-6 rounded-2xl" style={{ backgroundColor: 'var(--color-button-bg)' }}>
-                            <div className="w-20 h-20 rounded-xl flex items-center justify-center mb-4">
-                                <MultiModelIcon />
+                            <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-4" style={{ backgroundColor: 'rgba(255, 111, 97, 0.15)' }}>
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ff6f61" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <rect x="2" y="6" width="6" height="6" rx="1" />
+                                    <rect x="16" y="6" width="6" height="6" rx="1" />
+                                    <rect x="9" y="14" width="6" height="6" rx="1" />
+                                    <path d="M5 12v2a2 2 0 002 2h2" />
+                                    <path d="M19 12v2a2 2 0 01-2 2h-2" />
+                                </svg>
                             </div>
                             <h3 className="text-lg font-bold mb-3" style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-foreground)' }}>
-                                Multiple AI Models in One Place
+                                Smart Merge
                             </h3>
                             <p className="text-sm" style={{ color: 'var(--color-text-muted)', fontFamily: 'var(--font-body)', lineHeight: '1.7' }}>
-                                We give you access to multiple AI image models: Flux, DALL-E, Stable Diffusion, and more. One subscription, all models. No need to juggle different tools or pay separately.
+                                Drop your images, pick a genre, and let AI compose the perfect thumbnail. It handles layouts, text, and style automatically.
                             </p>
                         </div>
 
                         <div className="p-6 rounded-2xl" style={{ backgroundColor: 'var(--color-button-bg)' }}>
-                            <div className="w-20 h-20 rounded-xl flex items-center justify-center mb-4">
-                                <TunedIcon />
+                            <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-4" style={{ backgroundColor: 'rgba(255, 111, 97, 0.15)' }}>
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ff6f61" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <circle cx="12" cy="12" r="3" />
+                                    <circle cx="5" cy="6" r="2" />
+                                    <circle cx="19" cy="6" r="2" />
+                                    <circle cx="5" cy="18" r="2" />
+                                    <circle cx="19" cy="18" r="2" />
+                                    <path d="M7 7l3 3" />
+                                    <path d="M17 7l-3 3" />
+                                    <path d="M7 17l3-3" />
+                                    <path d="M17 17l-3-3" />
+                                </svg>
                             </div>
                             <h3 className="text-lg font-bold mb-3" style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-foreground)' }}>
-                                Fine-Tuned for Thumbnails
+                                Thumbnail-First
                             </h3>
                             <p className="text-sm" style={{ color: 'var(--color-text-muted)', fontFamily: 'var(--font-body)', lineHeight: '1.7' }}>
-                                Generic AI image generators don&apos;t understand YouTube. We&apos;ve trained our system specifically for thumbnail best practices: the right compositions, text placements, and visual hooks that actually work.
+                                Purpose-built for YouTube. Up to 4K output, multiple AI models, and built-in text rendering that actually looks good.
                             </p>
                         </div>
 
                         <div className="p-6 rounded-2xl" style={{ backgroundColor: 'var(--color-button-bg)' }}>
-                            <div className="w-20 h-20 rounded-xl flex items-center justify-center mb-4">
-                                <AffordableIcon />
+                            <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-4" style={{ backgroundColor: 'rgba(255, 111, 97, 0.15)' }}>
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ff6f61" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <circle cx="12" cy="12" r="8" />
+                                    <path d="M12 6v6l4 2" />
+                                    <path d="M16 2l2 2" />
+                                    <path d="M8 2l-2 2" />
+                                </svg>
                             </div>
                             <h3 className="text-lg font-bold mb-3" style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-foreground)' }}>
-                                Actually Affordable
+                                Creator-Friendly Pricing
                             </h3>
                             <p className="text-sm" style={{ color: 'var(--color-text-muted)', fontFamily: 'var(--font-body)', lineHeight: '1.7' }}>
-                                Hiring a designer costs $50-100+ per thumbnail. Using separate AI tools adds up. We&apos;ve priced Stumbnail so any creator can afford it - from beginners to full-time YouTubers.
+                                No $100 designers. No juggling tools. One platform priced for creators at every level.
                             </p>
                         </div>
                     </div>
@@ -316,9 +340,14 @@ export default function AboutPage() {
                         {/* Right - Avatar/Illustration */}
                         <div className="flex justify-center">
                             <div
-                                className="relative w-64 h-64 md:w-80 md:h-80"
+                                className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden"
                             >
-                                <CreatorIllustration />
+                                <Image
+                                    src="/assets/about/creator.png"
+                                    alt="Ahmed - Creator of Stumbnail"
+                                    fill
+                                    className="object-cover"
+                                />
                             </div>
                         </div>
                     </div>
@@ -332,16 +361,36 @@ export default function AboutPage() {
                         {/* Left - Community Thumbnails */}
                         <div className="grid grid-cols-2 gap-4">
                             <div className="relative rounded-xl overflow-hidden aspect-video">
-                                <CommunityThumbnail variant="gaming" />
+                                <Image
+                                    src="/assets/about/community-gaming.png"
+                                    alt="Gaming thumbnails"
+                                    fill
+                                    className="object-cover"
+                                />
                             </div>
                             <div className="relative rounded-xl overflow-hidden aspect-video">
-                                <CommunityThumbnail variant="vlog" />
+                                <Image
+                                    src="/assets/about/community-vlog.png"
+                                    alt="Vlog thumbnails"
+                                    fill
+                                    className="object-cover"
+                                />
                             </div>
                             <div className="relative rounded-xl overflow-hidden aspect-video">
-                                <CommunityThumbnail variant="reaction" />
+                                <Image
+                                    src="/assets/about/community-reaction.png"
+                                    alt="Reaction thumbnails"
+                                    fill
+                                    className="object-cover"
+                                />
                             </div>
                             <div className="relative rounded-xl overflow-hidden aspect-video">
-                                <CommunityThumbnail variant="tech" />
+                                <Image
+                                    src="/assets/about/community-tech.png"
+                                    alt="Tech thumbnails"
+                                    fill
+                                    className="object-cover"
+                                />
                             </div>
                         </div>
 
