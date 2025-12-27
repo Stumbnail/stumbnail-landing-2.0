@@ -145,6 +145,15 @@ export function Footer() {
                                     Terms of Service
                                 </Link>
                             </li>
+                            <li>
+                                <Link
+                                    href="/cookies"
+                                    className="text-sm transition-colors hover:text-[#ff6f61]"
+                                    style={{ color: 'var(--color-foreground)' }}
+                                >
+                                    Cookie Policy
+                                </Link>
+                            </li>
                         </ul>
                     </div>
 

@@ -8,6 +8,8 @@ import { PartnersSection } from '@/components/sections/PartnersSection'
 import { MainFeaturesSection } from '@/components/sections/MainFeaturesSection'
 import { CommunityGallerySection } from '@/components/sections/CommunityGallerySection'
 import { PricingSection } from '@/components/sections/PricingSection'
+import { FAQSection } from '@/components/sections/FAQSection'
+import { FinalCTASection } from '@/components/sections/FinalCTASection'
 
 export default function HomePage() {
   return (
@@ -29,6 +31,10 @@ export default function HomePage() {
       <CommunityGallerySection />
 
       <PricingSection />
+
+      <FAQSection />
+
+      <FinalCTASection />
 
       <Footer />
     </main>

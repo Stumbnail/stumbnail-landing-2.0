@@ -204,11 +204,11 @@ export function PricingDialog({ open, onClose }: PricingDialogProps) {
                                             className="text-4xl md:text-5xl font-bold tracking-tight"
                                             style={{ color: 'var(--color-foreground)' }}
                                         >
-                                            $10
+                                            $12.99
                                         </span>
                                         <span style={{ color: 'var(--color-text-muted)' }}>/mo</span>
                                     </div>
-                                    <p className="mt-2 text-[#ff6f61] font-semibold">1,100 credits</p>
+                                    <p className="mt-2 text-[#ff6f61] font-semibold">1,430 credits</p>
                                 </div>
 
                                 <div

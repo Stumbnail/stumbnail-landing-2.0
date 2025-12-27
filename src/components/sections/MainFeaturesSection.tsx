@@ -20,8 +20,8 @@ const features: FeatureInfo[] = [
     {
         id: 'smart-merge',
         name: 'Smart Merge',
-        tagline: 'Assets to Thumbnail',
-        description: 'Select your assets on the canvas. Your face, props, backgrounds. AI merges them into a thumbnail that looks like a pro made it. No design skills needed, done in seconds.',
+        tagline: 'The thumbnail maker AI that thinks like a designer',
+        description: 'Select your assets on the canvas: your face, props, backgrounds. Our AI thumbnail maker merges them into a thumbnail that looks like a pro made it. No design skills needed, done in seconds.',
         icon: (
             <svg width="20" height="20" viewBox="0 0 35 35" fill="none">
                 <path
@@ -34,8 +34,8 @@ const features: FeatureInfo[] = [
     {
         id: 'youtube-link',
         name: 'YouTube Link',
-        tagline: 'Recreate Any Thumbnail',
-        description: 'Found a thumbnail you love? Paste the YouTube link. Now you can swap faces, change text, edit backgrounds. Full control like you have the original Photoshop file. Keep the winning layout, make it yours.',
+        tagline: 'Turn any video into click-worthy thumbnails instantly',
+        description: 'Just paste your YouTube link. Our YouTube thumbnail AI generator analyzes your video and creates thumbnails optimized for clicks. Perfect for busy creators who need fast results.',
         icon: (
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                 <path
@@ -58,8 +58,8 @@ const features: FeatureInfo[] = [
     {
         id: 'prompt',
         name: 'Prompt',
-        tagline: 'Describe, Generate, Done',
-        description: 'Describe what you want. Our AI has learned from millions of high-performing thumbnails, so it knows what gets clicks. One prompt, one click, one thumbnail ready to upload.',
+        tagline: 'Describe it. Generate it. Done.',
+        description: 'Looking for a free AI thumbnail generator that actually understands what you want? Just describe your vision, and watch our thumbnail text generator bring it to life. From clickbait thumbnails to professional designs, if you can describe it, we can create it.',
         icon: (
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                 <path

@@ -124,10 +124,10 @@ export function PricingSection() {
                             <div>
                                 <p className="text-sm font-medium text-[var(--color-text-muted)] uppercase tracking-wider">Creator</p>
                                 <div className="mt-3 flex items-baseline gap-1">
-                                    <span className="text-4xl md:text-5xl font-bold tracking-tight">$10</span>
+                                    <span className="text-4xl md:text-5xl font-bold tracking-tight">$12.99</span>
                                     <span className="text-[var(--color-text-muted)]">/mo</span>
                                 </div>
-                                <p className="mt-2 text-[var(--color-primary)] font-semibold">1,100 credits</p>
+                                <p className="mt-2 text-[var(--color-primary)] font-semibold">1,430 credits</p>
                             </div>
 
                             <div className="h-px w-full bg-[var(--color-border)]" />

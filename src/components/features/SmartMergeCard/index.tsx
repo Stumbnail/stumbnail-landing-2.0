@@ -346,9 +346,9 @@ export function SmartMergeCard() {
                                     className="relative rounded-xl overflow-hidden"
                                     style={{
                                         aspectRatio: '1/1',
-                                        border: isSelected ? '3px solid #ff6f61' : '2px solid var(--color-border)',
+                                        border: isSelected ? '2px solid #ff6f61' : '1px solid var(--color-border)',
                                         transform: isSelected ? 'scale(1.03)' : 'scale(1)',
-                                        boxShadow: isSelected ? '0 8px 20px rgba(255, 111, 97, 0.35)' : '0 2px 8px rgba(0,0,0,0.1)',
+                                        boxShadow: isSelected ? '0 6px 16px rgba(255, 111, 97, 0.3)' : 'none',
                                         transition: 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
                                         transitionDelay: `${index * 30}ms`,
                                     }}
@@ -359,20 +359,6 @@ export function SmartMergeCard() {
                                         fill
                                         className="object-cover"
                                     />
-                                    {/* Asset label */}
-                                    <div
-                                        className="absolute bottom-0 left-0 right-0 px-2 py-1"
-                                        style={{
-                                            background: 'linear-gradient(transparent, rgba(0,0,0,0.75))',
-                                        }}
-                                    >
-                                        <span
-                                            className="text-[10px] text-white font-medium"
-                                            style={{ fontFamily: 'var(--font-heading)' }}
-                                        >
-                                            {asset.label}
-                                        </span>
-                                    </div>
                                 </div>
                             )
                         })}
@@ -430,26 +416,35 @@ export function SmartMergeCard() {
                         }}
                     >
                         <div className="flex gap-2 flex-wrap">
-                            {genres.map((genre, index) => (
-                                <div
-                                    key={genre}
-                                    className="px-3 py-1.5 rounded-full cursor-pointer transition-all duration-300"
-                                    style={{
-                                        backgroundColor: selectedGenre === genre ? '#ff6f61' : 'var(--color-button-bg)',
-                                        color: selectedGenre === genre ? 'white' : 'var(--color-foreground)',
-                                        border: selectedGenre === genre ? '2px solid #ff6f61' : '1px solid var(--color-border)',
-                                        fontFamily: 'var(--font-heading)',
-                                        fontSize: '12px',
-                                        fontWeight: 500,
-                                        transform: selectedGenre === genre ? 'scale(1.05)' : 'scale(1)',
-                                        boxShadow: selectedGenre === genre ? '0 4px 12px rgba(255, 111, 97, 0.4)' : 'none',
-                                        opacity: showGenreSelector ? 1 : 0,
-                                        transitionDelay: `${index * 50}ms`,
-                                    }}
-                                >
-                                    {genre}
-                                </div>
-                            ))}
+                            {genres.map((genre, index) => {
+                                const isSelected = selectedGenre === genre
+                                // Skeleton widths for non-selected pills
+                                const skeletonWidths = ['48px', '72px', '52px', '56px']
+                                return (
+                                    <div
+                                        key={genre}
+                                        className="py-1.5 rounded-full cursor-pointer transition-all duration-300"
+                                        style={{
+                                            backgroundColor: isSelected ? '#ff6f61' : 'transparent',
+                                            color: isSelected ? 'white' : 'transparent',
+                                            border: isSelected ? '2px solid #ff6f61' : '1px solid var(--color-border)',
+                                            fontFamily: 'var(--font-heading)',
+                                            fontSize: '12px',
+                                            fontWeight: 500,
+                                            transform: isSelected ? 'scale(1.05)' : 'scale(1)',
+                                            boxShadow: isSelected ? '0 4px 12px rgba(255, 111, 97, 0.4)' : 'none',
+                                            opacity: showGenreSelector ? 1 : 0,
+                                            transitionDelay: `${index * 50}ms`,
+                                            paddingLeft: isSelected ? '12px' : '0',
+                                            paddingRight: isSelected ? '12px' : '0',
+                                            width: isSelected ? 'auto' : skeletonWidths[index],
+                                            minHeight: '28px',
+                                        }}
+                                    >
+                                        {isSelected ? genre : ''}
+                                    </div>
+                                )
+                            })}
                         </div>
                     </div>
 

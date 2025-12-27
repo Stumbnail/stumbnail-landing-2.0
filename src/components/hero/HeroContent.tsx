@@ -24,7 +24,7 @@ export function HeroContent() {
             opacity: 0.85,
           }}
         >
-          Fix that in 30 seconds with AI powered thumbnails that actually get clicks.
+          Fix that in 30 seconds with our AI YouTube thumbnail generator that actually gets clicks.
         </p>
       </div>
 
@@ -42,7 +42,7 @@ export function HeroContent() {
               minWidth: '260px',
             }}
           >
-            Try Stumbnail
+            Try Stumbnail Free
           </Button>
         </Link>
       </div>
