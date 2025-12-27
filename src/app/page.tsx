@@ -6,8 +6,8 @@ import { HeroThumbnails } from '@/components/hero/HeroThumbnails'
 import { InfiniteScroller } from '@/components/hero/InfiniteScroller'
 import { PartnersSection } from '@/components/sections/PartnersSection'
 import { MainFeaturesSection } from '@/components/sections/MainFeaturesSection'
+import { WhyStumbnailSection } from '@/components/sections/WhyStumbnailSection'
 import { CommunityGallerySection } from '@/components/sections/CommunityGallerySection'
-import { PricingSection } from '@/components/sections/PricingSection'
 import { FAQSection } from '@/components/sections/FAQSection'
 import { FinalCTASection } from '@/components/sections/FinalCTASection'
 
@@ -28,9 +28,9 @@ export default function HomePage() {
 
       <MainFeaturesSection />
 
-      <CommunityGallerySection />
+      <WhyStumbnailSection />
 
-      <PricingSection />
+      <CommunityGallerySection />
 
       <FAQSection />
 
@@ -40,3 +40,4 @@ export default function HomePage() {
     </main>
   )
 }
+

@@ -246,6 +246,7 @@ export function SmartMergeCard() {
                     className="rounded-xl p-5 relative overflow-hidden"
                     style={{
                         backgroundColor: 'var(--color-background)',
+                        minHeight: '420px',
                     }}
                 >
                     {/* Result Overlay - Appears on top when done */}

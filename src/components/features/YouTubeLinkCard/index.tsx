@@ -6,7 +6,7 @@ const youtubeLink = "https://www.youtube.com/watch?v=ZFoNBxpXen4"
 
 export function YouTubeLinkCard() {
   return (
-    <div className="relative w-full max-w-full overflow-hidden">
+    <div className="relative w-full max-w-full overflow-hidden lg:overflow-visible">
       {/* Floating Thumbnail - Top Right */}
       <div
         className="absolute -top-6 -right-10 w-28 h-16 rounded-lg overflow-hidden shadow-xl z-20 hidden lg:block"

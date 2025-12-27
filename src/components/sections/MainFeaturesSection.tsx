@@ -20,8 +20,8 @@ const features: FeatureInfo[] = [
     {
         id: 'smart-merge',
         name: 'Smart Merge',
-        tagline: 'The thumbnail maker AI that thinks like a designer',
-        description: 'Select your assets on the canvas: your face, props, backgrounds. Our AI thumbnail maker merges them into a thumbnail that looks like a pro made it. No design skills needed, done in seconds.',
+        tagline: 'The AI thumbnail maker that thinks like a designer',
+        description: 'Select your assets on the canvas: your face, props, backgrounds. Our AI thumbnail generator combines them into a professional thumbnail automatically. No design skills needed.',
         icon: (
             <svg width="20" height="20" viewBox="0 0 35 35" fill="none">
                 <path
@@ -34,8 +34,8 @@ const features: FeatureInfo[] = [
     {
         id: 'youtube-link',
         name: 'YouTube Link',
-        tagline: 'Turn any video into click-worthy thumbnails instantly',
-        description: 'Just paste your YouTube link. Our YouTube thumbnail AI generator analyzes your video and creates thumbnails optimized for clicks. Perfect for busy creators who need fast results.',
+        tagline: 'Turn any video into a click-worthy thumbnail',
+        description: 'Paste any YouTube link. Our YouTube thumbnail generator pulls the video and creates thumbnails optimized for clicks. Edit, customize, and make it your own.',
         icon: (
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                 <path
@@ -59,7 +59,7 @@ const features: FeatureInfo[] = [
         id: 'prompt',
         name: 'Prompt',
         tagline: 'Describe it. Generate it. Done.',
-        description: 'Looking for a free AI thumbnail generator that actually understands what you want? Just describe your vision, and watch our thumbnail text generator bring it to life. From clickbait thumbnails to professional designs, if you can describe it, we can create it.',
+        description: 'Just describe what you want. Our AI thumbnail creator generates it in seconds. From gaming to vlogs to reaction videos — if you can describe it, we can create it.',
         icon: (
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                 <path
@@ -81,7 +81,7 @@ export function MainFeaturesSection() {
 
     return (
         <section
-            className="relative py-20 md:py-32 overflow-hidden"
+            className="relative py-20 md:py-32 overflow-hidden lg:overflow-visible"
             style={{
                 backgroundColor: 'var(--color-background)',
             }}
@@ -94,7 +94,7 @@ export function MainFeaturesSection() {
                 }}
             />
 
-            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden lg:overflow-visible">
 
                 {/* Feature Tabs */}
                 <div className="flex justify-center mb-10 md:mb-14 overflow-x-auto scrollbar-hide">
@@ -134,7 +134,7 @@ export function MainFeaturesSection() {
                 </div>
 
                 {/* Feature Content */}
-                <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start overflow-hidden">
+                <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start overflow-hidden lg:overflow-visible">
                     {/* Left: Feature Description */}
                     <div className="order-2 lg:order-1 flex flex-col justify-center">
                         <div
@@ -201,7 +201,7 @@ export function MainFeaturesSection() {
                     </div>
 
                     {/* Right: Feature Card/Demo */}
-                    <div className="order-1 lg:order-2 w-full max-w-full overflow-hidden">
+                    <div className="order-1 lg:order-2 w-full max-w-full overflow-hidden lg:overflow-visible">
                         {activeTab === 'smart-merge' && <SmartMergeCard />}
                         {activeTab === 'youtube-link' && <YouTubeLinkCard />}
                         {activeTab === 'prompt' && <CreateWithPromptCard />}
