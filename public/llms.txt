@@ -1,0 +1,36 @@
+# Stumbnail
+
+> AI-powered YouTube thumbnail generator built for creators
+
+## About
+
+Stumbnail is a thumbnail-first design studio that helps YouTube creators make professional, click-worthy thumbnails without design skills. Unlike ChatGPT or generic AI tools, Stumbnail is purpose-built for thumbnails with proper 16:9 aspect ratio output, multiple AI models, and a full design canvas.
+
+## Key Features
+
+- **Smart Merge**: Select multiple assets (faces, props, backgrounds) and AI combines them into a professional thumbnail
+- **YouTube Link Generation**: Paste any YouTube link to clone and customize existing thumbnails
+- **Prompt-Based Creation**: Describe what you want and AI generates it
+- **Full Design Canvas**: Workspace for editing, comparing, and iterating on thumbnails
+- **Multiple AI Models**: Choose the best model for your style
+- **True 16:9 Output**: No cropping - proper YouTube thumbnail dimensions
+
+## Pages
+
+- / - Main landing page with features overview
+- /pricing - Pricing plans (Creator $12.99/mo, Pro $39/mo)
+- /about - Company story and mission
+- /contact - Contact information
+
+## Target Users
+
+YouTube creators, content creators, video marketers who need professional thumbnails quickly without design skills.
+
+## Tech Stack
+
+Next.js, React, TypeScript, Tailwind CSS
+
+## Contact
+
+Website: https://stumbnail.com
+App: https://app.stumbnail.com
