@@ -8,7 +8,7 @@ interface LogoProps {
 
 export function Logo({ className }: LogoProps) {
   return (
-    <Link href="/" className={cn('flex items-center', className)}>
+    <Link href="/" className={cn('flex items-center gap-2', className)}>
       <Image
         src="/assets/logo.svg"
         alt="Stumbnail"
@@ -17,6 +17,16 @@ export function Logo({ className }: LogoProps) {
         priority
         className="h-8 w-auto md:h-10"
       />
+      <span
+        className="text-lg md:text-xl font-normal"
+        style={{
+          fontFamily: 'var(--font-heading)',
+          color: 'var(--color-foreground)',
+          letterSpacing: '-0.01em'
+        }}
+      >
+        Stumbnail
+      </span>
     </Link>
   )
 }

@@ -6,7 +6,7 @@ const youtubeLink = "https://www.youtube.com/watch?v=ZFoNBxpXen4"
 
 export function YouTubeLinkCard() {
   return (
-    <div className="relative">
+    <div className="relative w-full max-w-full overflow-hidden">
       {/* Floating Thumbnail - Top Right */}
       <div
         className="absolute -top-6 -right-10 w-28 h-16 rounded-lg overflow-hidden shadow-xl z-20 hidden lg:block"
@@ -41,18 +41,17 @@ export function YouTubeLinkCard() {
 
       {/* Main Card */}
       <div
-        className="relative w-full"
+        className="relative w-full p-4 sm:p-8 md:p-11 overflow-hidden"
         style={{
           backgroundColor: 'var(--color-background-alt)',
           border: '1px solid var(--color-border)',
           borderRadius: '24px',
-          padding: '44px',
           maxWidth: '100%',
         }}
       >
         {/* Header and Input Container */}
         <div
-          className="rounded-xl p-5 mb-4"
+          className="rounded-xl p-3 sm:p-5 mb-4 overflow-hidden"
           style={{
             backgroundColor: 'var(--color-background)',
           }}
@@ -162,14 +161,14 @@ export function YouTubeLinkCard() {
           </div>
         </div>
 
-        {/* Curved Connection Line */}
-        <div className="flex justify-end mb-2">
+        {/* Curved Connection Line - Hidden on mobile */}
+        <div className="hidden sm:flex justify-end mb-2">
           <svg
             width="280"
             height="94"
             viewBox="0 0 595 199"
+            className="mr-4 md:mr-[60px]"
             style={{
-              marginRight: '60px',
               filter: 'drop-shadow(0 0 4px rgba(255, 111, 97, 0.4))',
             }}
           >
@@ -190,6 +189,8 @@ export function YouTubeLinkCard() {
             }
           `}</style>
         </div>
+        {/* Spacer for mobile when curve is hidden */}
+        <div className="sm:hidden h-4" />
 
         {/* Result Preview - Final Edited Thumbnail */}
         <div

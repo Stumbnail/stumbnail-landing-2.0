@@ -7,17 +7,17 @@ interface PromptInputMockupProps {
 export function PromptInputMockup({ currentText = '' }: PromptInputMockupProps) {
   return (
     <div
-      className="relative w-full flex items-center justify-between px-3 md:px-4"
+      className="relative w-full flex items-center justify-between gap-2 px-2 sm:px-3 md:px-4"
       style={{
-        height: '56px',
+        height: '48px',
         backgroundColor: 'var(--color-button-bg)',
-        borderRadius: '14px',
+        borderRadius: '12px',
         border: '1px solid var(--color-border)',
       }}
     >
       {/* Placeholder/Typed text */}
       <span
-        className="text-xs md:text-sm truncate mr-2 flex-1 min-w-0"
+        className="text-xs sm:text-sm truncate flex-1 min-w-0"
         style={{
           color: currentText ? 'var(--color-foreground)' : 'var(--color-text-muted)',
           fontFamily: 'var(--font-heading)',
@@ -28,14 +28,14 @@ export function PromptInputMockup({ currentText = '' }: PromptInputMockupProps) 
       </span>
 
       {/* Right side buttons */}
-      <div className="flex items-center gap-1.5 flex-shrink-0">
-        {/* Model Selector Button */}
+      <div className="flex items-center gap-1 sm:gap-1.5 flex-shrink-0">
+        {/* Model Selector Button - Hidden on small screens */}
         <div
-          className="flex items-center gap-1 px-2 md:px-3 cursor-pointer"
+          className="hidden sm:flex items-center gap-1 px-2 md:px-3 cursor-pointer"
           style={{
-            height: '40px',
+            height: '36px',
             backgroundColor: 'var(--color-background)',
-            borderRadius: '10px',
+            borderRadius: '8px',
             border: '1px solid var(--color-border)',
           }}
         >
@@ -85,17 +85,17 @@ export function PromptInputMockup({ currentText = '' }: PromptInputMockupProps) 
         <div
           className="flex items-center justify-center cursor-pointer flex-shrink-0"
           style={{
-            width: '40px',
-            height: '40px',
+            width: '36px',
+            height: '36px',
             backgroundColor: 'var(--color-background)',
-            borderRadius: '10px',
+            borderRadius: '8px',
             border: '1px solid var(--color-border)',
           }}
         >
           {/* Add circle icon */}
           <svg
-            width="18"
-            height="18"
+            width="16"
+            height="16"
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -122,16 +122,16 @@ export function PromptInputMockup({ currentText = '' }: PromptInputMockupProps) 
         <div
           className="flex items-center justify-center cursor-pointer flex-shrink-0"
           style={{
-            width: '40px',
-            height: '40px',
+            width: '36px',
+            height: '36px',
             backgroundColor: '#ff6f61',
-            borderRadius: '10px',
+            borderRadius: '8px',
           }}
         >
           {/* Send icon */}
           <svg
-            width="16"
-            height="16"
+            width="14"
+            height="14"
             viewBox="0 0 29 29"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"

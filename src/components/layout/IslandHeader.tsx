@@ -6,18 +6,16 @@ import { Button } from '@/components/ui/Button'
 import { Logo } from '@/components/ui/Logo'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
 import { useTheme } from '@/components/providers/ThemeProvider'
-import { PricingDialog } from '@/components/sections/PricingDialog'
 
 const NAV_ITEMS = [
   { label: 'Blog', href: '/blog', type: 'coming-soon' as const },
-  { label: 'Pricing', href: '#', type: 'pricing-dialog' as const },
+  { label: 'Pricing', href: '/pricing', type: 'link' as const },
   { label: 'About Us', href: '/about', type: 'link' as const },
   { label: 'Contact', href: '/contact', type: 'link' as const },
 ]
 
 export function IslandHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [pricingOpen, setPricingOpen] = useState(false)
   const { theme } = useTheme()
   const isDark = theme === 'dark'
 
@@ -26,11 +24,6 @@ export function IslandHeader() {
       e.preventDefault()
       // Don't navigate - just show tooltip/badge
       return
-    }
-    if (item.type === 'pricing-dialog') {
-      e.preventDefault()
-      setPricingOpen(true)
-      setMobileMenuOpen(false)
     }
   }
 
@@ -220,10 +213,10 @@ export function IslandHeader() {
           ))}
 
           <div
-            className="pt-3 mt-3 space-y-2"
+            className="pt-4 mt-4 flex flex-col gap-5"
             style={{ borderTop: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.08)' }}
           >
-            <Link href="https://app.stumbnail.com/login">
+            <Link href="https://app.stumbnail.com/login" className="block">
               <Button
                 variant="secondary"
                 className="w-full h-[44px] text-sm rounded-xl"
@@ -231,7 +224,7 @@ export function IslandHeader() {
                 Start Free Trial
               </Button>
             </Link>
-            <Link href="https://app.stumbnail.com/login">
+            <Link href="https://app.stumbnail.com/login" className="block">
               <Button
                 variant="primary"
                 className="w-full h-[44px] text-sm rounded-xl"
@@ -242,9 +235,6 @@ export function IslandHeader() {
           </div>
         </nav>
       </div>
-
-      {/* Pricing Dialog */}
-      <PricingDialog open={pricingOpen} onClose={() => setPricingOpen(false)} />
     </>
   )
 }

@@ -94,12 +94,12 @@ export function MainFeaturesSection() {
                 }}
             />
 
-            <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
 
                 {/* Feature Tabs */}
-                <div className="flex justify-center mb-10 md:mb-14">
+                <div className="flex justify-center mb-10 md:mb-14 overflow-x-auto scrollbar-hide">
                     <div
-                        className="inline-flex gap-2 p-1.5 rounded-2xl"
+                        className="inline-flex gap-1 sm:gap-2 p-1.5 rounded-2xl"
                         style={{
                             backgroundColor: 'var(--color-background-alt)',
                             border: '1px solid var(--color-border)',
@@ -109,10 +109,10 @@ export function MainFeaturesSection() {
                             <button
                                 key={feature.id}
                                 onClick={() => setActiveTab(feature.id)}
-                                className="relative flex items-center gap-2 px-4 py-3 md:px-6 md:py-3.5 rounded-xl transition-all duration-200"
+                                className="relative flex items-center gap-1 sm:gap-2 px-3 py-2.5 sm:px-4 sm:py-3 md:px-6 md:py-3.5 rounded-xl transition-all duration-200"
                                 style={{
                                     fontFamily: 'var(--font-heading)',
-                                    fontSize: '14px',
+                                    fontSize: '13px',
                                     fontWeight: 600,
                                     backgroundColor: activeTab === feature.id ? '#ff6f61' : 'transparent',
                                     color: activeTab === feature.id ? 'white' : 'var(--color-foreground-muted)',
@@ -134,7 +134,7 @@ export function MainFeaturesSection() {
                 </div>
 
                 {/* Feature Content */}
-                <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+                <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start overflow-hidden">
                     {/* Left: Feature Description */}
                     <div className="order-2 lg:order-1 flex flex-col justify-center">
                         <div
@@ -201,7 +201,7 @@ export function MainFeaturesSection() {
                     </div>
 
                     {/* Right: Feature Card/Demo */}
-                    <div className="order-1 lg:order-2">
+                    <div className="order-1 lg:order-2 w-full max-w-full overflow-hidden">
                         {activeTab === 'smart-merge' && <SmartMergeCard />}
                         {activeTab === 'youtube-link' && <YouTubeLinkCard />}
                         {activeTab === 'prompt' && <CreateWithPromptCard />}
