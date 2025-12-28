@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { spaceGrotesk, lexend } from './fonts'
 import { ThemeProvider } from '@/components/providers/ThemeProvider'
+import { AnalyticsProvider } from '@/components/providers/AnalyticsProvider'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -87,7 +88,9 @@ export default function RootLayout({
         />
       </head>
       <body className={`${spaceGrotesk.variable} ${lexend.variable} antialiased`}>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <AnalyticsProvider>{children}</AnalyticsProvider>
+        </ThemeProvider>
       </body>
     </html>
   )
