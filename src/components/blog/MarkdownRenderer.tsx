@@ -1,0 +1,18 @@
+'use client'
+
+import Markdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+
+interface MarkdownRendererProps {
+    content: string
+}
+
+export function MarkdownRenderer({ content }: MarkdownRendererProps) {
+    return (
+        <div className="prose-blog">
+            <Markdown remarkPlugins={[remarkGfm]}>
+                {content}
+            </Markdown>
+        </div>
+    )
+}

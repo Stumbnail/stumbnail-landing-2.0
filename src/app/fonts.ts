@@ -1,4 +1,4 @@
-import { Space_Grotesk, Lexend } from 'next/font/google'
+import { Space_Grotesk, Lexend, Merriweather } from 'next/font/google'
 
 export const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -9,5 +9,12 @@ export const spaceGrotesk = Space_Grotesk({
 export const lexend = Lexend({
   subsets: ['latin'],
   variable: '--font-lexend',
+  display: 'swap',
+})
+
+export const merriweather = Merriweather({
+  subsets: ['latin'],
+  variable: '--font-merriweather',
+  weight: ['300', '400', '700', '900'],
   display: 'swap',
 })

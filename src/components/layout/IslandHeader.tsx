@@ -8,7 +8,7 @@ import { ThemeToggle } from '@/components/ui/ThemeToggle'
 import { useTheme } from '@/components/providers/ThemeProvider'
 
 const NAV_ITEMS = [
-  { label: 'Blog', href: '/blog', type: 'coming-soon' as const },
+  { label: 'Blog', href: '/blog', type: 'link' as const },
   { label: 'Pricing', href: '/pricing', type: 'link' as const },
   { label: 'About Us', href: '/about', type: 'link' as const },
   { label: 'Contact', href: '/contact', type: 'link' as const },
@@ -20,11 +20,7 @@ export function IslandHeader() {
   const isDark = theme === 'dark'
 
   const handleNavClick = (item: typeof NAV_ITEMS[0], e: React.MouseEvent) => {
-    if (item.type === 'coming-soon') {
-      e.preventDefault()
-      // Don't navigate - just show tooltip/badge
-      return
-    }
+    // Standard link behavior
   }
 
   return (
@@ -86,17 +82,7 @@ export function IslandHeader() {
                   className="relative transition-colors duration-200 group-hover:text-[#ff6f61] flex items-center gap-2"
                 >
                   {item.label}
-                  {item.type === 'coming-soon' && (
-                    <span
-                      className="text-[10px] font-semibold px-1.5 py-0.5 rounded-full"
-                      style={{
-                        backgroundColor: 'rgba(255, 111, 97, 0.15)',
-                        color: '#ff6f61',
-                      }}
-                    >
-                      Soon
-                    </span>
-                  )}
+
                 </span>
               </Link>
             ))}
@@ -197,17 +183,7 @@ export function IslandHeader() {
             >
               <span className="flex items-center gap-2">
                 {item.label}
-                {item.type === 'coming-soon' && (
-                  <span
-                    className="text-[10px] font-semibold px-1.5 py-0.5 rounded-full"
-                    style={{
-                      backgroundColor: 'rgba(255, 111, 97, 0.15)',
-                      color: '#ff6f61',
-                    }}
-                  >
-                    Soon
-                  </span>
-                )}
+
               </span>
             </Link>
           ))}

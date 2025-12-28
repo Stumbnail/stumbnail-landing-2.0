@@ -69,21 +69,13 @@ export function Footer() {
                                 </Link>
                             </li>
                             <li>
-                                <span
-                                    className="text-sm flex items-center gap-2"
-                                    style={{ color: 'var(--color-foreground)', opacity: 0.6 }}
+                                <Link
+                                    href="/blog"
+                                    className="text-sm transition-colors hover:text-[#ff6f61]"
+                                    style={{ color: 'var(--color-foreground)' }}
                                 >
                                     Blog
-                                    <span
-                                        className="text-[9px] font-semibold px-1.5 py-0.5 rounded-full"
-                                        style={{
-                                            backgroundColor: 'rgba(255, 111, 97, 0.15)',
-                                            color: '#ff6f61',
-                                        }}
-                                    >
-                                        Soon
-                                    </span>
-                                </span>
+                                </Link>
                             </li>
                         </ul>
                     </div>
