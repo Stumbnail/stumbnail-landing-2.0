@@ -31,17 +31,8 @@
 }
 
 /* Dynamic Theme Classes */
+/* Dynamic Theme Classes */
 :root {
-  --color-background: var(--color-background-dark);
-  --color-background-alt: var(--color-background-alt-dark);
-  --color-foreground: var(--color-text-dark);
-  --color-text-muted: var(--color-text-muted-dark);
-  --color-border: var(--color-border-dark);
-  --color-button-bg: var(--color-button-bg-dark);
-  --logo-filter: invert(1) grayscale(1);
-}
-
-.light {
   --color-background: var(--color-background-light);
   --color-background-alt: var(--color-background-alt-light);
   --color-foreground: var(--color-text-light);
@@ -59,6 +50,16 @@
   --color-border: var(--color-border-dark);
   --color-button-bg: var(--color-button-bg-dark);
   --logo-filter: invert(1) grayscale(1);
+}
+
+.light {
+  --color-background: var(--color-background-light);
+  --color-background-alt: var(--color-background-alt-light);
+  --color-foreground: var(--color-text-light);
+  --color-text-muted: var(--color-text-muted-light);
+  --color-border: var(--color-border-light);
+  --color-button-bg: var(--color-button-bg-light);
+  --logo-filter: grayscale(1);
 }
 
 /* Base Styles */

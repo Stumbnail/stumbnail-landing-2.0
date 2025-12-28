@@ -49,7 +49,7 @@ export function Footer() {
                 </div>
 
                 {/* Footer Links Grid */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
                     {/* Product */}
                     <div>
                         <h4
@@ -75,6 +75,27 @@ export function Footer() {
                                     style={{ color: 'var(--color-foreground)' }}
                                 >
                                     Blog
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
+
+                    {/* Tools */}
+                    <div>
+                        <h4
+                            className="text-sm font-semibold uppercase tracking-wider mb-4"
+                            style={{ color: 'var(--color-text-muted)' }}
+                        >
+                            Tools
+                        </h4>
+                        <ul className="space-y-3">
+                            <li>
+                                <Link
+                                    href="/tools/youtube-thumbnail-previewer"
+                                    className="text-sm transition-colors hover:text-[#ff6f61]"
+                                    style={{ color: 'var(--color-foreground)' }}
+                                >
+                                    Thumbnail Previewer
                                 </Link>
                             </li>
                         </ul>
