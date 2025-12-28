@@ -6,8 +6,8 @@ import './globals.css'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://stumbnail.com'),
-  title: 'Stumbnail - AI YouTube Thumbnail Generator | Create Click-Worthy Thumbnails in Seconds',
-  description: 'Create professional YouTube thumbnails with AI. Free thumbnail maker with Smart Merge, prompt generation, and video analysis. No design skills needed. Try free today.',
+  title: 'AI YouTube Thumbnail Generator - Free | Stumbnail',
+  description: 'Generate click-worthy YouTube thumbnails in seconds with AI. Canvas-based editor, no design skills needed. Start creating for free.',
   keywords: [
     'ai youtube thumbnail generator',
     'youtube thumbnail generator',
@@ -43,21 +43,21 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://stumbnail.com',
     siteName: 'Stumbnail',
-    title: 'Stumbnail - AI YouTube Thumbnail Generator | Create Click-Worthy Thumbnails in Seconds',
-    description: 'Create professional YouTube thumbnails with AI. Free thumbnail maker with Smart Merge, prompt generation, and video analysis. No design skills needed. Try free today.',
+    title: 'AI YouTube Thumbnail Generator - Free | Stumbnail',
+    description: 'Generate click-worthy YouTube thumbnails in seconds with AI. Canvas-based editor, no design skills needed. Start creating for free.',
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Stumbnail - AI YouTube Thumbnail Generator',
+        alt: 'AI YouTube Thumbnail Generator - Free | Stumbnail',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Stumbnail - AI YouTube Thumbnail Generator',
-    description: 'Create professional YouTube thumbnails with AI. Free thumbnail maker with Smart Merge, prompt generation, and video analysis. No design skills needed.',
+    title: 'AI YouTube Thumbnail Generator - Free | Stumbnail',
+    description: 'Generate click-worthy YouTube thumbnails in seconds with AI. Canvas-based editor, no design skills needed. Start creating for free.',
     images: ['/og-image.png'],
     creator: '@stumbnail',
   },
