@@ -98,6 +98,15 @@ export function Footer() {
                                     Thumbnail Previewer
                                 </Link>
                             </li>
+                            <li>
+                                <Link
+                                    href="/tools/youtube-thumbnail-downloader"
+                                    className="text-sm transition-colors hover:text-[#ff6f61]"
+                                    style={{ color: 'var(--color-foreground)' }}
+                                >
+                                    Thumbnail Downloader
+                                </Link>
+                            </li>
                         </ul>
                     </div>
 
