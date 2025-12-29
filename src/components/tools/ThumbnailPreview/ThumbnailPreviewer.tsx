@@ -168,19 +168,14 @@ export function ThumbnailPreviewer() {
               </div>
             </Link>
 
-            {/* Title - Hidden when thumbnail uploaded on mobile */}
+            {/* Title - Minimal, no subtitle */}
             {!hasUploadedThumbnail && (
-              <div className="hidden sm:block min-w-0">
-                <h1
-                  className="text-base lg:text-lg font-bold leading-tight truncate"
-                  style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-foreground)' }}
-                >
-                  Thumbnail <span style={{ color: '#ff6f61' }}>Previewer</span>
-                </h1>
-                <p className="text-xs truncate" style={{ color: 'var(--color-text-muted)' }}>
-                  Preview before publishing
-                </p>
-              </div>
+              <h1
+                className="hidden sm:block text-sm lg:text-base font-medium"
+                style={{ color: 'var(--color-foreground)' }}
+              >
+                Thumbnail Previewer
+              </h1>
             )}
 
             {/* Thumbnail Preview (when uploaded) */}
@@ -291,19 +286,6 @@ export function ThumbnailPreviewer() {
 
           {/* Right Section */}
           <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
-            {/* Free Tool Badge - Desktop only, not when previewing */}
-            {!hasUploadedThumbnail && (
-              <div
-                className="hidden md:flex items-center gap-1.5 px-2 py-1 rounded-full text-xs"
-                style={{ backgroundColor: 'var(--color-button-bg)' }}
-              >
-                <svg className="w-3 h-3 text-[#ff6f61]" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81z" />
-                  <path d="M10 15V9l5.2 3-5.2 3z" fill="var(--color-background)" />
-                </svg>
-                <span style={{ color: 'var(--color-foreground)' }}>Free</span>
-              </div>
-            )}
 
             <ThemeToggle />
 
@@ -327,63 +309,43 @@ export function ThumbnailPreviewer() {
       </header>
 
       {/* Main Content Area */}
-      <div className="px-3 sm:px-4 lg:px-6">
+      <div className="px-4 sm:px-6 lg:px-8">
         {/* Step 1: Upload Interface */}
         {!hasUploadedThumbnail && (
           <div
-            className={`w-full flex items-center justify-center min-h-[60vh] transition-opacity duration-300 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}
+            className={`w-full flex items-center justify-center min-h-[calc(100vh-56px)] py-8 transition-opacity duration-300 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}
           >
             <div
-              className="w-full max-w-xl p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl"
+              className="w-full max-w-sm p-6 sm:p-8 rounded-2xl"
               style={{
                 backgroundColor: 'var(--color-background-alt)',
                 border: '1px solid var(--color-border)',
-                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.15)',
+                boxShadow: '0 12px 24px -6px rgba(0, 0, 0, 0.06)',
               }}
             >
-              {/* Upload Header */}
-              <div className="text-center mb-6 sm:mb-8">
-                <div
-                  className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-5"
-                  style={{ backgroundColor: 'rgba(255, 111, 97, 0.12)' }}
-                >
-                  <svg className="w-7 h-7 sm:w-8 sm:h-8 text-[#ff6f61]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <rect x="3" y="3" width="18" height="18" rx="2" />
-                    <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" />
-                    <path d="M21 15l-5-5L5 21" />
-                  </svg>
-                </div>
-                <h2 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3" style={{ color: 'var(--color-foreground)', fontFamily: 'var(--font-heading)' }}>
-                  Preview Your Thumbnail
-                </h2>
-                <p className="text-sm max-w-sm mx-auto" style={{ color: 'var(--color-text-muted)' }}>
-                  See exactly how your thumbnail will appear across YouTube
-                </p>
-              </div>
-
               {/* Upload Zone */}
               <div
-                className={`relative mb-5 sm:mb-6 transition-all duration-300 ${isDragging ? 'scale-[1.02]' : ''}`}
+                className={`relative mb-5 transition-all duration-300 ${isDragging ? 'scale-[1.01]' : ''}`}
                 onDrop={handleDrop}
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}
               >
                 <button
                   onClick={() => fileInputRef.current?.click()}
-                  className={`w-full aspect-video rounded-xl sm:rounded-2xl border-2 border-dashed flex flex-col items-center justify-center gap-3 sm:gap-4 transition-all duration-300 group
+                  className={`w-full h-36 rounded-xl border-2 border-dashed flex flex-col items-center justify-center gap-3 transition-all duration-200 group
                     ${isDragging
-                      ? 'border-[#ff6f61] bg-[#ff6f61]/10'
-                      : 'hover:border-[#ff6f61] hover:bg-[#ff6f61]/5'
+                      ? 'border-[#ff6f61] bg-[#ff6f61]/8'
+                      : 'hover:border-[#ff6f61]/50'
                     }`}
                   style={{ borderColor: isDragging ? '#ff6f61' : 'var(--color-border)' }}
                 >
                   <div
-                    className={`w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center transition-all duration-300 
-                      ${isDragging ? 'scale-110 bg-[#ff6f61]/20' : 'group-hover:scale-110'}`}
-                    style={{ backgroundColor: isDragging ? undefined : 'var(--color-button-bg)' }}
+                    className={`w-10 h-10 rounded-lg flex items-center justify-center transition-transform duration-200 
+                      ${isDragging ? 'scale-110' : 'group-hover:scale-105'}`}
+                    style={{ backgroundColor: isDragging ? 'rgba(255,111,97,0.15)' : 'var(--color-button-bg)' }}
                   >
                     <svg
-                      className={`w-6 h-6 sm:w-7 sm:h-7 transition-colors duration-300`}
+                      className="w-5 h-5"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
@@ -395,17 +357,12 @@ export function ThumbnailPreviewer() {
                       <line x1="12" y1="3" x2="12" y2="15" />
                     </svg>
                   </div>
-                  <div className="text-center px-4">
-                    <span
-                      className="block text-sm sm:text-base font-medium mb-1"
-                      style={{ color: isDragging ? '#ff6f61' : 'var(--color-foreground)' }}
-                    >
-                      {isDragging ? 'Drop to preview' : 'Drop your thumbnail here'}
-                    </span>
-                    <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
-                      or click to browse • PNG, JPG, WebP
-                    </span>
-                  </div>
+                  <span
+                    className="text-sm"
+                    style={{ color: isDragging ? '#ff6f61' : 'var(--color-text-muted)' }}
+                  >
+                    {isDragging ? 'Drop to preview' : 'Upload thumbnail'}
+                  </span>
                 </button>
                 <input
                   ref={fileInputRef}
@@ -416,56 +373,32 @@ export function ThumbnailPreviewer() {
                 />
               </div>
 
-              {/* Optional Fields */}
-              <div className="space-y-3 sm:space-y-4">
-                <div className="flex items-center gap-2 mb-2 sm:mb-3">
-                  <div className="h-px flex-1" style={{ backgroundColor: 'var(--color-border)' }} />
-                  <span className="text-[10px] sm:text-xs font-medium uppercase tracking-wider" style={{ color: 'var(--color-text-muted)' }}>
-                    Optional Details
-                  </span>
-                  <div className="h-px flex-1" style={{ backgroundColor: 'var(--color-border)' }} />
-                </div>
-
-                <div className="grid gap-2.5 sm:gap-3">
-                  <input
-                    type="text"
-                    value={userTitle}
-                    onChange={(e) => setUserTitle(e.target.value)}
-                    placeholder="Video title (shows in preview)"
-                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3.5 rounded-lg sm:rounded-xl text-sm outline-none transition-all duration-200 focus:ring-2 focus:ring-[#ff6f61]/30"
-                    style={{
-                      backgroundColor: 'var(--color-button-bg)',
-                      color: 'var(--color-foreground)',
-                      border: '1px solid var(--color-border)',
-                    }}
-                  />
-                  <input
-                    type="text"
-                    value={userChannel}
-                    onChange={(e) => setUserChannel(e.target.value)}
-                    placeholder="Channel name (shows in preview)"
-                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3.5 rounded-lg sm:rounded-xl text-sm outline-none transition-all duration-200 focus:ring-2 focus:ring-[#ff6f61]/30"
-                    style={{
-                      backgroundColor: 'var(--color-button-bg)',
-                      color: 'var(--color-foreground)',
-                      border: '1px solid var(--color-border)',
-                    }}
-                  />
-                </div>
-              </div>
-
-              {/* Pro Tip */}
-              <div className="mt-5 sm:mt-6 pt-4 sm:pt-5 border-t" style={{ borderColor: 'var(--color-border)' }}>
-                <div className="flex items-start gap-2.5 sm:gap-3 text-xs" style={{ color: 'var(--color-text-muted)' }}>
-                  <svg className="w-4 h-4 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <circle cx="12" cy="12" r="10" />
-                    <path d="M12 16v-4M12 8h.01" />
-                  </svg>
-                  <p>
-                    <strong style={{ color: 'var(--color-foreground)' }}>Pro tip:</strong> Use 1280×720px for best results.
-                    Your image is processed locally.
-                  </p>
-                </div>
+              {/* Fields */}
+              <div className="space-y-2.5">
+                <input
+                  type="text"
+                  value={userTitle}
+                  onChange={(e) => setUserTitle(e.target.value)}
+                  placeholder="Title"
+                  className="w-full px-3 py-2.5 rounded-lg text-sm outline-none transition-all focus:ring-2 focus:ring-[#ff6f61]/15"
+                  style={{
+                    backgroundColor: 'var(--color-button-bg)',
+                    color: 'var(--color-foreground)',
+                    border: '1px solid var(--color-border)',
+                  }}
+                />
+                <input
+                  type="text"
+                  value={userChannel}
+                  onChange={(e) => setUserChannel(e.target.value)}
+                  placeholder="Channel"
+                  className="w-full px-3 py-2.5 rounded-lg text-sm outline-none transition-all focus:ring-2 focus:ring-[#ff6f61]/15"
+                  style={{
+                    backgroundColor: 'var(--color-button-bg)',
+                    color: 'var(--color-foreground)',
+                    border: '1px solid var(--color-border)',
+                  }}
+                />
               </div>
             </div>
           </div>
