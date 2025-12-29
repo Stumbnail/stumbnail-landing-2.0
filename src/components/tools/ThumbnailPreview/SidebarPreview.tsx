@@ -39,11 +39,11 @@ export function SidebarPreview({ userThumbnail, userTitle, userChannel }: Sideba
       {/* YouTube Header */}
       <YouTubeHeader />
 
-      {/* Watch Page Layout */}
-      <div className="flex gap-4 p-4">
+      {/* Watch Page Layout - Stacks on mobile */}
+      <div className="flex flex-col lg:flex-row gap-4 p-3 sm:p-4">
         {/* Main Video Player Area */}
         <div className="flex-1 min-w-0">
-          <div className="relative aspect-video rounded-xl overflow-hidden bg-black">
+          <div className="relative aspect-video rounded-lg sm:rounded-xl overflow-hidden bg-black">
             <Image
               src={YOUTUBE_VIDEOS[0].thumbnail}
               alt="Currently watching"
@@ -52,8 +52,8 @@ export function SidebarPreview({ userThumbnail, userTitle, userChannel }: Sideba
               unoptimized
             />
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-14 h-14 rounded-full bg-white/10 backdrop-blur flex items-center justify-center">
-                <svg className="w-7 h-7 text-white ml-1" viewBox="0 0 24 24" fill="currentColor">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/10 backdrop-blur flex items-center justify-center">
+                <svg className="w-6 h-6 sm:w-7 sm:h-7 text-white ml-1" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M8 5v14l11-7z" />
                 </svg>
               </div>
@@ -63,32 +63,32 @@ export function SidebarPreview({ userThumbnail, userTitle, userChannel }: Sideba
               <div className="h-full bg-red-600 w-1/3" />
             </div>
           </div>
-          <h2 className="text-base font-medium mt-3 line-clamp-2" style={{ color: 'var(--color-foreground)' }}>
+          <h2 className="text-sm sm:text-base font-medium mt-2 sm:mt-3 line-clamp-2" style={{ color: 'var(--color-foreground)' }}>
             {YOUTUBE_VIDEOS[0].title}
           </h2>
           <div className="flex items-center gap-2 mt-2">
             <Image
               src={YOUTUBE_VIDEOS[0].channelAvatar}
               alt={YOUTUBE_VIDEOS[0].channel}
-              width={32}
-              height={32}
-              className="rounded-full"
+              width={28}
+              height={28}
+              className="rounded-full sm:w-8 sm:h-8"
               unoptimized
             />
             <div>
-              <span className="text-sm font-medium flex items-center gap-1" style={{ color: 'var(--color-foreground)' }}>
+              <span className="text-xs sm:text-sm font-medium flex items-center gap-1" style={{ color: 'var(--color-foreground)' }}>
                 {YOUTUBE_VIDEOS[0].channel}
                 <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor" style={{ color: 'var(--color-text-muted)' }}>
                   <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
                 </svg>
               </span>
-              <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>50M subscribers</span>
+              <span className="text-[10px] sm:text-xs" style={{ color: 'var(--color-text-muted)' }}>50M subscribers</span>
             </div>
           </div>
         </div>
 
         {/* Recommended Sidebar */}
-        <div className="w-[300px] flex-shrink-0">
+        <div className="w-full lg:w-[280px] xl:w-[300px] flex-shrink-0">
           <div className="flex flex-col gap-2">
             {displayVideos.map((video, index) => {
               if ('isUser' in video) {

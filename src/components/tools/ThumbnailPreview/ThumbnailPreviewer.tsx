@@ -1,51 +1,55 @@
 'use client'
 
-import { useState, useCallback, useRef, ReactNode } from 'react'
+import { useState, useCallback, useRef, ReactNode, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Button } from '@/components/ui/Button'
 import { HomeFeedPreview } from './HomeFeedPreview'
 import { SearchResultsPreview } from './SearchResultsPreview'
 import { SidebarPreview } from './SidebarPreview'
 import { MobilePreview } from './MobilePreview'
+import { ThemeToggle } from '@/components/ui/ThemeToggle'
 
 type PreviewMode = 'home' | 'search' | 'sidebar' | 'mobile'
 
-const PREVIEW_MODES: { id: PreviewMode; label: string; icon: ReactNode }[] = [
+const PREVIEW_MODES: { id: PreviewMode; label: string; description: string; icon: ReactNode }[] = [
   {
     id: 'home',
     label: 'Home',
+    description: 'YouTube homepage feed',
     icon: (
       <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
       </svg>
     ),
   },
   {
     id: 'search',
     label: 'Search',
+    description: 'Search results page',
     icon: (
       <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <circle cx="11" cy="11" r="8"/>
-        <path d="m21 21-4.35-4.35"/>
+        <circle cx="11" cy="11" r="8" />
+        <path d="m21 21-4.35-4.35" />
       </svg>
     ),
   },
   {
     id: 'sidebar',
     label: 'Suggested',
+    description: 'Video sidebar recommendations',
     icon: (
       <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8 12.5v-9l6 4.5-6 4.5z"/>
+        <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8 12.5v-9l6 4.5-6 4.5z" />
       </svg>
     ),
   },
   {
     id: 'mobile',
     label: 'Mobile',
+    description: 'YouTube mobile app',
     icon: (
       <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/>
+        <path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z" />
       </svg>
     ),
   },
@@ -57,14 +61,42 @@ export function ThumbnailPreviewer() {
   const [userChannel, setUserChannel] = useState('')
   const [activeMode, setActiveMode] = useState<PreviewMode>('home')
   const [isDragging, setIsDragging] = useState(false)
+  const [isEditingDetails, setIsEditingDetails] = useState(false)
+  const [isTransitioning, setIsTransitioning] = useState(false)
+  const [showTooltip, setShowTooltip] = useState<PreviewMode | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
+
+  const hasUploadedThumbnail = userThumbnail !== null
+
+  // Keyboard shortcuts
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!hasUploadedThumbnail) return
+
+      if (e.key >= '1' && e.key <= '4') {
+        const modeIndex = parseInt(e.key) - 1
+        if (PREVIEW_MODES[modeIndex]) {
+          setActiveMode(PREVIEW_MODES[modeIndex].id)
+        }
+      }
+
+      if (e.key === 'Escape') {
+        clearThumbnail()
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [hasUploadedThumbnail])
 
   const handleFileSelect = useCallback((file: File) => {
     if (!file.type.startsWith('image/')) return
 
+    setIsTransitioning(true)
     const reader = new FileReader()
     reader.onload = (e) => {
       setUserThumbnail(e.target?.result as string)
+      setTimeout(() => setIsTransitioning(false), 300)
     }
     reader.readAsDataURL(file)
   }, [])
@@ -91,66 +123,290 @@ export function ThumbnailPreviewer() {
   }, [handleFileSelect])
 
   const clearThumbnail = useCallback(() => {
-    setUserThumbnail(null)
-    setUserTitle('')
-    setUserChannel('')
-    if (fileInputRef.current) fileInputRef.current.value = ''
+    setIsTransitioning(true)
+    setTimeout(() => {
+      setUserThumbnail(null)
+      setUserTitle('')
+      setUserChannel('')
+      setIsEditingDetails(false)
+      if (fileInputRef.current) fileInputRef.current.value = ''
+      setIsTransitioning(false)
+    }, 200)
   }, [])
+
+  const handleModeChange = useCallback((mode: PreviewMode) => {
+    if (mode === activeMode) return
+    setIsTransitioning(true)
+    setActiveMode(mode)
+    setTimeout(() => setIsTransitioning(false), 200)
+  }, [activeMode])
 
   return (
     <div className="w-full">
-      <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
-        {/* Left Panel - Controls */}
-        <div className="w-full lg:w-80 xl:w-96 flex-shrink-0">
-          <div
-            className="sticky top-24 p-4 rounded-2xl flex flex-col gap-4"
-            style={{ backgroundColor: 'var(--color-background-alt)', border: '1px solid var(--color-border)' }}
-          >
-            {/* Thumbnail Upload */}
-            <div>
-              <label className="block text-xs font-medium mb-2 uppercase tracking-wide" style={{ color: 'var(--color-text-muted)' }}>
-                Thumbnail
-              </label>
+      {/* Unified Header */}
+      <header
+        className="sticky top-0 z-50 px-3 sm:px-4 lg:px-6 py-2.5 sm:py-3 mb-4"
+        style={{
+          backgroundColor: 'var(--color-background)',
+          borderBottom: '1px solid var(--color-border)',
+        }}
+      >
+        <div className="flex items-center justify-between gap-2 sm:gap-3">
+          {/* Left Section */}
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-shrink">
+            {/* Logo/Home Link */}
+            <Link href="/" className="flex-shrink-0 group">
               <div
-                className={`relative ${isDragging ? 'ring-2 ring-[#ff6f61]' : ''}`}
+                className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center transition-transform duration-200 group-hover:scale-105"
+                style={{ backgroundColor: 'rgba(255, 111, 97, 0.1)' }}
+              >
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 text-[#ff6f61]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" />
+                  <path d="M21 15l-5-5L5 21" />
+                </svg>
+              </div>
+            </Link>
+
+            {/* Title - Hidden when thumbnail uploaded on mobile */}
+            {!hasUploadedThumbnail && (
+              <div className="hidden sm:block min-w-0">
+                <h1
+                  className="text-base lg:text-lg font-bold leading-tight truncate"
+                  style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-foreground)' }}
+                >
+                  Thumbnail <span style={{ color: '#ff6f61' }}>Previewer</span>
+                </h1>
+                <p className="text-xs truncate" style={{ color: 'var(--color-text-muted)' }}>
+                  Preview before publishing
+                </p>
+              </div>
+            )}
+
+            {/* Thumbnail Preview (when uploaded) */}
+            {hasUploadedThumbnail && (
+              <>
+                <div
+                  className="relative w-12 h-7 sm:w-14 sm:h-8 rounded-md overflow-hidden flex-shrink-0 cursor-pointer group ring-2 ring-transparent hover:ring-[#ff6f61]/50 transition-all duration-200"
+                  onClick={() => setIsEditingDetails(!isEditingDetails)}
+                >
+                  <Image
+                    src={userThumbnail}
+                    alt="Your thumbnail"
+                    fill
+                    className="object-cover"
+                    unoptimized
+                  />
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <svg className="w-3 h-3 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                    </svg>
+                  </div>
+                </div>
+
+                {/* Title & Channel - Desktop only */}
+                <div className="hidden lg:block min-w-0">
+                  <p className="text-sm font-medium truncate max-w-[120px] xl:max-w-[180px]" style={{ color: 'var(--color-foreground)' }}>
+                    {userTitle || 'Untitled Video'}
+                  </p>
+                  <p className="text-xs truncate max-w-[120px] xl:max-w-[180px]" style={{ color: 'var(--color-text-muted)' }}>
+                    {userChannel || 'Your Channel'}
+                  </p>
+                </div>
+
+                {/* Edit & Delete Buttons */}
+                <div className="flex items-center gap-0.5 sm:gap-1">
+                  <button
+                    onClick={() => setIsEditingDetails(!isEditingDetails)}
+                    className={`p-1.5 sm:p-2 rounded-lg transition-all duration-200 ${isEditingDetails ? 'bg-[#ff6f61]/10 text-[#ff6f61]' : 'hover:bg-black/5'}`}
+                    style={{ color: isEditingDetails ? '#ff6f61' : 'var(--color-text-muted)' }}
+                    title="Edit details"
+                  >
+                    <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                    </svg>
+                  </button>
+                  <button
+                    onClick={clearThumbnail}
+                    className="p-1.5 sm:p-2 rounded-lg transition-all duration-200 hover:bg-red-500/10 text-red-500/70 hover:text-red-500"
+                    title="New thumbnail"
+                  >
+                    <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M18 6L6 18M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+
+          {/* Center: Preview Mode Tabs (when thumbnail uploaded) */}
+          {hasUploadedThumbnail && (
+            <div className="flex items-center flex-shrink-0">
+              <div
+                className="flex items-center gap-0.5 p-0.5 sm:p-1 rounded-lg sm:rounded-xl"
+                style={{ backgroundColor: 'var(--color-button-bg)' }}
+              >
+                {PREVIEW_MODES.map((mode, index) => (
+                  <div key={mode.id} className="relative">
+                    <button
+                      onClick={() => handleModeChange(mode.id)}
+                      onMouseEnter={() => setShowTooltip(mode.id)}
+                      onMouseLeave={() => setShowTooltip(null)}
+                      className={`flex items-center gap-1 px-2 sm:px-2.5 py-1.5 sm:py-2 rounded-md sm:rounded-lg text-xs font-medium transition-all duration-200 ${activeMode === mode.id ? '' : 'hover:bg-white/5'
+                        }`}
+                      style={{
+                        backgroundColor: activeMode === mode.id ? '#ff6f61' : 'transparent',
+                        color: activeMode === mode.id ? 'white' : 'var(--color-text-muted)',
+                        boxShadow: activeMode === mode.id ? '0 2px 8px rgba(255,111,97,0.35)' : 'none',
+                      }}
+                    >
+                      {mode.icon}
+                      <span className="hidden sm:inline">{mode.label}</span>
+                      <span className="hidden xl:inline text-[10px] opacity-60 ml-0.5">{index + 1}</span>
+                    </button>
+
+                    {showTooltip === mode.id && activeMode !== mode.id && (
+                      <div
+                        className="absolute top-full mt-2 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg text-xs whitespace-nowrap z-30 pointer-events-none hidden sm:block"
+                        style={{
+                          backgroundColor: 'var(--color-foreground)',
+                          color: 'var(--color-background)',
+                        }}
+                      >
+                        {mode.description}
+                        <div
+                          className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 rotate-45"
+                          style={{ backgroundColor: 'var(--color-foreground)' }}
+                        />
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Right Section */}
+          <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
+            {/* Free Tool Badge - Desktop only, not when previewing */}
+            {!hasUploadedThumbnail && (
+              <div
+                className="hidden md:flex items-center gap-1.5 px-2 py-1 rounded-full text-xs"
+                style={{ backgroundColor: 'var(--color-button-bg)' }}
+              >
+                <svg className="w-3 h-3 text-[#ff6f61]" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81z" />
+                  <path d="M10 15V9l5.2 3-5.2 3z" fill="var(--color-background)" />
+                </svg>
+                <span style={{ color: 'var(--color-foreground)' }}>Free</span>
+              </div>
+            )}
+
+            <ThemeToggle />
+
+            {/* Try Stumbnail CTA */}
+            <Link
+              href="/"
+              className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg sm:rounded-xl text-xs sm:text-sm font-medium transition-all duration-200 hover:scale-[1.02]"
+              style={{
+                backgroundColor: '#ff6f61',
+                color: 'white',
+                boxShadow: '0 2px 8px rgba(255, 111, 97, 0.3)',
+              }}
+            >
+              <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M12 5v14M5 12h14" />
+              </svg>
+              <span className="hidden sm:inline">Try Stumbnail</span>
+            </Link>
+          </div>
+        </div>
+      </header>
+
+      {/* Main Content Area */}
+      <div className="px-3 sm:px-4 lg:px-6">
+        {/* Step 1: Upload Interface */}
+        {!hasUploadedThumbnail && (
+          <div
+            className={`w-full flex items-center justify-center min-h-[60vh] transition-opacity duration-300 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}
+          >
+            <div
+              className="w-full max-w-xl p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl"
+              style={{
+                backgroundColor: 'var(--color-background-alt)',
+                border: '1px solid var(--color-border)',
+                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.15)',
+              }}
+            >
+              {/* Upload Header */}
+              <div className="text-center mb-6 sm:mb-8">
+                <div
+                  className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-5"
+                  style={{ backgroundColor: 'rgba(255, 111, 97, 0.12)' }}
+                >
+                  <svg className="w-7 h-7 sm:w-8 sm:h-8 text-[#ff6f61]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" />
+                    <path d="M21 15l-5-5L5 21" />
+                  </svg>
+                </div>
+                <h2 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3" style={{ color: 'var(--color-foreground)', fontFamily: 'var(--font-heading)' }}>
+                  Preview Your Thumbnail
+                </h2>
+                <p className="text-sm max-w-sm mx-auto" style={{ color: 'var(--color-text-muted)' }}>
+                  See exactly how your thumbnail will appear across YouTube
+                </p>
+              </div>
+
+              {/* Upload Zone */}
+              <div
+                className={`relative mb-5 sm:mb-6 transition-all duration-300 ${isDragging ? 'scale-[1.02]' : ''}`}
                 onDrop={handleDrop}
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}
               >
-                {userThumbnail ? (
-                  <div className="relative w-full aspect-video rounded-xl overflow-hidden">
-                    <Image
-                      src={userThumbnail}
-                      alt="Your thumbnail"
-                      fill
-                      className="object-cover"
-                      unoptimized
-                    />
-                    <button
-                      onClick={clearThumbnail}
-                      className="absolute top-2 right-2 w-6 h-6 rounded-full bg-black/70 text-white flex items-center justify-center hover:bg-black transition-colors"
-                    >
-                      <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M18 6L6 18M6 6l12 12"/>
-                      </svg>
-                    </button>
-                  </div>
-                ) : (
-                  <button
-                    onClick={() => fileInputRef.current?.click()}
-                    className="w-full aspect-video rounded-xl border-2 border-dashed flex flex-col items-center justify-center gap-2 transition-colors hover:border-[#ff6f61] hover:bg-[#ff6f61]/5"
-                    style={{ borderColor: 'var(--color-border)' }}
+                <button
+                  onClick={() => fileInputRef.current?.click()}
+                  className={`w-full aspect-video rounded-xl sm:rounded-2xl border-2 border-dashed flex flex-col items-center justify-center gap-3 sm:gap-4 transition-all duration-300 group
+                    ${isDragging
+                      ? 'border-[#ff6f61] bg-[#ff6f61]/10'
+                      : 'hover:border-[#ff6f61] hover:bg-[#ff6f61]/5'
+                    }`}
+                  style={{ borderColor: isDragging ? '#ff6f61' : 'var(--color-border)' }}
+                >
+                  <div
+                    className={`w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center transition-all duration-300 
+                      ${isDragging ? 'scale-110 bg-[#ff6f61]/20' : 'group-hover:scale-110'}`}
+                    style={{ backgroundColor: isDragging ? undefined : 'var(--color-button-bg)' }}
                   >
-                    <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ color: 'var(--color-text-muted)' }}>
-                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                      <polyline points="17,8 12,3 7,8"/>
-                      <line x1="12" y1="3" x2="12" y2="15"/>
+                    <svg
+                      className={`w-6 h-6 sm:w-7 sm:h-7 transition-colors duration-300`}
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      style={{ color: isDragging ? '#ff6f61' : 'var(--color-text-muted)' }}
+                    >
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                      <polyline points="17,8 12,3 7,8" />
+                      <line x1="12" y1="3" x2="12" y2="15" />
                     </svg>
-                    <span className="text-xs font-medium" style={{ color: 'var(--color-text-muted)' }}>
-                      Drop image or click
+                  </div>
+                  <div className="text-center px-4">
+                    <span
+                      className="block text-sm sm:text-base font-medium mb-1"
+                      style={{ color: isDragging ? '#ff6f61' : 'var(--color-foreground)' }}
+                    >
+                      {isDragging ? 'Drop to preview' : 'Drop your thumbnail here'}
                     </span>
-                  </button>
-                )}
+                    <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+                      or click to browse • PNG, JPG, WebP
+                    </span>
+                  </div>
+                </button>
                 <input
                   ref={fileInputRef}
                   type="file"
@@ -159,121 +415,175 @@ export function ThumbnailPreviewer() {
                   className="hidden"
                 />
               </div>
-            </div>
 
-            {/* Title Input */}
-            <div>
-              <label className="block text-xs font-medium mb-2 uppercase tracking-wide" style={{ color: 'var(--color-text-muted)' }}>
-                Video Title
-              </label>
-              <input
-                type="text"
-                value={userTitle}
-                onChange={(e) => setUserTitle(e.target.value)}
-                placeholder="Enter your video title..."
-                className="w-full px-3 py-2.5 rounded-xl text-sm outline-none transition-all focus:ring-2 focus:ring-[#ff6f61]/30"
-                style={{
-                  backgroundColor: 'var(--color-button-bg)',
-                  color: 'var(--color-foreground)',
-                  border: '1px solid var(--color-border)',
-                }}
-              />
-            </div>
+              {/* Optional Fields */}
+              <div className="space-y-3 sm:space-y-4">
+                <div className="flex items-center gap-2 mb-2 sm:mb-3">
+                  <div className="h-px flex-1" style={{ backgroundColor: 'var(--color-border)' }} />
+                  <span className="text-[10px] sm:text-xs font-medium uppercase tracking-wider" style={{ color: 'var(--color-text-muted)' }}>
+                    Optional Details
+                  </span>
+                  <div className="h-px flex-1" style={{ backgroundColor: 'var(--color-border)' }} />
+                </div>
 
-            {/* Channel Input */}
-            <div>
-              <label className="block text-xs font-medium mb-2 uppercase tracking-wide" style={{ color: 'var(--color-text-muted)' }}>
-                Channel Name
-              </label>
-              <input
-                type="text"
-                value={userChannel}
-                onChange={(e) => setUserChannel(e.target.value)}
-                placeholder="Your channel name..."
-                className="w-full px-3 py-2.5 rounded-xl text-sm outline-none transition-all focus:ring-2 focus:ring-[#ff6f61]/30"
-                style={{
-                  backgroundColor: 'var(--color-button-bg)',
-                  color: 'var(--color-foreground)',
-                  border: '1px solid var(--color-border)',
-                }}
-              />
-            </div>
-
-            {/* Preview Mode Tabs */}
-            <div>
-              <label className="block text-xs font-medium mb-2 uppercase tracking-wide" style={{ color: 'var(--color-text-muted)' }}>
-                Preview Mode
-              </label>
-              <div className="grid grid-cols-2 gap-2">
-                {PREVIEW_MODES.map((mode) => (
-                  <button
-                    key={mode.id}
-                    onClick={() => setActiveMode(mode.id)}
-                    className="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200"
+                <div className="grid gap-2.5 sm:gap-3">
+                  <input
+                    type="text"
+                    value={userTitle}
+                    onChange={(e) => setUserTitle(e.target.value)}
+                    placeholder="Video title (shows in preview)"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3.5 rounded-lg sm:rounded-xl text-sm outline-none transition-all duration-200 focus:ring-2 focus:ring-[#ff6f61]/30"
                     style={{
-                      backgroundColor: activeMode === mode.id ? '#ff6f61' : 'var(--color-button-bg)',
-                      color: activeMode === mode.id ? 'white' : 'var(--color-text-muted)',
-                      boxShadow: activeMode === mode.id ? '0 4px 12px rgba(255,111,97,0.3)' : 'none',
+                      backgroundColor: 'var(--color-button-bg)',
+                      color: 'var(--color-foreground)',
+                      border: '1px solid var(--color-border)',
                     }}
+                  />
+                  <input
+                    type="text"
+                    value={userChannel}
+                    onChange={(e) => setUserChannel(e.target.value)}
+                    placeholder="Channel name (shows in preview)"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3.5 rounded-lg sm:rounded-xl text-sm outline-none transition-all duration-200 focus:ring-2 focus:ring-[#ff6f61]/30"
+                    style={{
+                      backgroundColor: 'var(--color-button-bg)',
+                      color: 'var(--color-foreground)',
+                      border: '1px solid var(--color-border)',
+                    }}
+                  />
+                </div>
+              </div>
+
+              {/* Pro Tip */}
+              <div className="mt-5 sm:mt-6 pt-4 sm:pt-5 border-t" style={{ borderColor: 'var(--color-border)' }}>
+                <div className="flex items-start gap-2.5 sm:gap-3 text-xs" style={{ color: 'var(--color-text-muted)' }}>
+                  <svg className="w-4 h-4 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 16v-4M12 8h.01" />
+                  </svg>
+                  <p>
+                    <strong style={{ color: 'var(--color-foreground)' }}>Pro tip:</strong> Use 1280×720px for best results.
+                    Your image is processed locally.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Step 2: Preview Mode */}
+        {hasUploadedThumbnail && (
+          <div className={`w-full transition-opacity duration-300 ${isTransitioning ? 'opacity-50' : 'opacity-100'}`}>
+            {/* Edit Details Panel */}
+            <div
+              className={`overflow-hidden transition-all duration-300 ease-out ${isEditingDetails ? 'max-h-48 opacity-100 mb-4' : 'max-h-0 opacity-0'}`}
+            >
+              <div
+                className="p-3 sm:p-4 rounded-xl sm:rounded-2xl"
+                style={{ backgroundColor: 'var(--color-background-alt)', border: '1px solid var(--color-border)' }}
+              >
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                  <div
+                    className="relative w-full sm:w-32 md:w-36 aspect-video rounded-lg sm:rounded-xl overflow-hidden flex-shrink-0 cursor-pointer group"
+                    onClick={() => fileInputRef.current?.click()}
                   >
-                    {mode.icon}
-                    <span>{mode.label}</span>
-                  </button>
-                ))}
+                    <Image
+                      src={userThumbnail}
+                      alt="Your thumbnail"
+                      fill
+                      className="object-cover transition-transform duration-200 group-hover:scale-105"
+                      unoptimized
+                    />
+                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-1">
+                      <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                        <polyline points="17,8 12,3 7,8" />
+                        <line x1="12" y1="3" x2="12" y2="15" />
+                      </svg>
+                      <span className="text-white text-xs font-medium">Change</span>
+                    </div>
+                  </div>
+
+                  <div className="flex-1 flex flex-col gap-2 sm:gap-3">
+                    <input
+                      type="text"
+                      value={userTitle}
+                      onChange={(e) => setUserTitle(e.target.value)}
+                      placeholder="Video title..."
+                      className="w-full px-3 py-2 sm:py-2.5 rounded-lg text-sm outline-none transition-all duration-200 focus:ring-2 focus:ring-[#ff6f61]/30"
+                      style={{
+                        backgroundColor: 'var(--color-button-bg)',
+                        color: 'var(--color-foreground)',
+                        border: '1px solid var(--color-border)',
+                      }}
+                    />
+                    <input
+                      type="text"
+                      value={userChannel}
+                      onChange={(e) => setUserChannel(e.target.value)}
+                      placeholder="Channel name..."
+                      className="w-full px-3 py-2 sm:py-2.5 rounded-lg text-sm outline-none transition-all duration-200 focus:ring-2 focus:ring-[#ff6f61]/30"
+                      style={{
+                        backgroundColor: 'var(--color-button-bg)',
+                        color: 'var(--color-foreground)',
+                        border: '1px solid var(--color-border)',
+                      }}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Stumbnail CTA */}
-            <div className="mt-2 pt-4 border-t" style={{ borderColor: 'var(--color-border)' }}>
-              <div className="text-center">
-                <p className="text-xs mb-3" style={{ color: 'var(--color-text-muted)' }}>
-                  Need better thumbnails?
-                </p>
-                <Link href="/">
-                  <Button variant="secondary" size="sm" className="w-full">
-                    Try Stumbnail Free
-                  </Button>
-                </Link>
+            {/* YouTube Preview */}
+            <div className={`pb-4 transition-all duration-300 ${isTransitioning ? 'blur-sm' : ''}`}>
+              <div className={activeMode === 'mobile' ? 'flex justify-center' : 'w-full'}>
+                {activeMode === 'home' && (
+                  <HomeFeedPreview
+                    userThumbnail={userThumbnail}
+                    userTitle={userTitle}
+                    userChannel={userChannel}
+                  />
+                )}
+                {activeMode === 'search' && (
+                  <SearchResultsPreview
+                    userThumbnail={userThumbnail}
+                    userTitle={userTitle}
+                    userChannel={userChannel}
+                  />
+                )}
+                {activeMode === 'sidebar' && (
+                  <SidebarPreview
+                    userThumbnail={userThumbnail}
+                    userTitle={userTitle}
+                    userChannel={userChannel}
+                  />
+                )}
+                {activeMode === 'mobile' && (
+                  <MobilePreview
+                    userThumbnail={userThumbnail}
+                    userTitle={userTitle}
+                    userChannel={userChannel}
+                  />
+                )}
               </div>
             </div>
-          </div>
-        </div>
 
-        {/* Right Panel - YouTube Preview */}
-        <div className="flex-1 min-w-0">
-          <div className="overflow-x-auto pb-4">
-            <div className={activeMode === 'mobile' ? '' : 'min-w-[700px]'}>
-              {activeMode === 'home' && (
-                <HomeFeedPreview
-                  userThumbnail={userThumbnail}
-                  userTitle={userTitle}
-                  userChannel={userChannel}
-                />
-              )}
-              {activeMode === 'search' && (
-                <SearchResultsPreview
-                  userThumbnail={userThumbnail}
-                  userTitle={userTitle}
-                  userChannel={userChannel}
-                />
-              )}
-              {activeMode === 'sidebar' && (
-                <SidebarPreview
-                  userThumbnail={userThumbnail}
-                  userTitle={userTitle}
-                  userChannel={userChannel}
-                />
-              )}
-              {activeMode === 'mobile' && (
-                <MobilePreview
-                  userThumbnail={userThumbnail}
-                  userTitle={userTitle}
-                  userChannel={userChannel}
-                />
-              )}
+            {/* Keyboard shortcuts hint - Desktop only */}
+            <div
+              className="hidden lg:flex items-center justify-center gap-4 mt-4 pt-4 border-t text-xs"
+              style={{ borderColor: 'var(--color-border)', color: 'var(--color-text-muted)' }}
+            >
+              <span className="flex items-center gap-1.5">
+                <kbd className="px-1.5 py-0.5 rounded text-[10px] font-mono" style={{ backgroundColor: 'var(--color-button-bg)' }}>1-4</kbd>
+                Switch views
+              </span>
+              <span className="flex items-center gap-1.5">
+                <kbd className="px-1.5 py-0.5 rounded text-[10px] font-mono" style={{ backgroundColor: 'var(--color-button-bg)' }}>Esc</kbd>
+                New thumbnail
+              </span>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   )

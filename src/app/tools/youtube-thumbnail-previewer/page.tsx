@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { IslandHeader } from '@/components/layout/IslandHeader'
 import { Footer } from '@/components/layout/Footer'
 import { ThumbnailPreviewer } from '@/components/tools/ThumbnailPreview'
 
@@ -59,36 +58,8 @@ export const metadata: Metadata = {
 export default function ThumbnailPreviewerPage() {
   return (
     <main className="min-h-screen" style={{ backgroundColor: 'var(--color-background)' }}>
-      <IslandHeader />
-
-      {/* Compact Header */}
-      <section className="pt-24 pb-4 px-4 lg:px-8 xl:px-12">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <div>
-            <h1
-              className="text-2xl md:text-3xl font-bold"
-              style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-foreground)' }}
-            >
-              YouTube Thumbnail <span style={{ color: '#ff6f61' }}>Previewer</span>
-            </h1>
-            <p className="text-sm mt-1" style={{ color: 'var(--color-text-muted)' }}>
-              See how your thumbnail looks before publishing
-            </p>
-          </div>
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs" style={{ backgroundColor: 'var(--color-button-bg)' }}>
-            <svg className="w-3.5 h-3.5 text-[#ff6f61]" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81z"/>
-              <path d="M10 15V9l5.2 3-5.2 3z" fill="var(--color-background)"/>
-            </svg>
-            <span style={{ color: 'var(--color-foreground)' }}>Free Tool</span>
-          </div>
-        </div>
-      </section>
-
-      {/* Tool Section - Full Width */}
-      <section className="pb-16 px-4 lg:px-8 xl:px-12">
-        <ThumbnailPreviewer />
-      </section>
+      {/* Tool with integrated header */}
+      <ThumbnailPreviewer />
 
       {/* SEO Content Section - Below the Fold */}
       <section className="py-16 px-4 border-t" style={{ borderColor: 'var(--color-border)' }}>
@@ -104,8 +75,8 @@ export default function ThumbnailPreviewerPage() {
             <div className="p-5 rounded-xl" style={{ backgroundColor: 'var(--color-background-alt)' }}>
               <div className="w-10 h-10 rounded-lg flex items-center justify-center mb-3" style={{ backgroundColor: 'var(--color-button-bg)' }}>
                 <svg className="w-5 h-5 text-[#ff6f61]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
-                  <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7Z"/>
+                  <path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                  <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7Z" />
                 </svg>
               </div>
               <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-foreground)' }}>
@@ -119,8 +90,8 @@ export default function ThumbnailPreviewerPage() {
             <div className="p-5 rounded-xl" style={{ backgroundColor: 'var(--color-background-alt)' }}>
               <div className="w-10 h-10 rounded-lg flex items-center justify-center mb-3" style={{ backgroundColor: 'var(--color-button-bg)' }}>
                 <svg className="w-5 h-5 text-[#ff6f61]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <rect x="5" y="2" width="14" height="20" rx="2"/>
-                  <line x1="12" y1="18" x2="12" y2="18"/>
+                  <rect x="5" y="2" width="14" height="20" rx="2" />
+                  <line x1="12" y1="18" x2="12" y2="18" />
                 </svg>
               </div>
               <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-foreground)' }}>
@@ -134,9 +105,9 @@ export default function ThumbnailPreviewerPage() {
             <div className="p-5 rounded-xl" style={{ backgroundColor: 'var(--color-background-alt)' }}>
               <div className="w-10 h-10 rounded-lg flex items-center justify-center mb-3" style={{ backgroundColor: 'var(--color-button-bg)' }}>
                 <svg className="w-5 h-5 text-[#ff6f61]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M12 20V10"/>
-                  <path d="M18 20V4"/>
-                  <path d="M6 20v-4"/>
+                  <path d="M12 20V10" />
+                  <path d="M18 20V4" />
+                  <path d="M6 20v-4" />
                 </svg>
               </div>
               <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-foreground)' }}>
@@ -150,8 +121,8 @@ export default function ThumbnailPreviewerPage() {
             <div className="p-5 rounded-xl" style={{ backgroundColor: 'var(--color-background-alt)' }}>
               <div className="w-10 h-10 rounded-lg flex items-center justify-center mb-3" style={{ backgroundColor: 'var(--color-button-bg)' }}>
                 <svg className="w-5 h-5 text-[#ff6f61]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <circle cx="11" cy="11" r="8"/>
-                  <path d="m21 21-4.35-4.35"/>
+                  <circle cx="11" cy="11" r="8" />
+                  <path d="m21 21-4.35-4.35" />
                 </svg>
               </div>
               <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-foreground)' }}>
