@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { spaceGrotesk, lexend, merriweather } from './fonts'
 import { ThemeProvider } from '@/components/providers/ThemeProvider'
 import { AnalyticsProvider } from '@/components/providers/AnalyticsProvider'
+import { StructuredData } from '@/components/seo/StructuredData'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -86,6 +87,7 @@ export default function RootLayout({
             `,
           }}
         />
+        <StructuredData />
       </head>
       <body className={`${spaceGrotesk.variable} ${lexend.variable} ${merriweather.variable} antialiased`}>
         <ThemeProvider>

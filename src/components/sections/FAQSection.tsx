@@ -1,50 +1,15 @@
 'use client'
 
 import { useState } from 'react'
+import { faqData } from '@/components/seo/StructuredData'
 
 interface FAQItem {
     question: string
     answer: string
 }
 
-const faqs: FAQItem[] = [
-    {
-        question: "What does your thumbnail creator actually do?",
-        answer: "We're an AI YouTube thumbnail generator that turns your ideas into click-worthy visuals in seconds. Just describe what you want or paste your video title, and our AI generates a clean, creator-ready thumbnail. You can adjust colors, personas, text, and layout without starting over. It's built to give you fast results while keeping full creative control in your hands."
-    },
-    {
-        question: "Do I need design skills to use this?",
-        answer: "Not at all. The whole point is that you don't need to know Photoshop or spend hours learning design software. If you can type a sentence, you can make a thumbnail. Our thumbnail maker AI handles the heavy lifting like composition, style, and readability so you can focus on your content."
-    },
-    {
-        question: "What's the right YouTube thumbnail size?",
-        answer: "The recommended YouTube thumbnail size is 1280 × 720 pixels with a 16:9 aspect ratio. This is the standard that YouTube expects, and all thumbnails we generate follow this spec automatically. You don't need to resize anything. What you download is ready to upload."
-    },
-    {
-        question: "Can I generate a thumbnail from my video?",
-        answer: "Yes. You can generate a thumbnail from video by giving us context about what your video covers. Describe the topic, the vibe, or paste your title and we'll create a thumbnail that fits. You're not limited to screenshots; you get original, AI-generated visuals designed for clicks."
-    },
-    {
-        question: "Is this free? What does the free plan include?",
-        answer: "We have a free tier that lets you try the AI thumbnail generator free with limited credits. It's enough to test the tool and see if it fits your workflow. If you need more like higher volume, priority rendering, or team features, we have paid plans that scale with your needs."
-    },
-    {
-        question: "Can I use this for gaming thumbnails?",
-        answer: "Absolutely. We support gaming thumbnail creation for any game like Minecraft, Fortnite, Call of Duty, whatever you play. Just describe the scene or vibe you want, and the AI generates something that fits the energy of gaming content."
-    },
-    {
-        question: "Do you have thumbnail templates I can use?",
-        answer: "We take a different approach. Instead of static YouTube thumbnail templates, our AI generates fresh designs based on your input every time. This means your thumbnails don't look like everyone else's, and you're not stuck tweaking a template that doesn't quite fit."
-    },
-    {
-        question: "Can I add text to my thumbnails?",
-        answer: "Yes. Our thumbnail text generator lets you add bold, readable text directly on your thumbnail. You control the wording, size, and placement. The AI suggests layouts that keep text legible even at small sizes because that's where most people see thumbnails first."
-    },
-    {
-        question: "How is this different from Canva or Photoshop?",
-        answer: "Canva and Photoshop are general design tools. We're built specifically for YouTube creators. Our AI thumbnail maker understands what makes thumbnails click like faces, contrast, and text placement, then generates designs with that in mind. No templates to dig through, no learning curve. Just describe and generate."
-    },
-]
+// Use the shared FAQ data from StructuredData
+const faqs: FAQItem[] = faqData
 
 function ChevronIcon({ isOpen }: { isOpen: boolean }) {
     return (
@@ -144,9 +109,8 @@ export function FAQSection() {
                             </button>
 
                             <div
-                                className={`overflow-hidden transition-all duration-200 ${
-                                    openIndex === index ? 'max-h-[500px]' : 'max-h-0'
-                                }`}
+                                className={`overflow-hidden transition-all duration-200 ${openIndex === index ? 'max-h-[500px]' : 'max-h-0'
+                                    }`}
                             >
                                 <p
                                     className="px-5 md:px-6 pb-5 md:pb-6 text-base leading-relaxed"
