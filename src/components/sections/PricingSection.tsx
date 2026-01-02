@@ -170,10 +170,9 @@ export function PricingSection() {
                                 <ul className="space-y-2.5">
                                     {freeFeatures.map((feature, i) => (
                                         <li key={i} className="flex items-center gap-3 text-sm text-[var(--color-foreground)]">
-                                            <feature.icon
-                                                className="w-4 h-4 shrink-0"
-                                                style={{ color: feature.isLimitation ? '#f59e0b' : '#10b981' }}
-                                            />
+                                            <span style={{ color: feature.isLimitation ? '#f59e0b' : '#10b981' }}>
+                                                <feature.icon className="w-4 h-4 shrink-0" />
+                                            </span>
                                             <span className={feature.isLimitation ? 'text-amber-600 dark:text-amber-400' : ''}>
                                                 {feature.text}
                                             </span>
@@ -248,7 +247,9 @@ export function PricingSection() {
                                 <ul className="space-y-2.5">
                                     {paidFeatures.map((feature, i) => (
                                         <li key={i} className="flex items-center gap-3 text-sm text-[var(--color-foreground)]">
-                                            <feature.icon className="w-4 h-4 shrink-0" style={{ color: '#ff6f61' }} />
+                                            <span style={{ color: '#ff6f61' }}>
+                                                <feature.icon className="w-4 h-4 shrink-0" />
+                                            </span>
                                             <span>{feature.text}</span>
                                         </li>
                                     ))}

@@ -236,10 +236,9 @@ export default function PricingPage() {
                                     <ul className="space-y-2.5">
                                         {freeFeatures.map((feature, i) => (
                                             <li key={i} className="flex items-center gap-3 text-sm" style={{ color: 'var(--color-foreground)' }}>
-                                                <feature.icon
-                                                    className="w-4 h-4 shrink-0"
-                                                    style={{ color: feature.isLimitation ? '#f59e0b' : '#10b981' }}
-                                                />
+                                                <span style={{ color: feature.isLimitation ? '#f59e0b' : '#10b981' }}>
+                                                    <feature.icon className="w-4 h-4 shrink-0" />
+                                                </span>
                                                 <span style={feature.isLimitation ? { color: '#d97706' } : {}}>
                                                     {feature.text}
                                                 </span>
@@ -327,7 +326,9 @@ export default function PricingPage() {
                                     <ul className="space-y-2.5">
                                         {paidFeatures.map((feature, i) => (
                                             <li key={i} className="flex items-center gap-3 text-sm" style={{ color: 'var(--color-foreground)' }}>
-                                                <feature.icon className="w-4 h-4 shrink-0" style={{ color: '#ff6f61' }} />
+                                                <span style={{ color: '#ff6f61' }}>
+                                                    <feature.icon className="w-4 h-4 shrink-0" />
+                                                </span>
                                                 <span>{feature.text}</span>
                                             </li>
                                         ))}
