@@ -4,6 +4,7 @@ import { useState, useCallback, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
+import { trackToolUse } from '@/lib/analytics'
 
 interface ThumbnailResult {
     quality: string
@@ -66,6 +67,8 @@ export function ThumbnailDownloader() {
         if (id && id !== videoId) {
             setVideoId(id)
             setThumbnails(getThumbnailUrls(id))
+            // Track tool usage
+            trackToolUse('downloader')
             // Auto-download if toggle is on
             if (autoDownload) {
                 downloadMaxRes(id)

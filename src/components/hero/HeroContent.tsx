@@ -1,5 +1,8 @@
+'use client'
+
 import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
+import { trackHeroCtaClick, trackExternalLinkClick } from '@/lib/analytics'
 
 export function HeroContent() {
   return (
@@ -30,7 +33,13 @@ export function HeroContent() {
 
       {/* CTA Button */}
       <div className="flex justify-center mb-5 md:mb-6">
-        <Link href="https://app.stumbnail.com/login">
+        <Link
+          href="https://app.stumbnail.com/login"
+          onClick={() => {
+            trackHeroCtaClick('trial')
+            trackExternalLinkClick('https://app.stumbnail.com/login')
+          }}
+        >
           <Button
             variant="primary"
             className="h-[60px] md:h-[68px] px-8 md:px-10 text-lg md:text-xl rounded-2xl"

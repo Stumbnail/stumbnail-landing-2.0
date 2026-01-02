@@ -1,5 +1,8 @@
+'use client'
+
 import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
+import { trackHeroCtaClick, trackExternalLinkClick, trackPricingView } from '@/lib/analytics'
 
 export function FinalCTASection() {
     return (
@@ -124,7 +127,13 @@ export function FinalCTASection() {
                         </p>
 
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                            <Link href="https://app.stumbnail.com/login">
+                            <Link
+                                href="https://app.stumbnail.com/login"
+                                onClick={() => {
+                                    trackHeroCtaClick('trial')
+                                    trackExternalLinkClick('https://app.stumbnail.com/login')
+                                }}
+                            >
                                 <Button
                                     variant="primary"
                                     className="h-[56px] px-10 text-lg rounded-2xl"
@@ -141,7 +150,10 @@ export function FinalCTASection() {
                                 </Button>
                             </Link>
 
-                            <Link href="#pricing">
+                            <Link
+                                href="#pricing"
+                                onClick={() => trackPricingView('cta')}
+                            >
                                 <Button
                                     variant="secondary"
                                     className="h-[56px] px-10 text-lg rounded-2xl"

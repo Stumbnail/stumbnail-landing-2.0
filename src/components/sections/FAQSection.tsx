@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { faqData } from '@/components/seo/StructuredData'
+import { trackFaqExpand } from '@/lib/analytics'
 
 interface FAQItem {
     question: string
@@ -33,7 +34,13 @@ export function FAQSection() {
     const [openIndex, setOpenIndex] = useState<number | null>(null)
 
     const toggleFAQ = (index: number) => {
-        setOpenIndex(openIndex === index ? null : index)
+        const isOpening = openIndex !== index
+        setOpenIndex(isOpening ? index : null)
+
+        // Track FAQ expand (only when opening)
+        if (isOpening) {
+            trackFaqExpand(faqs[index].question)
+        }
     }
 
     return (

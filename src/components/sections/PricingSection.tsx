@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react';
+import { trackPricingPlanClick, trackExternalLinkClick } from '@/lib/analytics';
 
 function SparklesIcon({ className = "w-4 h-4" }: { className?: string }) {
     return (
@@ -184,6 +185,10 @@ export function PricingSection() {
                             <a
                                 href="https://app.stumbnail.com/login"
                                 className="block w-full py-3 px-6 rounded-xl bg-emerald-500 text-white font-bold text-center transition-all duration-200 hover:bg-emerald-600 hover:shadow-lg hover:shadow-emerald-500/20 mt-auto"
+                                onClick={() => {
+                                    trackPricingPlanClick('free', '$0');
+                                    trackExternalLinkClick('https://app.stumbnail.com/login');
+                                }}
                             >
                                 Start Free
                             </a>
@@ -263,6 +268,12 @@ export function PricingSection() {
                                     backgroundColor: '#ff6f61',
                                     color: 'white',
                                     boxShadow: '0 4px 14px rgba(255, 111, 97, 0.25)',
+                                }}
+                                onClick={() => {
+                                    const plan = selectedPlan === 'creator' ? 'creator' : 'automation';
+                                    const price = selectedPlan === 'creator' ? '$12.99' : '$39';
+                                    trackPricingPlanClick(plan, price);
+                                    trackExternalLinkClick('https://app.stumbnail.com/login');
                                 }}
                             >
                                 Get {selectedPlan === 'creator' ? 'Creator' : 'Automation'}
