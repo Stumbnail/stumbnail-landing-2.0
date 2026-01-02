@@ -1,13 +1,17 @@
-import { Metadata } from 'next'
+'use client'
+
+import { useState } from 'react'
 import Link from 'next/link'
 import { IslandHeader } from '@/components/layout/IslandHeader'
 import { Footer } from '@/components/layout/Footer'
 import { Button } from '@/components/ui/Button'
 
-export const metadata: Metadata = {
-    title: 'Pricing - AI YouTube Thumbnail Generator | Stumbnail',
-    description: 'Affordable pricing for the best AI thumbnail generator. Create professional YouTube thumbnails with our AI thumbnail maker. Start free, upgrade when you need more.',
-    keywords: 'AI thumbnail generator pricing, YouTube thumbnail maker cost, AI thumbnail creator price, thumbnail generator subscription, affordable thumbnail maker',
+function SparklesIcon({ className = "w-4 h-4" }: { className?: string }) {
+    return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.582a.5.5 0 0 1 0 .962L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" />
+        </svg>
+    );
 }
 
 function MergeIcon({ className = "w-4 h-4" }: { className?: string }) {
@@ -74,6 +78,16 @@ function LockIcon({ className = "w-4 h-4" }: { className?: string }) {
     );
 }
 
+function GlobeIcon({ className = "w-4 h-4" }: { className?: string }) {
+    return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+            <path d="M2 12h20" />
+        </svg>
+    );
+}
+
 function CrownIcon({ className = "w-4 h-4" }: { className?: string }) {
     return (
         <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -83,27 +97,36 @@ function CrownIcon({ className = "w-4 h-4" }: { className?: string }) {
     );
 }
 
-function CheckIcon({ className = "w-4 h-4" }: { className?: string }) {
+function ChevronRightIcon({ className = "w-4 h-4" }: { className?: string }) {
     return (
-        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="20 6 9 17 4 12" />
+        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="m9 18 6-6-6-6" />
         </svg>
     );
 }
 
-const features = [
-    { icon: MergeIcon, text: "Smart Merge — combine assets intelligently" },
+const paidFeatures = [
+    { icon: MergeIcon, text: "Smart Merge: combine assets with AI" },
     { icon: WandIcon, text: "Prompt-based generation" },
     { icon: YouTubeIcon, text: "Clone any YouTube thumbnail" },
     { icon: ImageIcon, text: "Upload custom assets" },
-    { icon: LayersIcon, text: "Access to multiple AI models" },
+    { icon: LayersIcon, text: "Access to all AI models" },
     { icon: LockIcon, text: "Keep thumbnails private" },
+];
+
+const freeFeatures = [
+    { icon: MergeIcon, text: "Smart Merge: combine assets with AI" },
+    { icon: WandIcon, text: "Prompt-based generation" },
+    { icon: YouTubeIcon, text: "Clone any YouTube thumbnail" },
+    { icon: ImageIcon, text: "Upload custom assets" },
+    { icon: LayersIcon, text: "Standard AI models" },
+    { icon: GlobeIcon, text: "Thumbnails are public", isLimitation: true },
 ];
 
 const faqs = [
     {
         question: "How does the AI thumbnail generator work?",
-        answer: "Our AI thumbnail maker analyzes your input — whether it's a YouTube link, prompt, or uploaded assets — and generates professional thumbnails optimized for clicks. You can generate, edit, and refine until it's perfect."
+        answer: "Our AI thumbnail maker analyzes your input, whether it's a YouTube link, prompt, or uploaded assets, and generates professional thumbnails optimized for clicks. You can generate, edit, and refine until it's perfect."
     },
     {
         question: "What makes Stumbnail different from other thumbnail makers?",
@@ -111,11 +134,11 @@ const faqs = [
     },
     {
         question: "Can I try the AI thumbnail creator for free?",
-        answer: "Yes! You can start with our free tier to test the AI thumbnail generator. No credit card required. Upgrade to Creator or Pro when you need more credits and features."
+        answer: "Yes! You can start with our free tier to test the AI thumbnail generator. No credit card required. Upgrade to Creator or Automation when you need more credits and features."
     },
     {
         question: "How many thumbnails can I create with each plan?",
-        answer: "Credits work across all features. A single thumbnail generation costs 10 credits on average. Creator gives you 1,430 credits (~140+ thumbnails), and Pro gives you 4,500 credits (~450+ thumbnails) per month."
+        answer: "Credits work across all features. A single thumbnail generation costs 7-75 credits depending on the model. Creator gives you 1,430 credits, and Automation gives you 4,500 credits per month."
     },
     {
         question: "Do you offer refunds?",
@@ -124,12 +147,14 @@ const faqs = [
 ];
 
 export default function PricingPage() {
+    const [selectedPlan, setSelectedPlan] = useState<'creator' | 'automation'>('creator');
+
     return (
         <main className="min-h-screen" style={{ backgroundColor: 'var(--color-background)' }}>
             <IslandHeader />
 
             {/* Hero Section */}
-            <section className="relative pt-32 pb-16 md:pt-40 md:pb-20 overflow-hidden">
+            <section className="relative pt-32 pb-12 md:pt-40 md:pb-16 overflow-hidden">
                 {/* Background glow */}
                 <div
                     className="absolute pointer-events-none"
@@ -152,20 +177,20 @@ export default function PricingPage() {
                             lineHeight: '1.1',
                         }}
                     >
-                        AI Thumbnail Generator{' '}
+                        Simple, Credit-Based{' '}
                         <br className="hidden md:block" />
                         <span style={{ color: '#ff6f61' }}>Pricing</span>
                     </h1>
 
                     <p
-                        className="text-lg md:text-xl max-w-2xl mx-auto mb-4"
+                        className="text-lg md:text-xl max-w-2xl mx-auto"
                         style={{
                             color: 'var(--color-text-muted)',
                             fontFamily: 'var(--font-body)',
                             lineHeight: '1.7',
                         }}
                     >
-                        Simple, transparent pricing for the best YouTube thumbnail maker. Pay for what you use. Different AI models, different costs.
+                        Start free, upgrade when you need more. Different AI models use different credits.
                     </p>
                 </div>
             </section>
@@ -176,87 +201,159 @@ export default function PricingPage() {
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-[#ff6f61] opacity-[0.03] blur-[100px] rounded-full pointer-events-none" />
 
                 <div className="max-w-5xl mx-auto relative z-10">
-                    {/* Pricing Cards */}
-                    <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+                    {/* Pricing Layout - Side by Side */}
+                    <div className="grid lg:grid-cols-2 gap-8 max-w-4xl mx-auto items-stretch">
 
-                        {/* Creator Plan */}
-                        <div className="relative p-6 md:p-8 rounded-2xl border border-[var(--color-border)] bg-[var(--color-background-alt)]/60 backdrop-blur-sm">
-                            <div className="space-y-5">
-                                <div>
-                                    <p className="text-sm font-medium text-[var(--color-text-muted)] uppercase tracking-wider">Creator</p>
-                                    <div className="mt-3 flex items-baseline gap-1">
-                                        <span className="text-4xl md:text-5xl font-bold tracking-tight" style={{ color: 'var(--color-foreground)' }}>$12.99</span>
-                                        <span className="text-[var(--color-text-muted)]">/mo</span>
+                        {/* Free Trial Card */}
+                        <div
+                            className="relative p-6 md:p-8 rounded-2xl backdrop-blur-sm flex flex-col"
+                            style={{
+                                backgroundColor: 'rgba(16, 185, 129, 0.03)',
+                                border: '2px dashed rgba(16, 185, 129, 0.4)',
+                            }}
+                        >
+                            {/* Free Badge */}
+                            <div
+                                className="absolute -top-3 left-6 flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide shadow-lg"
+                                style={{ backgroundColor: '#10b981', color: 'white' }}
+                            >
+                                <SparklesIcon className="w-3 h-3" />
+                                Start Here
+                            </div>
+
+                            <div className="flex-1 flex flex-col space-y-5 pt-2">
+                                {/* Price Display */}
+                                <div className="text-center pb-4" style={{ borderBottom: '1px solid rgba(16, 185, 129, 0.2)' }}>
+                                    <p className="text-sm font-medium text-[var(--color-text-muted)] uppercase tracking-wider">Free Trial</p>
+                                    <div className="mt-3 flex items-baseline justify-center gap-1">
+                                        <span className="text-4xl md:text-5xl font-bold tracking-tight" style={{ color: 'var(--color-foreground)' }}>$0</span>
                                     </div>
-                                    <p className="mt-2 text-[#ff6f61] font-semibold">1,430 credits</p>
+                                    <p className="mt-2 font-bold text-lg" style={{ color: '#10b981' }}>30 credits</p>
                                 </div>
 
-                                <div className="h-px w-full bg-[var(--color-border)]" />
+                                {/* Features */}
+                                <div className="flex-1">
+                                    <ul className="space-y-2.5">
+                                        {freeFeatures.map((feature, i) => (
+                                            <li key={i} className="flex items-center gap-3 text-sm" style={{ color: 'var(--color-foreground)' }}>
+                                                <feature.icon
+                                                    className="w-4 h-4 shrink-0"
+                                                    style={{ color: feature.isLimitation ? '#f59e0b' : '#10b981' }}
+                                                />
+                                                <span style={feature.isLimitation ? { color: '#d97706' } : {}}>
+                                                    {feature.text}
+                                                </span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
 
-                                <ul className="space-y-3">
-                                    {features.map((feature, i) => (
-                                        <li key={i} className="flex items-center gap-3 text-sm text-[var(--color-foreground)]">
-                                            <feature.icon className="w-4 h-4 text-[var(--color-text-muted)] shrink-0" />
-                                            <span>{feature.text}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-
-                                <Link href="https://app.stumbnail.com/login" className="block">
-                                    <button className="w-full py-3 px-6 rounded-xl bg-[var(--color-button-bg)] border border-[var(--color-border)] text-[var(--color-foreground)] font-semibold transition-colors duration-200 hover:bg-[var(--color-border)]">
-                                        Get Creator
-                                    </button>
+                                <Link
+                                    href="https://app.stumbnail.com/login"
+                                    className="block w-full py-3.5 px-6 rounded-xl font-bold text-center text-white transition-all duration-200 hover:shadow-lg mt-auto"
+                                    style={{
+                                        backgroundColor: '#10b981',
+                                        boxShadow: '0 4px 14px rgba(16, 185, 129, 0.25)',
+                                    }}
+                                >
+                                    Start Free
                                 </Link>
                             </div>
                         </div>
 
-                        {/* Pro Plan */}
-                        <div className="relative p-6 md:p-8 rounded-2xl border-2 border-[#ff6f61]/40 bg-[var(--color-background-alt)]/80 backdrop-blur-sm">
-                            {/* Best Value Badge */}
-                            <div className="absolute -top-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-[#ff6f61] text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide shadow-lg">
-                                <CrownIcon className="w-3 h-3" />
-                                Best Value
+                        {/* Paid Plans Card */}
+                        <div
+                            className="relative p-6 md:p-8 rounded-2xl backdrop-blur-sm flex flex-col"
+                            style={{
+                                backgroundColor: 'rgba(255, 111, 97, 0.03)',
+                                border: '2px solid rgba(255, 111, 97, 0.3)',
+                            }}
+                        >
+                            {/* Plan Toggle */}
+                            <div
+                                className="flex gap-2 p-1.5 rounded-xl mb-6"
+                                style={{
+                                    backgroundColor: 'var(--color-background)',
+                                    border: '1px solid var(--color-border)',
+                                }}
+                            >
+                                <button
+                                    onClick={() => setSelectedPlan('creator')}
+                                    className="flex-1 py-2.5 px-4 rounded-lg text-sm font-semibold transition-all duration-200"
+                                    style={{
+                                        backgroundColor: selectedPlan === 'creator' ? '#ff6f61' : 'transparent',
+                                        color: selectedPlan === 'creator' ? 'white' : 'var(--color-text-muted)',
+                                    }}
+                                >
+                                    Creator
+                                </button>
+                                <button
+                                    onClick={() => setSelectedPlan('automation')}
+                                    className="flex-1 py-2.5 px-4 rounded-lg text-sm font-semibold transition-all duration-200 relative"
+                                    style={{
+                                        backgroundColor: selectedPlan === 'automation' ? '#ff6f61' : 'transparent',
+                                        color: selectedPlan === 'automation' ? 'white' : 'var(--color-text-muted)',
+                                    }}
+                                >
+                                    Automation
+                                    {selectedPlan !== 'automation' && (
+                                        <span
+                                            className="absolute -top-2 -right-2 flex items-center gap-0.5 px-1.5 py-0.5 rounded text-[10px] font-bold"
+                                            style={{ backgroundColor: '#ff6f61', color: 'white' }}
+                                        >
+                                            <CrownIcon className="w-2.5 h-2.5" />
+                                            Best
+                                        </span>
+                                    )}
+                                </button>
                             </div>
 
-                            <div className="space-y-5">
-                                <div>
-                                    <p className="text-sm font-medium text-[#ff6f61] uppercase tracking-wider">Pro</p>
-                                    <div className="mt-3 flex items-baseline gap-1">
-                                        <span className="text-4xl md:text-5xl font-bold tracking-tight" style={{ color: 'var(--color-foreground)' }}>$39</span>
-                                        <span className="text-[var(--color-text-muted)]">/mo</span>
+                            <div className="flex-1 flex flex-col space-y-5">
+                                {/* Price Display */}
+                                <div className="text-center pb-4" style={{ borderBottom: '1px solid var(--color-border)' }}>
+                                    <div className="flex items-baseline justify-center gap-1">
+                                        <span className="text-4xl md:text-5xl font-bold tracking-tight" style={{ color: 'var(--color-foreground)' }}>
+                                            {selectedPlan === 'creator' ? '$12.99' : '$39'}
+                                        </span>
+                                        <span style={{ color: 'var(--color-text-muted)' }}>/mo</span>
                                     </div>
-                                    <p className="mt-2 text-[#ff6f61] font-semibold">4,500 credits</p>
+                                    <p className="mt-2 font-bold text-lg" style={{ color: '#ff6f61' }}>
+                                        {selectedPlan === 'creator' ? '1,430 credits' : '4,500 credits'}
+                                    </p>
                                 </div>
 
-                                <div className="h-px w-full bg-[#ff6f61]/20" />
+                                {/* Features */}
+                                <div className="flex-1">
+                                    <ul className="space-y-2.5">
+                                        {paidFeatures.map((feature, i) => (
+                                            <li key={i} className="flex items-center gap-3 text-sm" style={{ color: 'var(--color-foreground)' }}>
+                                                <feature.icon className="w-4 h-4 shrink-0" style={{ color: '#ff6f61' }} />
+                                                <span>{feature.text}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
 
-                                <ul className="space-y-3">
-                                    {features.map((feature, i) => (
-                                        <li key={i} className="flex items-center gap-3 text-sm text-[var(--color-foreground)]">
-                                            <feature.icon className="w-4 h-4 text-[#ff6f61] shrink-0" />
-                                            <span>{feature.text}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-
-                                <Link href="https://app.stumbnail.com/login" className="block">
-                                    <button className="w-full py-3 px-6 rounded-xl bg-[#ff6f61] text-white font-bold shadow-lg shadow-[#ff6f61]/20 transition-colors duration-200 hover:bg-[#e85a4d]">
-                                        Get Pro
-                                    </button>
+                                <Link
+                                    href="https://app.stumbnail.com/login"
+                                    className="block w-full py-3.5 px-6 rounded-xl font-bold text-center transition-all duration-200 mt-auto"
+                                    style={{
+                                        backgroundColor: '#ff6f61',
+                                        color: 'white',
+                                        boxShadow: '0 4px 14px rgba(255, 111, 97, 0.25)',
+                                    }}
+                                >
+                                    Get {selectedPlan === 'creator' ? 'Creator' : 'Automation'}
                                 </Link>
                             </div>
                         </div>
 
                     </div>
 
-                    {/* Free Plan CTA */}
+                    {/* Credit Info */}
                     <div className="mt-10 text-center">
-                        <p className="text-[var(--color-text-muted)] text-sm">
-                            Want to try our AI thumbnail maker first?{' '}
-                            <Link href="https://app.stumbnail.com/login" className="text-[var(--color-foreground)] font-semibold underline underline-offset-4 decoration-[#ff6f61] hover:text-[#ff6f61] transition-colors">
-                                Start free
-                            </Link>
-                            {' '}— no card required.
+                        <p className="text-sm max-w-xl mx-auto" style={{ color: 'var(--color-text-muted)' }}>
+                            Credits vary by AI model, from 7 credits for fast generations to 75 for premium quality.
                         </p>
                     </div>
                 </div>
@@ -288,19 +385,19 @@ export default function PricingPage() {
 
                     <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
                         <div className="p-6 rounded-2xl" style={{ backgroundColor: 'var(--color-button-bg)' }}>
-                            <div className="text-3xl font-bold mb-2" style={{ color: '#ff6f61' }}>10</div>
-                            <h3 className="font-semibold mb-2" style={{ color: 'var(--color-foreground)', fontFamily: 'var(--font-heading)' }}>Standard Generation</h3>
+                            <div className="text-3xl font-bold mb-2" style={{ color: '#ff6f61' }}>7-75</div>
+                            <h3 className="font-semibold mb-2" style={{ color: 'var(--color-foreground)', fontFamily: 'var(--font-heading)' }}>Generation</h3>
                             <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>Create a thumbnail from a prompt or YouTube link</p>
                         </div>
 
                         <div className="p-6 rounded-2xl" style={{ backgroundColor: 'var(--color-button-bg)' }}>
-                            <div className="text-3xl font-bold mb-2" style={{ color: '#ff6f61' }}>10</div>
+                            <div className="text-3xl font-bold mb-2" style={{ color: '#ff6f61' }}>37</div>
                             <h3 className="font-semibold mb-2" style={{ color: 'var(--color-foreground)', fontFamily: 'var(--font-heading)' }}>Smart Merge (Standard)</h3>
                             <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>Combine multiple assets into one thumbnail</p>
                         </div>
 
                         <div className="p-6 rounded-2xl" style={{ backgroundColor: 'var(--color-button-bg)' }}>
-                            <div className="text-3xl font-bold mb-2" style={{ color: '#ff6f61' }}>37</div>
+                            <div className="text-3xl font-bold mb-2" style={{ color: '#ff6f61' }}>75</div>
                             <h3 className="font-semibold mb-2" style={{ color: 'var(--color-foreground)', fontFamily: 'var(--font-heading)' }}>Smart Merge (Pro)</h3>
                             <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>Higher quality merging with advanced AI models</p>
                         </div>

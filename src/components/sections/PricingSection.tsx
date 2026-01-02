@@ -1,12 +1,6 @@
-import React from 'react';
+'use client'
 
-function CheckIcon({ className = "w-4 h-4" }: { className?: string }) {
-    return (
-        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="20 6 9 17 4 12" />
-        </svg>
-    );
-}
+import React, { useState } from 'react';
 
 function SparklesIcon({ className = "w-4 h-4" }: { className?: string }) {
     return (
@@ -80,6 +74,16 @@ function LockIcon({ className = "w-4 h-4" }: { className?: string }) {
     );
 }
 
+function GlobeIcon({ className = "w-4 h-4" }: { className?: string }) {
+    return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+            <path d="M2 12h20" />
+        </svg>
+    );
+}
+
 function CrownIcon({ className = "w-4 h-4" }: { className?: string }) {
     return (
         <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -89,109 +93,188 @@ function CrownIcon({ className = "w-4 h-4" }: { className?: string }) {
     );
 }
 
-const features = [
-    { icon: MergeIcon, text: "Smart Merge — combine assets intelligently" },
+function ChevronRightIcon({ className = "w-4 h-4" }: { className?: string }) {
+    return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="m9 18 6-6-6-6" />
+        </svg>
+    );
+}
+
+const paidFeatures = [
+    { icon: MergeIcon, text: "Smart Merge: combine assets with AI" },
     { icon: WandIcon, text: "Prompt-based generation" },
     { icon: YouTubeIcon, text: "Clone any YouTube thumbnail" },
     { icon: ImageIcon, text: "Upload custom assets" },
-    { icon: LayersIcon, text: "Access to multiple AI models" },
+    { icon: LayersIcon, text: "Access to all AI models" },
     { icon: LockIcon, text: "Keep thumbnails private" },
 ];
 
+const freeFeatures = [
+    { icon: MergeIcon, text: "Smart Merge: combine assets with AI" },
+    { icon: WandIcon, text: "Prompt-based generation" },
+    { icon: YouTubeIcon, text: "Clone any YouTube thumbnail" },
+    { icon: ImageIcon, text: "Upload custom assets" },
+    { icon: LayersIcon, text: "Standard AI models" },
+    { icon: GlobeIcon, text: "Thumbnails are public", isLimitation: true },
+];
+
 export function PricingSection() {
+    const [selectedPlan, setSelectedPlan] = useState<'creator' | 'automation'>('creator');
+
     return (
         <section className="relative py-24 px-4 overflow-hidden" id="pricing">
             {/* Subtle background glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-[var(--color-primary)] opacity-[0.03] blur-[100px] rounded-full pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-[#ff6f61] opacity-[0.03] blur-[100px] rounded-full pointer-events-none" />
 
             <div className="max-w-5xl mx-auto relative z-10">
                 {/* Header */}
                 <div className="text-center mb-16 space-y-4">
                     <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
-                        Simple Pricing
+                        Simple, Credit-Based Pricing
                     </h2>
                     <p className="text-[var(--color-text-muted)] max-w-lg mx-auto">
-                        Pay for what you use. Different models, different costs.
+                        Start free, upgrade when you need more. Different AI models use different credits.
                     </p>
                 </div>
 
-                {/* Pricing Cards */}
-                <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+                {/* Pricing Layout */}
+                <div className="grid lg:grid-cols-2 gap-8 max-w-4xl mx-auto items-stretch">
 
-                    {/* Creator Plan */}
-                    <div className="relative p-6 md:p-8 rounded-2xl border border-[var(--color-border)] bg-[var(--color-background-alt)]/60 backdrop-blur-sm">
-                        <div className="space-y-5">
-                            <div>
-                                <p className="text-sm font-medium text-[var(--color-text-muted)] uppercase tracking-wider">Creator</p>
-                                <div className="mt-3 flex items-baseline gap-1">
-                                    <span className="text-4xl md:text-5xl font-bold tracking-tight">$12.99</span>
-                                    <span className="text-[var(--color-text-muted)]">/mo</span>
+                    {/* Free Trial Card */}
+                    <div
+                        className="relative p-6 md:p-8 rounded-2xl backdrop-blur-sm flex flex-col"
+                        style={{
+                            backgroundColor: 'rgba(16, 185, 129, 0.03)',
+                            border: '2px dashed rgba(16, 185, 129, 0.4)',
+                        }}
+                    >
+                        {/* Free Badge */}
+                        <div className="absolute -top-3 left-6 flex items-center gap-1.5 bg-emerald-500 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide shadow-lg">
+                            <SparklesIcon className="w-3 h-3" />
+                            Start Here
+                        </div>
+
+                        <div className="flex-1 flex flex-col space-y-5 pt-2">
+                            {/* Price Display */}
+                            <div className="text-center pb-4" style={{ borderBottom: '1px solid rgba(16, 185, 129, 0.2)' }}>
+                                <p className="text-sm font-medium text-[var(--color-text-muted)] uppercase tracking-wider">Free Trial</p>
+                                <div className="mt-3 flex items-baseline justify-center gap-1">
+                                    <span className="text-4xl md:text-5xl font-bold tracking-tight">$0</span>
                                 </div>
-                                <p className="mt-2 text-[var(--color-primary)] font-semibold">1,430 credits</p>
+                                <p className="mt-2 text-emerald-500 font-bold text-lg">30 credits</p>
                             </div>
 
-                            <div className="h-px w-full bg-[var(--color-border)]" />
+                            {/* Features */}
+                            <div className="flex-1">
+                                <ul className="space-y-2.5">
+                                    {freeFeatures.map((feature, i) => (
+                                        <li key={i} className="flex items-center gap-3 text-sm text-[var(--color-foreground)]">
+                                            <feature.icon
+                                                className="w-4 h-4 shrink-0"
+                                                style={{ color: feature.isLimitation ? '#f59e0b' : '#10b981' }}
+                                            />
+                                            <span className={feature.isLimitation ? 'text-amber-600 dark:text-amber-400' : ''}>
+                                                {feature.text}
+                                            </span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
 
-                            <ul className="space-y-3">
-                                {features.map((feature, i) => (
-                                    <li key={i} className="flex items-center gap-3 text-sm text-[var(--color-foreground)]">
-                                        <feature.icon className="w-4 h-4 text-[var(--color-text-muted)] shrink-0" />
-                                        <span>{feature.text}</span>
-                                    </li>
-                                ))}
-                            </ul>
-
-                            <button className="w-full py-3 px-6 rounded-xl bg-[var(--color-button-bg)] border border-[var(--color-border)] text-[var(--color-foreground)] font-semibold transition-colors duration-200 hover:bg-[var(--color-border)]">
-                                Get Creator
-                            </button>
+                            <a
+                                href="https://app.stumbnail.com/login"
+                                className="block w-full py-3 px-6 rounded-xl bg-emerald-500 text-white font-bold text-center transition-all duration-200 hover:bg-emerald-600 hover:shadow-lg hover:shadow-emerald-500/20 mt-auto"
+                            >
+                                Start Free
+                            </a>
                         </div>
                     </div>
 
-                    {/* Pro Plan */}
-                    <div className="relative p-6 md:p-8 rounded-2xl border-2 border-[var(--color-primary)]/40 bg-[var(--color-background-alt)]/80 backdrop-blur-sm">
-                        {/* Best Value Badge */}
-                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-[var(--color-primary)] text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide shadow-lg">
-                            <CrownIcon className="w-3 h-3" />
-                            Best Value
+                    {/* Paid Plans Card */}
+                    <div
+                        className="relative p-6 md:p-8 rounded-2xl backdrop-blur-sm flex flex-col"
+                        style={{
+                            backgroundColor: 'rgba(255, 111, 97, 0.03)',
+                            border: '2px solid rgba(255, 111, 97, 0.3)',
+                        }}
+                    >
+                        {/* Toggle for Plan Selection */}
+                        <div className="flex gap-2 p-1.5 rounded-xl bg-[var(--color-background)]/80 border border-[var(--color-border)] mb-6">
+                            <button
+                                onClick={() => setSelectedPlan('creator')}
+                                className="flex-1 py-2.5 px-4 rounded-lg text-sm font-semibold transition-all duration-200"
+                                style={{
+                                    backgroundColor: selectedPlan === 'creator' ? '#ff6f61' : 'transparent',
+                                    color: selectedPlan === 'creator' ? 'white' : 'var(--color-text-muted)',
+                                }}
+                            >
+                                Creator
+                            </button>
+                            <button
+                                onClick={() => setSelectedPlan('automation')}
+                                className="flex-1 py-2.5 px-4 rounded-lg text-sm font-semibold transition-all duration-200 relative"
+                                style={{
+                                    backgroundColor: selectedPlan === 'automation' ? '#ff6f61' : 'transparent',
+                                    color: selectedPlan === 'automation' ? 'white' : 'var(--color-text-muted)',
+                                }}
+                            >
+                                Automation
+                                {selectedPlan !== 'automation' && (
+                                    <span className="absolute -top-2 -right-2 flex items-center gap-0.5 bg-[#ff6f61] text-white px-1.5 py-0.5 rounded text-[10px] font-bold">
+                                        <CrownIcon className="w-2.5 h-2.5" />
+                                        Best
+                                    </span>
+                                )}
+                            </button>
                         </div>
 
-                        <div className="space-y-5">
-                            <div>
-                                <p className="text-sm font-medium text-[var(--color-primary)] uppercase tracking-wider">Pro</p>
-                                <div className="mt-3 flex items-baseline gap-1">
-                                    <span className="text-4xl md:text-5xl font-bold tracking-tight">$39</span>
+                        <div className="flex-1 flex flex-col space-y-5">
+                            {/* Price Display */}
+                            <div className="text-center pb-4 border-b border-[var(--color-border)]">
+                                <div className="flex items-baseline justify-center gap-1">
+                                    <span className="text-4xl md:text-5xl font-bold tracking-tight">
+                                        {selectedPlan === 'creator' ? '$12.99' : '$39'}
+                                    </span>
                                     <span className="text-[var(--color-text-muted)]">/mo</span>
                                 </div>
-                                <p className="mt-2 text-[var(--color-primary)] font-semibold">4,500 credits</p>
+                                <p className="mt-2 font-bold text-lg" style={{ color: '#ff6f61' }}>
+                                    {selectedPlan === 'creator' ? '1,430 credits' : '4,500 credits'}
+                                </p>
                             </div>
 
-                            <div className="h-px w-full bg-[var(--color-primary)]/20" />
+                            {/* Features */}
+                            <div className="flex-1">
+                                <ul className="space-y-2.5">
+                                    {paidFeatures.map((feature, i) => (
+                                        <li key={i} className="flex items-center gap-3 text-sm text-[var(--color-foreground)]">
+                                            <feature.icon className="w-4 h-4 shrink-0" style={{ color: '#ff6f61' }} />
+                                            <span>{feature.text}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
 
-                            <ul className="space-y-3">
-                                {features.map((feature, i) => (
-                                    <li key={i} className="flex items-center gap-3 text-sm text-[var(--color-foreground)]">
-                                        <feature.icon className="w-4 h-4 text-[var(--color-primary)] shrink-0" />
-                                        <span>{feature.text}</span>
-                                    </li>
-                                ))}
-                            </ul>
-
-                            <button className="w-full py-3 px-6 rounded-xl bg-[var(--color-primary)] text-white font-bold shadow-lg shadow-[var(--color-primary)]/20 transition-colors duration-200 hover:bg-[var(--color-primary-hover)]">
-                                Get Pro
-                            </button>
+                            <a
+                                href="https://app.stumbnail.com/login"
+                                className="block w-full py-3 px-6 rounded-xl font-bold text-center transition-all duration-200 hover:opacity-90 mt-auto"
+                                style={{
+                                    backgroundColor: '#ff6f61',
+                                    color: 'white',
+                                    boxShadow: '0 4px 14px rgba(255, 111, 97, 0.25)',
+                                }}
+                            >
+                                Get {selectedPlan === 'creator' ? 'Creator' : 'Automation'}
+                            </a>
                         </div>
                     </div>
 
                 </div>
 
-                {/* Free Plan CTA */}
-                <div className="mt-10 text-center">
-                    <p className="text-[var(--color-text-muted)] text-sm">
-                        Want to try first?{' '}
-                        <button className="text-[var(--color-foreground)] font-semibold underline underline-offset-4 decoration-[var(--color-primary)] hover:text-[var(--color-primary)] transition-colors">
-                            Start free
-                        </button>
-                        {' '}— no card required.
+                {/* Credit Usage Info */}
+                <div className="mt-12 text-center">
+                    <p className="text-[var(--color-text-muted)] text-sm max-w-xl mx-auto">
+                        Credits vary by AI model, from 7 credits for fast generations to 75 for premium quality.
                     </p>
                 </div>
             </div>
