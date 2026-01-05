@@ -23,6 +23,10 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'i.ytimg.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'f3cdwa6l2jee62xr.public.blob.vercel-storage.com',
+      },
     ],
   },
 };
