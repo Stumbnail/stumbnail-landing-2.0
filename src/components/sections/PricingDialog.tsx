@@ -389,7 +389,7 @@ export function PricingDialog({ open, onClose }: PricingDialogProps) {
                     {/* Credit Usage Info */}
                     <div className="mt-8 text-center">
                         <p style={{ color: 'var(--color-text-muted)' }} className="text-sm max-w-xl mx-auto">
-                            Credits vary by AI model, from 7 credits for fast generations to 75 for premium quality.
+                            Credits vary by AI model, from 3 credits for fast generations to 47 for premium quality.
                         </p>
                     </div>
                 </div>

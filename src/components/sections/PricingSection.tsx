@@ -286,7 +286,7 @@ export function PricingSection() {
                 {/* Credit Usage Info */}
                 <div className="mt-12 text-center">
                     <p className="text-[var(--color-text-muted)] text-sm max-w-xl mx-auto">
-                        Credits vary by AI model, from 7 credits for fast generations to 75 for premium quality.
+                        Credits vary by AI model, from 3 credits for fast generations to 47 for premium quality.
                     </p>
                 </div>
             </div>

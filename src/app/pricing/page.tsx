@@ -138,7 +138,7 @@ const faqs = [
     },
     {
         question: "How many thumbnails can I create with each plan?",
-        answer: "Credits work across all features. A single thumbnail generation costs 7-75 credits depending on the model. Creator gives you 1,430 credits, and Automation gives you 4,500 credits per month."
+        answer: "Credits work across all features. A single thumbnail generation costs 3-47 credits depending on the model. Creator gives you 1,430 credits, and Automation gives you 4,500 credits per month."
     },
     {
         question: "Do you offer refunds?",
@@ -354,7 +354,7 @@ export default function PricingPage() {
                     {/* Credit Info */}
                     <div className="mt-10 text-center">
                         <p className="text-sm max-w-xl mx-auto" style={{ color: 'var(--color-text-muted)' }}>
-                            Credits vary by AI model, from 7 credits for fast generations to 75 for premium quality.
+                            Credits vary by AI model, from 3 credits for fast generations to 47 for premium quality.
                         </p>
                     </div>
                 </div>
@@ -386,19 +386,19 @@ export default function PricingPage() {
 
                     <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
                         <div className="p-6 rounded-2xl" style={{ backgroundColor: 'var(--color-button-bg)' }}>
-                            <div className="text-3xl font-bold mb-2" style={{ color: '#ff6f61' }}>7-75</div>
+                            <div className="text-3xl font-bold mb-2" style={{ color: '#ff6f61' }}>3-47</div>
                             <h3 className="font-semibold mb-2" style={{ color: 'var(--color-foreground)', fontFamily: 'var(--font-heading)' }}>Generation</h3>
                             <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>Create a thumbnail from a prompt or YouTube link</p>
                         </div>
 
                         <div className="p-6 rounded-2xl" style={{ backgroundColor: 'var(--color-button-bg)' }}>
-                            <div className="text-3xl font-bold mb-2" style={{ color: '#ff6f61' }}>37</div>
+                            <div className="text-3xl font-bold mb-2" style={{ color: '#ff6f61' }}>24</div>
                             <h3 className="font-semibold mb-2" style={{ color: 'var(--color-foreground)', fontFamily: 'var(--font-heading)' }}>Smart Merge (Standard)</h3>
                             <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>Combine multiple assets into one thumbnail</p>
                         </div>
 
                         <div className="p-6 rounded-2xl" style={{ backgroundColor: 'var(--color-button-bg)' }}>
-                            <div className="text-3xl font-bold mb-2" style={{ color: '#ff6f61' }}>75</div>
+                            <div className="text-3xl font-bold mb-2" style={{ color: '#ff6f61' }}>47</div>
                             <h3 className="font-semibold mb-2" style={{ color: 'var(--color-foreground)', fontFamily: 'var(--font-heading)' }}>Smart Merge (Pro)</h3>
                             <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>Higher quality merging with advanced AI models</p>
                         </div>

@@ -34,7 +34,6 @@ const genres = ['Comedy', 'Survival Vlog', 'Tutorial', 'Gaming']
 const mergedResult = '/assets/illustration-assets/features/generated.webp'
 
 export function SmartMergeCard() {
-    const [cursorPosition, setCursorPosition] = React.useState({ x: -10, y: -10 })
     const [selectionBox, setSelectionBox] = React.useState({ x: 0, y: 0, width: 0, height: 0, visible: false })
     const [selectedAssets, setSelectedAssets] = React.useState<number[]>([])
     const [showGenreSelector, setShowGenreSelector] = React.useState(false)
@@ -66,11 +65,9 @@ export function SmartMergeCard() {
             setButtonPulse(false)
             setAnimationPhase('idle')
             setSelectionBox({ x: 0, y: 0, width: 0, height: 0, visible: false })
-            setCursorPosition({ x: -10, y: -10 })
 
-            // ========== PHASE 1: CURSOR APPEARS & SELECTS ASSETS ==========
+            // ========== PHASE 1: SELECTS ASSETS ==========
             timeouts.push(setTimeout(() => {
-                setCursorPosition({ x: 5, y: 25 }) // Start above assets
                 setAnimationPhase('selecting')
             }, 400))
 
@@ -92,7 +89,6 @@ export function SmartMergeCard() {
                 const currentX = startX + (endX - startX) * eased
                 const currentY = startY + (endY - startY) * eased
 
-                setCursorPosition({ x: currentX, y: currentY })
                 setSelectionBox({
                     x: startX,
                     y: startY,
@@ -124,10 +120,8 @@ export function SmartMergeCard() {
                 setShowGenreSelector(true) // Show genres too
             }, 2200))
 
-            // Cursor moves to Title Input FIRST (it's above genres in the layout)
+            // Start typing animation
             timeouts.push(setTimeout(() => {
-                // Title input is at ~58-64% height, center-left
-                setCursorPosition({ x: 25, y: 64 })
                 setAnimationPhase('typing')
             }, 2600))
 
@@ -139,10 +133,8 @@ export function SmartMergeCard() {
                 }, typeDelay + i * 45))
             }
 
-            // ========== PHASE 5: MOVE TO GENRE "Survival Vlog" ==========
+            // ========== PHASE 5: SELECT GENRE "Survival Vlog" ==========
             timeouts.push(setTimeout(() => {
-                // "Survival Vlog" is the 2nd pill, at ~22% from left, ~75% height
-                setCursorPosition({ x: 22, y: 79 })
                 setAnimationPhase('genreSelect')
             }, typeDelay + fullTitle.length * 45 + 300))
 
@@ -151,11 +143,9 @@ export function SmartMergeCard() {
                 setSelectedGenre('Survival Vlog')
             }, typeDelay + fullTitle.length * 45 + 600))
 
-            // ========== PHASE 6: MOVE TO BUTTON ==========
+            // ========== PHASE 6: BUTTON HIGHLIGHT ==========
             timeouts.push(setTimeout(() => {
                 setAnimationPhase('movingToButton')
-                // Button is at ~88-95% height, centered
-                setCursorPosition({ x: 50, y: 96 })
                 setButtonPulse(true)
             }, typeDelay + fullTitle.length * 45 + 1000))
 
@@ -168,7 +158,6 @@ export function SmartMergeCard() {
                 setAnimationPhase('merging')
                 setIsMerging(true)
                 setButtonPulse(false)
-                setCursorPosition({ x: -20, y: -20 })
             }, typeDelay + fullTitle.length * 45 + 1600))
 
             // ========== PHASE 8: SHOW RESULT ==========
@@ -275,38 +264,6 @@ export function SmartMergeCard() {
                             />
                         </div>
                     </div>
-                    {/* Animated Cursor */}
-                    {cursorPosition.x > 0 && (
-                        <div
-                            className="absolute z-50 pointer-events-none"
-                            style={{
-                                left: `${cursorPosition.x}%`,
-                                top: `${cursorPosition.y}%`,
-                                transform: 'translate(-50%, -50%)',
-                                transition: animationPhase === 'selecting' ? 'none' : 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                            }}
-                        >
-                            <svg
-                                width="28"
-                                height="28"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                style={{
-                                    filter: 'drop-shadow(0 3px 6px rgba(0,0,0,0.4))',
-                                    transform: animationPhase === 'clicking' ? 'scale(0.85) rotate(-5deg)' : 'scale(1)',
-                                    transition: 'transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                                }}
-                            >
-                                <path
-                                    d="M4 4L10.5 20.5L12.5 13.5L19.5 11.5L4 4Z"
-                                    fill="white"
-                                    stroke="#333"
-                                    strokeWidth="1.5"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
-                        </div>
-                    )}
 
                     {/* Rubberband Selection Box */}
                     <div
