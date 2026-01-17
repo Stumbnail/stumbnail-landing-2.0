@@ -185,6 +185,20 @@ button,
   animation: fadeIn 0.8s ease-out forwards;
 }
 
+/* Pulse Animation */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+
 /* Hover state for animations */
 @media (hover: hover) {
   .hover-pause:hover {

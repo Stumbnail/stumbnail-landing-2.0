@@ -6,22 +6,13 @@ import { Button } from '@/components/ui/Button'
 import { Logo } from '@/components/ui/Logo'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
 import { useTheme } from '@/components/providers/ThemeProvider'
-
-const NAV_ITEMS = [
-  { label: 'Blog', href: '/blog', type: 'link' as const },
-  { label: 'Pricing', href: '/pricing', type: 'link' as const },
-  { label: 'About Us', href: '/about', type: 'link' as const },
-  { label: 'Contact', href: '/contact', type: 'link' as const },
-]
+import { NAV_ITEMS } from '@/lib/constants'
 
 export function IslandHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { theme } = useTheme()
   const isDark = theme === 'dark'
 
-  const handleNavClick = (item: typeof NAV_ITEMS[0], e: React.MouseEvent) => {
-    // Standard link behavior
-  }
 
   return (
     <>
@@ -57,7 +48,6 @@ export function IslandHeader() {
               <Link
                 key={item.href + item.label}
                 href={item.href}
-                onClick={(e) => handleNavClick(item, e)}
                 className="group relative px-4 py-2 text-sm font-medium transition-all duration-200"
                 style={{
                   fontFamily: 'var(--font-heading)',
@@ -171,10 +161,7 @@ export function IslandHeader() {
             <Link
               key={item.href + item.label}
               href={item.href}
-              onClick={(e) => {
-                handleNavClick(item, e)
-                if (item.type === 'link') setMobileMenuOpen(false)
-              }}
+              onClick={() => setMobileMenuOpen(false)}
               className="block px-4 py-3 text-base font-medium rounded-xl transition-all duration-200"
               style={{
                 fontFamily: 'var(--font-heading)',

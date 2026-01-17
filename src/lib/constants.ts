@@ -1,5 +1,5 @@
 export const NAV_ITEMS = [
-  { label: 'Tools', href: '/tools/youtube-thumbnail-previewer' },
+  { label: "What's New", href: '/whats-new' },
   { label: 'Blog', href: '/blog' },
   { label: 'Pricing', href: '/pricing' },
   { label: 'About Us', href: '/about' },
