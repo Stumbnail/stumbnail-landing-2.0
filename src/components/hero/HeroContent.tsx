@@ -31,6 +31,63 @@ export function HeroContent() {
         </p>
       </div>
 
+      {/* Credibility Stats */}
+      <div
+        className="flex flex-wrap justify-center items-center gap-6 md:gap-10 mb-10 md:mb-12"
+        style={{ fontFamily: 'var(--font-heading)' }}
+      >
+        <div className="flex flex-col items-center">
+          <span
+            className="text-2xl md:text-3xl font-bold"
+            style={{ color: '#ff6f61' }}
+          >
+            10%+
+          </span>
+          <span
+            className="text-xs md:text-sm"
+            style={{ color: 'var(--color-text-muted)' }}
+          >
+            Avg. CTR Improvement
+          </span>
+        </div>
+        <div
+          className="hidden sm:block w-px h-10"
+          style={{ backgroundColor: 'var(--color-border)' }}
+        />
+        <div className="flex flex-col items-center">
+          <span
+            className="text-2xl md:text-3xl font-bold"
+            style={{ color: '#ff6f61' }}
+          >
+            10K+
+          </span>
+          <span
+            className="text-xs md:text-sm"
+            style={{ color: 'var(--color-text-muted)' }}
+          >
+            Thumbnails Created
+          </span>
+        </div>
+        <div
+          className="hidden sm:block w-px h-10"
+          style={{ backgroundColor: 'var(--color-border)' }}
+        />
+        <div className="flex flex-col items-center">
+          <span
+            className="text-2xl md:text-3xl font-bold"
+            style={{ color: '#ff6f61' }}
+          >
+            ~30s
+          </span>
+          <span
+            className="text-xs md:text-sm"
+            style={{ color: 'var(--color-text-muted)' }}
+          >
+            Avg. Creation Time
+          </span>
+        </div>
+      </div>
+
       {/* CTA Button */}
       <div className="flex justify-center mb-5 md:mb-6">
         <Link
