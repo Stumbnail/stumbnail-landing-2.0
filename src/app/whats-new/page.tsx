@@ -10,6 +10,30 @@ export const metadata: Metadata = {
 // Changelog data
 const changelogs = [
   {
+    version: '2.2.0',
+    date: 'January 20, 2026',
+    title: 'Sharing Feature',
+    description: 'We added a sharing feature. Now users can share projects with their friends. They can download the thumbnails directly from the source.',
+    changes: [
+      {
+        type: 'feature',
+        title: 'Share Projects',
+        description: 'Share your projects with friends via shareable links.',
+      },
+      {
+        type: 'feature',
+        title: 'Direct Downloads',
+        description: 'Download thumbnails directly from shared projects without needing an account.',
+      },
+      {
+        type: 'feature',
+        title: 'Privacy Controls',
+        description: 'Set projects as public or private with easy-to-use privacy settings.',
+      },
+    ],
+    icon: 'share',
+  },
+  {
     version: '2.1.0',
     date: 'January 18, 2026',
     title: 'Interactive Template Customization',
@@ -30,7 +54,17 @@ const changelogs = [
   },
 ];
 
-// SVG Icon for template updates
+// SVG Icons
+const ShareIcon = (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="18" cy="5" r="3" stroke="currentColor" strokeWidth="2"/>
+    <circle cx="6" cy="12" r="3" stroke="currentColor" strokeWidth="2"/>
+    <circle cx="18" cy="19" r="3" stroke="currentColor" strokeWidth="2"/>
+    <line x1="8.5" y1="13.5" x2="15.5" y2="17.5" stroke="currentColor" strokeWidth="2"/>
+    <line x1="8.5" y1="10.5" x2="15.5" y2="6.5" stroke="currentColor" strokeWidth="2"/>
+  </svg>
+);
+
 const TemplateIcon = (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" strokeWidth="2"/>
@@ -39,6 +73,11 @@ const TemplateIcon = (
     <rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" strokeWidth="2"/>
   </svg>
 );
+
+const iconMap = {
+  share: ShareIcon,
+  template: TemplateIcon,
+};
 
 const changeTypeStyles = {
   feature: {
@@ -147,7 +186,7 @@ export default function WhatsNewPage() {
               }}
             />
             <span style={{ color: '#ff6f61', fontWeight: 600, fontSize: '14px' }}>
-              Latest: v2.1.0
+              Latest: v2.2.0
             </span>
           </div>
 
@@ -241,7 +280,7 @@ export default function WhatsNewPage() {
               }}
               className="hidden md:flex"
             >
-              {TemplateIcon}
+              {iconMap[log.icon as keyof typeof iconMap]}
             </div>
 
             {/* Mobile timeline node */}
@@ -264,7 +303,7 @@ export default function WhatsNewPage() {
               }}
               className="md:hidden"
             >
-              {TemplateIcon}
+              {iconMap[log.icon as keyof typeof iconMap]}
             </div>
 
             {/* Content card */}
