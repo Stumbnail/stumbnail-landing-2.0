@@ -27,60 +27,62 @@ export function HeroContent() {
             opacity: 0.85,
           }}
         >
-          Fix that in 30 seconds with our AI YouTube thumbnail generator that actually gets clicks.
+          Create professional thumbnails in 30 seconds.
+          <br className="hidden md:block" />
+          AI that actually gets clicks.
         </p>
       </div>
 
       {/* Credibility Stats */}
       <div
-        className="flex flex-wrap justify-center items-center gap-6 md:gap-10 mb-10 md:mb-12"
+        className="flex flex-wrap justify-center items-center gap-5 md:gap-8 mb-8 md:mb-10"
         style={{ fontFamily: 'var(--font-heading)' }}
       >
         <div className="flex flex-col items-center">
           <span
-            className="text-2xl md:text-3xl font-bold"
+            className="text-xl md:text-2xl font-bold"
             style={{ color: '#ff6f61' }}
           >
             10%+
           </span>
           <span
-            className="text-xs md:text-sm"
+            className="text-xs"
             style={{ color: 'var(--color-text-muted)' }}
           >
             Avg. CTR Improvement
           </span>
         </div>
         <div
-          className="hidden sm:block w-px h-10"
+          className="hidden sm:block w-px h-8"
           style={{ backgroundColor: 'var(--color-border)' }}
         />
         <div className="flex flex-col items-center">
           <span
-            className="text-2xl md:text-3xl font-bold"
+            className="text-xl md:text-2xl font-bold"
             style={{ color: '#ff6f61' }}
           >
             10K+
           </span>
           <span
-            className="text-xs md:text-sm"
+            className="text-xs"
             style={{ color: 'var(--color-text-muted)' }}
           >
             Thumbnails Created
           </span>
         </div>
         <div
-          className="hidden sm:block w-px h-10"
+          className="hidden sm:block w-px h-8"
           style={{ backgroundColor: 'var(--color-border)' }}
         />
         <div className="flex flex-col items-center">
           <span
-            className="text-2xl md:text-3xl font-bold"
+            className="text-xl md:text-2xl font-bold"
             style={{ color: '#ff6f61' }}
           >
             ~30s
           </span>
           <span
-            className="text-xs md:text-sm"
+            className="text-xs"
             style={{ color: 'var(--color-text-muted)' }}
           >
             Avg. Creation Time
