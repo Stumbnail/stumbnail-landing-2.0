@@ -13,7 +13,6 @@ export const THUMBNAIL_IMAGES = [
   'youtube-thumbnail-new (4).webp',
   'youtube-thumbnail-new (5).webp',
   'YouTube-thumbnail-featuring-Cristiano-Ronaldo-shoc.webp',
-  'YouTube-thumbnail-featuring-Elon-Musk-serious-thou.webp',
   'Split-screen-YouTube-thumbnail-Left-side-Cristiano.webp',
   'asdqwe.webp',
   'YouTube-thumbnail-featuring-Drake-holding-a-phone-.webp',

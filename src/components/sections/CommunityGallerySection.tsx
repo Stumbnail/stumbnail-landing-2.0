@@ -29,7 +29,7 @@ const FALLBACK_THUMBNAILS: CommunityThumbnail[] = [
     },
     {
         id: '2',
-        thumbnailUrl: '/assets/images/thumbnails/YouTube-thumbnail-featuring-Elon-Musk-serious-thou.webp',
+        thumbnailUrl: '/assets/images/thumbnails/YouTube-thumbnail-featuring-Cristiano-Ronaldo-shoc.webp',
         ownerName: 'TechInsider',
         ownerAvatar: null,
     },
