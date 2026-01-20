@@ -32,8 +32,8 @@ export function HeroThumbnails() {
       >
         <div className="relative border-[3px] border-white/20 rounded-2xl overflow-hidden shadow-2xl">
           <Image
-            src="/assets/images/thumbnails/YouTube-thumbnail-featuring-Johnny-Depp-holding-a-.webp"
-            alt="Johnny Depp Thumbnail"
+            src="/assets/images/thumbnails/youtube-thumbnail-new (1).webp"
+            alt="Featured Thumbnail"
             width={640}
             height={360}
             className="w-full h-auto"

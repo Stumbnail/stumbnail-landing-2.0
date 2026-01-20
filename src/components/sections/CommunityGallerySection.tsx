@@ -41,7 +41,7 @@ const FALLBACK_THUMBNAILS: CommunityThumbnail[] = [
     },
     {
         id: '4',
-        thumbnailUrl: '/assets/images/thumbnails/YouTube-thumbnail-featuring-Johnny-Depp-holding-a-.webp',
+        thumbnailUrl: '/assets/images/thumbnails/youtube-thumbnail-new (4).webp',
         ownerName: 'PirateCreator',
         ownerAvatar: null,
     },
@@ -53,13 +53,13 @@ const FALLBACK_THUMBNAILS: CommunityThumbnail[] = [
     },
     {
         id: '6',
-        thumbnailUrl: '/assets/images/thumbnails/YouTube-thumbnail-featuring-Napoleon-Bonaparte-sit.webp',
+        thumbnailUrl: '/assets/images/thumbnails/youtube-thumbnail-new (5).webp',
         ownerName: 'HistoryBuff',
         ownerAvatar: null,
     },
     {
         id: '7',
-        thumbnailUrl: '/assets/images/thumbnails/YouTube-thumbnail-featuring-Robert-Downey-Jr-point.webp',
+        thumbnailUrl: '/assets/images/thumbnails/YouTube-thumbnail-featuring-Mark-Zuckerberg-wearin.webp',
         ownerName: 'MarvelFan',
         ownerAvatar: null,
     },
@@ -166,7 +166,7 @@ export function CommunityGallerySection() {
                             color: 'var(--color-foreground)',
                         }}
                     >
-                        See What Creators Are Making
+                        Made by Creators Like You
                     </h2>
                     <p
                         className="text-lg md:text-xl max-w-2xl mx-auto"
@@ -175,7 +175,7 @@ export function CommunityGallerySection() {
                             color: 'var(--color-foreground-muted)',
                         }}
                     >
-                        Real thumbnails. Real results. Real creators. Join thousands using the best AI thumbnail generator to stand out in crowded feeds.
+                        Real thumbnails. Real results.
                     </p>
                 </div>
 

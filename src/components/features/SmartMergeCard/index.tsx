@@ -16,7 +16,7 @@ export function SmartMergeCard() {
                 }}
             >
                 <Image
-                    src="/assets/images/thumbnails/YouTube-thumbnail-featuring-Johnny-Depp-holding-a-.webp"
+                    src="/assets/images/thumbnails/youtube-thumbnail-new (2).webp"
                     alt="Floating thumbnail"
                     fill
                     className="object-cover"
@@ -32,7 +32,7 @@ export function SmartMergeCard() {
                 }}
             >
                 <Image
-                    src="/assets/images/thumbnails/YouTube-thumbnail-featuring-Napoleon-Bonaparte-sit.webp"
+                    src="/assets/images/thumbnails/youtube-thumbnail-new (3).webp"
                     alt="Floating thumbnail"
                     fill
                     className="object-cover"
