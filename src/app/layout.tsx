@@ -7,19 +7,16 @@ import './globals.css'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://stumbnail.com'),
-  title: 'AI YouTube Thumbnail Generator - Free | Stumbnail',
-  description: 'Generate click-worthy YouTube thumbnails in seconds with AI. Canvas-based editor, no design skills needed. Start creating for free.',
+  title: 'AI YouTube Thumbnail Generator | Stumbnail',
+  description: 'Generate click-worthy YouTube thumbnails in seconds with AI. Canvas-based editor, no design skills needed. Choose a plan and start creating.',
   keywords: [
     'ai youtube thumbnail generator',
     'youtube thumbnail generator',
     'youtube thumbnail ai generator',
     'thumbnail maker ai',
-    'free ai thumbnail maker',
-    'ai thumbnail generator free',
     'youtube thumbnail ai',
     'best ai thumbnail generator',
     'thumbnail text generator',
-    'free ai thumbnail generator',
     'youtube thumbnail size',
     'youtube thumbnail templates',
     'ai thumbnail maker',
@@ -44,26 +41,23 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://stumbnail.com',
     siteName: 'Stumbnail',
-    title: 'AI YouTube Thumbnail Generator - Free | Stumbnail',
-    description: 'Generate click-worthy YouTube thumbnails in seconds with AI. Canvas-based editor, no design skills needed. Start creating for free.',
+    title: 'AI YouTube Thumbnail Generator | Stumbnail',
+    description: 'Generate click-worthy YouTube thumbnails in seconds with AI. Canvas-based editor, no design skills needed. Choose a plan and start creating.',
     images: [
       {
-        url: '/og-image.png',
+        url: '/assets/opengraph.png',
         width: 1200,
         height: 630,
-        alt: 'AI YouTube Thumbnail Generator - Free | Stumbnail',
+        alt: 'AI YouTube Thumbnail Generator | Stumbnail',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AI YouTube Thumbnail Generator - Free | Stumbnail',
-    description: 'Generate click-worthy YouTube thumbnails in seconds with AI. Canvas-based editor, no design skills needed. Start creating for free.',
-    images: ['/og-image.png'],
+    title: 'AI YouTube Thumbnail Generator | Stumbnail',
+    description: 'Generate click-worthy YouTube thumbnails in seconds with AI. Canvas-based editor, no design skills needed. Choose a plan and start creating.',
+    images: ['/assets/opengraph.png'],
     creator: '@stumbnail',
-  },
-  alternates: {
-    canonical: 'https://stumbnail.com',
   },
   category: 'technology',
 }
@@ -76,6 +70,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Lexend:wght@100..900&family=Merriweather:wght@300;400;700;900&display=swap"
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `

@@ -14,7 +14,7 @@ export function InfiniteScroller() {
 
   const baseSpeed = 0.8 // pixels per frame
 
-  const animate = useCallback(() => {
+  const animate = useCallback(function animate() {
     if (!scrollerRef.current) return
 
     // Ease velocity towards target

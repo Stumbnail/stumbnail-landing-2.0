@@ -22,8 +22,8 @@ export const faqData = [
         answer: "Yes. You can generate a thumbnail from video by giving us context about what your video covers. Describe the topic, the vibe, or paste your title and we'll create a thumbnail that fits. You're not limited to screenshots; you get original, AI-generated visuals designed for clicks."
     },
     {
-        question: "Is this free? What does the free plan include?",
-        answer: "We have a free tier that lets you try the AI thumbnail generator free with limited credits. It's enough to test the tool and see if it fits your workflow. If you need more like higher volume, priority rendering, or team features, we have paid plans that scale with your needs."
+        question: "Do you offer a free plan?",
+        answer: "We’ve discontinued the free tier. With our small budget, we couldn’t fund it anymore, so we can’t keep providing free credits. We’re really sorry. You’re still welcome to try Stumbnail with a paid plan."
     },
     {
         question: "Can I use this for gaming thumbnails?",
@@ -78,14 +78,6 @@ const websiteSchema = {
     "description": "AI YouTube Thumbnail Generator - Create click-worthy thumbnails in seconds",
     "publisher": {
         "@id": "https://stumbnail.com/#organization"
-    },
-    "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-            "@type": "EntryPoint",
-            "urlTemplate": "https://stumbnail.com/?search={search_term_string}"
-        },
-        "query-input": "required name=search_term_string"
     }
 }
 
@@ -99,7 +91,7 @@ const softwareSchema = {
     "operatingSystem": "Web Browser",
     "description": "AI-powered YouTube thumbnail generator with canvas-based editor. Create professional thumbnails in seconds without design skills.",
     "url": "https://stumbnail.com",
-    "screenshot": "https://stumbnail.com/og-image.png",
+    "screenshot": "https://stumbnail.com/assets/opengraph.png",
     "featureList": [
         "AI-powered thumbnail generation",
         "Canvas-based editor",
@@ -111,73 +103,23 @@ const softwareSchema = {
     "offers": [
         {
             "@type": "Offer",
-            "name": "Free Plan",
-            "price": "0",
+            "name": "Starter Plan",
+            "price": "4",
             "priceCurrency": "USD",
-            "description": "Get started with free credits to test the AI thumbnail generator"
+            "url": "https://stumbnail.com/pricing",
+            "availability": "https://schema.org/InStock"
         },
         {
             "@type": "Offer",
             "name": "Creator Plan",
-            "price": "12.99",
+            "price": "9.99",
             "priceCurrency": "USD",
-            "billingIncrement": "P1M",
-            "description": "For serious creators who need more thumbnails"
+            "url": "https://stumbnail.com/pricing",
+            "availability": "https://schema.org/InStock"
         }
     ],
-    "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.8",
-        "ratingCount": "150",
-        "bestRating": "5",
-        "worstRating": "1"
-    },
     "provider": {
         "@id": "https://stumbnail.com/#organization"
-    }
-}
-
-// FAQ Schema
-const faqSchema = {
-    "@type": "FAQPage",
-    "@id": "https://stumbnail.com/#faq",
-    "mainEntity": faqData.map(faq => ({
-        "@type": "Question",
-        "name": faq.question,
-        "acceptedAnswer": {
-            "@type": "Answer",
-            "text": faq.answer
-        }
-    }))
-}
-
-// WebPage Schema
-const webPageSchema = {
-    "@type": "WebPage",
-    "@id": "https://stumbnail.com/#webpage",
-    "url": "https://stumbnail.com",
-    "name": "AI YouTube Thumbnail Generator - Free | Stumbnail",
-    "description": "Generate click-worthy YouTube thumbnails in seconds with AI. Canvas-based editor, no design skills needed. Start creating for free.",
-    "isPartOf": {
-        "@id": "https://stumbnail.com/#website"
-    },
-    "about": {
-        "@id": "https://stumbnail.com/#software"
-    },
-    "primaryImageOfPage": {
-        "@type": "ImageObject",
-        "url": "https://stumbnail.com/og-image.png"
-    },
-    "breadcrumb": {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-            {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "https://stumbnail.com"
-            }
-        ]
     }
 }
 
@@ -187,9 +129,7 @@ const structuredData = {
     "@graph": [
         organizationSchema,
         websiteSchema,
-        softwareSchema,
-        faqSchema,
-        webPageSchema
+        softwareSchema
     ]
 }
 
@@ -205,4 +145,4 @@ export function StructuredData() {
 }
 
 // Export individual schemas for use on other pages
-export { organizationSchema, websiteSchema, softwareSchema, faqSchema, webPageSchema }
+export { organizationSchema, websiteSchema, softwareSchema }

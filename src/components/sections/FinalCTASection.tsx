@@ -1,7 +1,6 @@
 'use client'
 
-import Link from 'next/link'
-import { Button } from '@/components/ui/Button'
+import { ButtonLink } from '@/components/ui/Button'
 import { trackHeroCtaClick, trackExternalLinkClick, trackPricingView } from '@/lib/analytics'
 
 export function FinalCTASection() {
@@ -90,7 +89,7 @@ export function FinalCTASection() {
                                     color: '#ff6f61',
                                 }}
                             >
-                                Start for Free
+                                Get Started
                             </span>
                         </div>
 
@@ -123,49 +122,43 @@ export function FinalCTASection() {
                                 lineHeight: 1.7,
                             }}
                         >
-                            Join thousands of creators using the best AI YouTube thumbnail generator to stand out. Your first thumbnails are free.
+                            Join creators using Stumbnail to stand out with click-worthy thumbnails. Start free and make your next thumbnail today.
                         </p>
 
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                            <Link
+                            <ButtonLink
                                 href="https://app.stumbnail.com/login"
                                 onClick={() => {
                                     trackHeroCtaClick('trial')
                                     trackExternalLinkClick('https://app.stumbnail.com/login')
                                 }}
+                                variant="primary"
+                                className="h-[56px] px-10 text-lg rounded-2xl"
+                                icon="/assets/icons/sparkle.svg"
+                                style={{
+                                    fontFamily: 'var(--font-heading)',
+                                    fontWeight: 600,
+                                    backgroundColor: '#ff6f61',
+                                    minWidth: '200px',
+                                    boxShadow: '0 8px 24px rgba(255, 111, 97, 0.3)',
+                                }}
                             >
-                                <Button
-                                    variant="primary"
-                                    className="h-[56px] px-10 text-lg rounded-2xl"
-                                    icon="/assets/icons/sparkle.svg"
-                                    style={{
-                                        fontFamily: 'var(--font-heading)',
-                                        fontWeight: 600,
-                                        backgroundColor: '#ff6f61',
-                                        minWidth: '200px',
-                                        boxShadow: '0 8px 24px rgba(255, 111, 97, 0.3)',
-                                    }}
-                                >
-                                    Start Free Trial
-                                </Button>
-                            </Link>
+                                Get Started
+                            </ButtonLink>
 
-                            <Link
-                                href="#pricing"
+                            <ButtonLink
+                                href="/pricing"
                                 onClick={() => trackPricingView('cta')}
+                                variant="secondary"
+                                className="h-[56px] px-10 text-lg rounded-2xl"
+                                style={{
+                                    fontFamily: 'var(--font-heading)',
+                                    fontWeight: 600,
+                                    minWidth: '200px',
+                                }}
                             >
-                                <Button
-                                    variant="secondary"
-                                    className="h-[56px] px-10 text-lg rounded-2xl"
-                                    style={{
-                                        fontFamily: 'var(--font-heading)',
-                                        fontWeight: 600,
-                                        minWidth: '200px',
-                                    }}
-                                >
-                                    See Pricing
-                                </Button>
-                            </Link>
+                                See Pricing
+                            </ButtonLink>
                         </div>
                     </div>
                 </div>

@@ -67,7 +67,7 @@ export function PartnersSection() {
                             fontFamily: 'var(--font-heading)',
                         }}
                     >
-                        Trusted By Industry Leaders
+                        Built with leading AI
                     </p>
                     <h2
                         className="text-2xl md:text-3xl font-semibold"
@@ -76,8 +76,17 @@ export function PartnersSection() {
                             color: 'var(--color-foreground)',
                         }}
                     >
-                        Powered by the <span style={{ color: '#ff6f61' }}>Best in AI</span>
+                        Powered by <span style={{ color: '#ff6f61' }}>modern AI models</span>
                     </h2>
+                    <p
+                        className="text-xs md:text-sm mt-2"
+                        style={{
+                            color: 'var(--color-text-muted)',
+                            fontFamily: 'var(--font-body)',
+                        }}
+                    >
+                        Logos are trademarks of their respective owners and do not imply endorsement.
+                    </p>
                 </div>
             </div>
 

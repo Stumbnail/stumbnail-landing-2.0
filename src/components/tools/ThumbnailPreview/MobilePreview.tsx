@@ -1,6 +1,5 @@
 'use client'
 
-import { useMemo } from 'react'
 import Image from 'next/image'
 import { YOUTUBE_VIDEOS, YouTubeVideo } from '@/lib/constants'
 import { YouTubeLogo } from './YouTubeLogo'
@@ -97,13 +96,11 @@ function MobileVideoCard({
 }
 
 export function MobilePreview({ userThumbnail, userTitle, userChannel }: MobilePreviewProps) {
-  const videos = [...YOUTUBE_VIDEOS]
-
-  // Randomize user thumbnail position on each load (0-3 for 4 items)
-  const userPosition = useMemo(() => Math.floor(Math.random() * 4), [])
+  const videos = YOUTUBE_VIDEOS
+  const userPosition = 1
 
   // Create display videos with user thumbnail at random position
-  const displayVideos = useMemo(() => {
+  const displayVideos = (() => {
     const result: (YouTubeVideo | { isUser: true })[] = []
     let videoIndex = 0
     for (let i = 0; i < 4; i++) {
@@ -115,7 +112,7 @@ export function MobilePreview({ userThumbnail, userTitle, userChannel }: MobileP
       }
     }
     return result
-  }, [userPosition, videos])
+  })()
 
   return (
     <div className="w-full flex items-center justify-center py-8">

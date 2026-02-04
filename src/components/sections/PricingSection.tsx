@@ -1,15 +1,6 @@
 'use client'
 
-import React, { useState } from 'react';
 import { trackPricingPlanClick, trackExternalLinkClick } from '@/lib/analytics';
-
-function SparklesIcon({ className = "w-4 h-4" }: { className?: string }) {
-    return (
-        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.582a.5.5 0 0 1 0 .962L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" />
-        </svg>
-    );
-}
 
 function MergeIcon({ className = "w-4 h-4" }: { className?: string }) {
     return (
@@ -75,29 +66,11 @@ function LockIcon({ className = "w-4 h-4" }: { className?: string }) {
     );
 }
 
-function GlobeIcon({ className = "w-4 h-4" }: { className?: string }) {
-    return (
-        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="12" cy="12" r="10" />
-            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
-            <path d="M2 12h20" />
-        </svg>
-    );
-}
-
 function CrownIcon({ className = "w-4 h-4" }: { className?: string }) {
     return (
         <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z" />
             <path d="M5 21h14" />
-        </svg>
-    );
-}
-
-function ChevronRightIcon({ className = "w-4 h-4" }: { className?: string }) {
-    return (
-        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="m9 18 6-6-6-6" />
         </svg>
     );
 }
@@ -111,18 +84,28 @@ const paidFeatures = [
     { icon: LockIcon, text: "Keep thumbnails private" },
 ];
 
-const freeFeatures = [
-    { icon: MergeIcon, text: "Smart Merge: combine assets with AI" },
-    { icon: WandIcon, text: "Prompt-based generation" },
-    { icon: YouTubeIcon, text: "Clone any YouTube thumbnail" },
-    { icon: ImageIcon, text: "Upload custom assets" },
-    { icon: LayersIcon, text: "Standard AI models" },
-    { icon: GlobeIcon, text: "Thumbnails are public", isLimitation: true },
-];
+const plans = [
+    {
+        id: 'starter',
+        name: 'Starter',
+        monthlyPrice: 4,
+        credits: 590,
+        highlight: false,
+    },
+    {
+        id: 'creator',
+        name: 'Creator',
+        monthlyPrice: 9.99,
+        credits: 1475,
+        highlight: true,
+    },
+] as const;
+
+const weeksPerMonth = 52 / 12;
+const formatMonthlyPrice = (price: number) => (Number.isInteger(price) ? `$${price}` : `$${price.toFixed(2)}`);
+const formatWeeklyPrice = (monthlyPrice: number) => `$${(monthlyPrice / weeksPerMonth).toFixed(2)}`;
 
 export function PricingSection() {
-    const [selectedPlan, setSelectedPlan] = useState<'creator' | 'automation'>('creator');
-
     return (
         <section className="relative py-24 px-4 overflow-hidden" id="pricing">
             {/* Subtle background glow */}
@@ -135,152 +118,87 @@ export function PricingSection() {
                         Simple, Credit-Based Pricing
                     </h2>
                     <p className="text-[var(--color-text-muted)] max-w-lg mx-auto">
-                        Start free, upgrade when you need more. Different AI models use different credits.
+                        Choose a plan that fits your workflow. Different AI models use different credits.
                     </p>
+                    <div className="mx-auto max-w-2xl rounded-2xl border border-[var(--color-border)] bg-[var(--color-background)]/60 p-4 text-left text-sm text-[var(--color-text-muted)]">
+                        <span className="font-semibold text-[var(--color-foreground)]">Note:</span>{' '}
+                        We’ve discontinued the free tier. With our small budget, we couldn’t fund it anymore, so we can’t keep providing free credits. We’re really sorry. You’re still welcome to try Stumbnail with a paid plan below.
+                    </div>
                 </div>
 
                 {/* Pricing Layout */}
-                <div className="grid lg:grid-cols-2 gap-8 max-w-4xl mx-auto items-stretch">
-
-                    {/* Free Trial Card */}
-                    <div
-                        className="relative p-6 md:p-8 rounded-2xl backdrop-blur-sm flex flex-col"
-                        style={{
-                            backgroundColor: 'rgba(16, 185, 129, 0.03)',
-                            border: '2px dashed rgba(16, 185, 129, 0.4)',
-                        }}
-                    >
-                        {/* Free Badge */}
-                        <div className="absolute -top-3 left-6 flex items-center gap-1.5 bg-emerald-500 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide shadow-lg">
-                            <SparklesIcon className="w-3 h-3" />
-                            Start Here
-                        </div>
-
-                        <div className="flex-1 flex flex-col space-y-5 pt-2">
-                            {/* Price Display */}
-                            <div className="text-center pb-4" style={{ borderBottom: '1px solid rgba(16, 185, 129, 0.2)' }}>
-                                <p className="text-sm font-medium text-[var(--color-text-muted)] uppercase tracking-wider">Free Trial</p>
-                                <div className="mt-3 flex items-baseline justify-center gap-1">
-                                    <span className="text-4xl md:text-5xl font-bold tracking-tight">$0</span>
+                <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto items-stretch">
+                    {plans.map((plan) => (
+                        <div
+                            key={plan.id}
+                            className="relative p-6 md:p-8 rounded-2xl backdrop-blur-sm flex flex-col"
+                            style={{
+                                backgroundColor: plan.highlight ? 'rgba(255, 111, 97, 0.04)' : 'rgba(255, 255, 255, 0.02)',
+                                border: plan.highlight ? '2px solid rgba(255, 111, 97, 0.35)' : '1px solid var(--color-border)',
+                            }}
+                        >
+                            {plan.highlight && (
+                                <div className="absolute -top-3 left-6 flex items-center gap-1.5 bg-[#ff6f61] text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide shadow-lg">
+                                    <CrownIcon className="w-3 h-3" />
+                                    Best Value
                                 </div>
-                                <p className="mt-2 text-emerald-500 font-bold text-lg">30 credits</p>
-                            </div>
+                            )}
 
-                            {/* Features */}
-                            <div className="flex-1">
-                                <ul className="space-y-2.5">
-                                    {freeFeatures.map((feature, i) => (
-                                        <li key={i} className="flex items-center gap-3 text-sm text-[var(--color-foreground)]">
-                                            <span style={{ color: feature.isLimitation ? '#f59e0b' : '#10b981' }}>
-                                                <feature.icon className="w-4 h-4 shrink-0" />
-                                            </span>
-                                            <span className={feature.isLimitation ? 'text-amber-600 dark:text-amber-400' : ''}>
-                                                {feature.text}
-                                            </span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-
-                            <a
-                                href="https://app.stumbnail.com/login"
-                                className="block w-full py-3 px-6 rounded-xl bg-emerald-500 text-white font-bold text-center transition-all duration-200 hover:bg-emerald-600 hover:shadow-lg hover:shadow-emerald-500/20 mt-auto"
-                                onClick={() => {
-                                    trackPricingPlanClick('free', '$0');
-                                    trackExternalLinkClick('https://app.stumbnail.com/login');
-                                }}
-                            >
-                                Start Free
-                            </a>
-                        </div>
-                    </div>
-
-                    {/* Paid Plans Card */}
-                    <div
-                        className="relative p-6 md:p-8 rounded-2xl backdrop-blur-sm flex flex-col"
-                        style={{
-                            backgroundColor: 'rgba(255, 111, 97, 0.03)',
-                            border: '2px solid rgba(255, 111, 97, 0.3)',
-                        }}
-                    >
-                        {/* Toggle for Plan Selection */}
-                        <div className="flex gap-2 p-1.5 rounded-xl bg-[var(--color-background)]/80 border border-[var(--color-border)] mb-6">
-                            <button
-                                onClick={() => setSelectedPlan('creator')}
-                                className="flex-1 py-2.5 px-4 rounded-lg text-sm font-semibold transition-all duration-200"
-                                style={{
-                                    backgroundColor: selectedPlan === 'creator' ? '#ff6f61' : 'transparent',
-                                    color: selectedPlan === 'creator' ? 'white' : 'var(--color-text-muted)',
-                                }}
-                            >
-                                Creator
-                            </button>
-                            <button
-                                onClick={() => setSelectedPlan('automation')}
-                                className="flex-1 py-2.5 px-4 rounded-lg text-sm font-semibold transition-all duration-200 relative"
-                                style={{
-                                    backgroundColor: selectedPlan === 'automation' ? '#ff6f61' : 'transparent',
-                                    color: selectedPlan === 'automation' ? 'white' : 'var(--color-text-muted)',
-                                }}
-                            >
-                                Automation
-                                {selectedPlan !== 'automation' && (
-                                    <span className="absolute -top-2 -right-2 flex items-center gap-0.5 bg-[#ff6f61] text-white px-1.5 py-0.5 rounded text-[10px] font-bold">
-                                        <CrownIcon className="w-2.5 h-2.5" />
-                                        Best
-                                    </span>
-                                )}
-                            </button>
-                        </div>
-
-                        <div className="flex-1 flex flex-col space-y-5">
-                            {/* Price Display */}
-                            <div className="text-center pb-4 border-b border-[var(--color-border)]">
-                                <div className="flex items-baseline justify-center gap-1">
-                                    <span className="text-4xl md:text-5xl font-bold tracking-tight">
-                                        {selectedPlan === 'creator' ? '$12.99' : '$39'}
-                                    </span>
-                                    <span className="text-[var(--color-text-muted)]">/mo</span>
+                            <div className="flex-1 flex flex-col space-y-5 pt-2">
+                                <div className="text-center pb-4 border-b border-[var(--color-border)]">
+                                    <p className="text-sm font-medium text-[var(--color-text-muted)] uppercase tracking-wider">
+                                        {plan.name}
+                                    </p>
+                                    <div className="mt-3 flex items-baseline justify-center gap-1">
+                                        <span className="text-4xl md:text-5xl font-bold tracking-tight">
+                                            {formatWeeklyPrice(plan.monthlyPrice)}
+                                        </span>
+                                        <span className="text-[var(--color-text-muted)]">/wk</span>
+                                    </div>
+                                    <p className="mt-2 text-sm text-[var(--color-text-muted)]">
+                                        Billed {formatMonthlyPrice(plan.monthlyPrice)}/mo
+                                    </p>
+                                    <p className="mt-3 font-bold text-lg" style={{ color: '#ff6f61' }}>
+                                        {plan.credits.toLocaleString()} credits/mo
+                                    </p>
                                 </div>
-                                <p className="mt-2 font-bold text-lg" style={{ color: '#ff6f61' }}>
-                                    {selectedPlan === 'creator' ? '1,430 credits' : '4,500 credits'}
-                                </p>
-                            </div>
 
-                            {/* Features */}
-                            <div className="flex-1">
-                                <ul className="space-y-2.5">
-                                    {paidFeatures.map((feature, i) => (
-                                        <li key={i} className="flex items-center gap-3 text-sm text-[var(--color-foreground)]">
-                                            <span style={{ color: '#ff6f61' }}>
-                                                <feature.icon className="w-4 h-4 shrink-0" />
-                                            </span>
-                                            <span>{feature.text}</span>
-                                        </li>
-                                    ))}
-                                </ul>
+                                <a
+                                    href="https://app.stumbnail.com/login"
+                                    className="block w-full py-3 px-6 rounded-xl font-bold text-center transition-all duration-200 hover:opacity-90 mt-auto"
+                                    style={{
+                                        backgroundColor: '#ff6f61',
+                                        color: 'white',
+                                        boxShadow: '0 4px 14px rgba(255, 111, 97, 0.25)',
+                                    }}
+                                    onClick={() => {
+                                        trackPricingPlanClick(plan.id, formatMonthlyPrice(plan.monthlyPrice));
+                                        trackExternalLinkClick('https://app.stumbnail.com/login');
+                                    }}
+                                >
+                                    Choose {plan.name}
+                                </a>
                             </div>
-
-                            <a
-                                href="https://app.stumbnail.com/login"
-                                className="block w-full py-3 px-6 rounded-xl font-bold text-center transition-all duration-200 hover:opacity-90 mt-auto"
-                                style={{
-                                    backgroundColor: '#ff6f61',
-                                    color: 'white',
-                                    boxShadow: '0 4px 14px rgba(255, 111, 97, 0.25)',
-                                }}
-                                onClick={() => {
-                                    const plan = selectedPlan === 'creator' ? 'creator' : 'automation';
-                                    const price = selectedPlan === 'creator' ? '$12.99' : '$39';
-                                    trackPricingPlanClick(plan, price);
-                                    trackExternalLinkClick('https://app.stumbnail.com/login');
-                                }}
-                            >
-                                Get {selectedPlan === 'creator' ? 'Creator' : 'Automation'}
-                            </a>
                         </div>
-                    </div>
+                    ))}
+                </div>
 
+                <div className="mt-8 max-w-4xl mx-auto">
+                    <div className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-background)]/60 p-6">
+                        <h3 className="text-base font-semibold text-[var(--color-foreground)] mb-4">
+                            Included with every plan
+                        </h3>
+                        <ul className="space-y-2.5">
+                            {paidFeatures.map((feature, i) => (
+                                <li key={i} className="flex items-center gap-3 text-sm text-[var(--color-foreground)]">
+                                    <span style={{ color: '#ff6f61' }}>
+                                        <feature.icon className="w-4 h-4 shrink-0" />
+                                    </span>
+                                    <span>{feature.text}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
 
                 {/* Credit Usage Info */}

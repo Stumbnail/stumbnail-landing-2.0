@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { SmartMergeCard } from '@/components/features/SmartMergeCard'
 import { YouTubeLinkCard } from '@/components/features/YouTubeLinkCard'
 import { CreateWithPromptCard } from '@/components/features/CreateWithPromptCard'
-import { Button } from '@/components/ui/Button'
+import { ButtonLink } from '@/components/ui/Button'
 
 type FeatureTab = 'smart-merge' | 'youtube-link' | 'prompt'
 
@@ -186,7 +186,8 @@ export function MainFeaturesSection() {
                             {activeFeature.description}
                         </p>
 
-                        <Button
+                        <ButtonLink
+                            href="https://app.stumbnail.com/login"
                             variant="primary"
                             className="h-[56px] px-10 text-lg rounded-2xl w-fit"
                             icon="/assets/icons/sparkle.svg"
@@ -196,8 +197,8 @@ export function MainFeaturesSection() {
                                 backgroundColor: '#ff6f61',
                             }}
                         >
-                            Try for free
-                        </Button>
+                            Get started
+                        </ButtonLink>
                     </div>
 
                     {/* Right: Feature Card/Demo */}

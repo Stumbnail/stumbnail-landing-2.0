@@ -24,10 +24,26 @@
   /* Fonts */
   --font-sans: var(--font-space-grotesk);
   --font-heading: var(--font-lexend);
+  --font-body: var(--font-sans);
 
   /* Transitions */
   --transition-fast: all 0.15s ease;
   --transition-medium: all 0.3s ease;
+}
+
+/* Font variable helpers (used by src/app/fonts.ts) */
+.font-space-grotesk {
+  --font-space-grotesk: "Space Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial,
+    "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+.font-lexend {
+  --font-lexend: "Lexend", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Apple Color Emoji",
+    "Segoe UI Emoji";
+}
+
+.font-merriweather {
+  --font-merriweather: "Merriweather", ui-serif, Georgia, "Times New Roman", Times, serif;
 }
 
 /* Dynamic Theme Classes */

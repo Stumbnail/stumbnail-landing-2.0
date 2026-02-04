@@ -68,6 +68,18 @@ export function ThumbnailPreviewer() {
 
   const hasUploadedThumbnail = userThumbnail !== null
 
+  const clearThumbnail = useCallback(() => {
+    setIsTransitioning(true)
+    setTimeout(() => {
+      setUserThumbnail(null)
+      setUserTitle('')
+      setUserChannel('')
+      setIsEditingDetails(false)
+      if (fileInputRef.current) fileInputRef.current.value = ''
+      setIsTransitioning(false)
+    }, 200)
+  }, [])
+
   // Keyboard shortcuts
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -87,7 +99,7 @@ export function ThumbnailPreviewer() {
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [hasUploadedThumbnail])
+  }, [hasUploadedThumbnail, clearThumbnail])
 
   const handleFileSelect = useCallback((file: File) => {
     if (!file.type.startsWith('image/')) return
@@ -121,18 +133,6 @@ export function ThumbnailPreviewer() {
     const file = e.target.files?.[0]
     if (file) handleFileSelect(file)
   }, [handleFileSelect])
-
-  const clearThumbnail = useCallback(() => {
-    setIsTransitioning(true)
-    setTimeout(() => {
-      setUserThumbnail(null)
-      setUserTitle('')
-      setUserChannel('')
-      setIsEditingDetails(false)
-      if (fileInputRef.current) fileInputRef.current.value = ''
-      setIsTransitioning(false)
-    }, 200)
-  }, [])
 
   const handleModeChange = useCallback((mode: PreviewMode) => {
     if (mode === activeMode) return

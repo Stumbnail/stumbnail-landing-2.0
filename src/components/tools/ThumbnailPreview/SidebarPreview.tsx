@@ -1,6 +1,5 @@
 'use client'
 
-import { useMemo } from 'react'
 import Image from 'next/image'
 import { YOUTUBE_VIDEOS, YouTubeVideo } from '@/lib/constants'
 import { YouTubeVideoCard } from './YouTubeVideoCard'
@@ -13,13 +12,11 @@ interface SidebarPreviewProps {
 }
 
 export function SidebarPreview({ userThumbnail, userTitle, userChannel }: SidebarPreviewProps) {
-  const videos = [...YOUTUBE_VIDEOS]
-
-  // Randomize user thumbnail position on each load (0-4 for 5 items)
-  const userPosition = useMemo(() => Math.floor(Math.random() * 5), [])
+  const videos = YOUTUBE_VIDEOS
 
   // Create display videos with user thumbnail at random position
-  const displayVideos = useMemo(() => {
+  const userPosition = 2
+  const displayVideos = (() => {
     const result: (YouTubeVideo | { isUser: true })[] = []
     let videoIndex = 1 // Start from index 1 (skip first video which is being "watched")
     for (let i = 0; i < 5; i++) {
@@ -32,7 +29,7 @@ export function SidebarPreview({ userThumbnail, userTitle, userChannel }: Sideba
       }
     }
     return result
-  }, [userPosition, videos])
+  })()
 
   return (
     <div className="w-full rounded-xl overflow-hidden border" style={{ backgroundColor: 'var(--color-background)', borderColor: 'var(--color-border)' }}>

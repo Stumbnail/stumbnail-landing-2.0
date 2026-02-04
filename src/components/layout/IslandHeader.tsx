@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Button } from '@/components/ui/Button'
+import { ButtonLink } from '@/components/ui/Button'
 import { Logo } from '@/components/ui/Logo'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
 import { useTheme } from '@/components/providers/ThemeProvider'
@@ -82,26 +82,24 @@ export function IslandHeader() {
           <div className="flex items-center gap-2">
             <ThemeToggle />
 
-            <Link href="https://app.stumbnail.com/login">
-              <Button
-                variant="ghost"
-                className="hidden md:inline-flex h-[36px] px-4 text-sm rounded-full"
-                style={{
-                  color: isDark ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.7)',
-                }}
-              >
-                Start Free Trial
-              </Button>
-            </Link>
+            <ButtonLink
+              href="https://app.stumbnail.com/login"
+              variant="ghost"
+              className="hidden md:inline-flex h-[36px] px-4 text-sm rounded-full"
+              style={{
+                color: isDark ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.7)',
+              }}
+            >
+              Get Started
+            </ButtonLink>
 
-            <Link href="https://app.stumbnail.com/login">
-              <Button
-                variant="primary"
-                className="hidden sm:inline-flex h-[36px] px-5 text-sm rounded-full"
-              >
-                Login
-              </Button>
-            </Link>
+            <ButtonLink
+              href="https://app.stumbnail.com/login"
+              variant="primary"
+              className="hidden sm:inline-flex h-[36px] px-5 text-sm rounded-full"
+            >
+              Login
+            </ButtonLink>
 
             {/* Mobile Menu Button */}
             <button
@@ -179,22 +177,20 @@ export function IslandHeader() {
             className="pt-4 mt-4 flex flex-col gap-5"
             style={{ borderTop: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.08)' }}
           >
-            <Link href="https://app.stumbnail.com/login" className="block">
-              <Button
-                variant="secondary"
-                className="w-full h-[44px] text-sm rounded-xl"
-              >
-                Start Free Trial
-              </Button>
-            </Link>
-            <Link href="https://app.stumbnail.com/login" className="block">
-              <Button
-                variant="primary"
-                className="w-full h-[44px] text-sm rounded-xl"
-              >
-                Login / Signup
-              </Button>
-            </Link>
+            <ButtonLink
+              href="https://app.stumbnail.com/login"
+              variant="secondary"
+              className="w-full h-[44px] text-sm rounded-xl"
+            >
+              Get Started
+            </ButtonLink>
+            <ButtonLink
+              href="https://app.stumbnail.com/login"
+              variant="primary"
+              className="w-full h-[44px] text-sm rounded-xl"
+            >
+              Login / Signup
+            </ButtonLink>
           </div>
         </nav>
       </div>

@@ -1,12 +1,21 @@
 import { Metadata } from 'next'
 import { IslandHeader } from '@/components/layout/IslandHeader'
 import { Footer } from '@/components/layout/Footer'
-import { Button } from '@/components/ui/Button'
+import { ButtonLink } from '@/components/ui/Button'
 import Image from 'next/image'
 
 export const metadata: Metadata = {
     title: 'About Us - Stumbnail',
     description: 'Learn about why we built Stumbnail and our mission to help creators make better thumbnails.',
+    alternates: {
+        canonical: 'https://stumbnail.com/about',
+    },
+    openGraph: {
+        title: 'About Us - Stumbnail',
+        description: 'Learn about why we built Stumbnail and our mission to help creators make better thumbnails.',
+        url: 'https://stumbnail.com/about',
+        type: 'website',
+    },
 }
 
 export default function AboutPage() {
@@ -57,7 +66,8 @@ export default function AboutPage() {
                         the usual hassle.
                     </p>
 
-                    <Button
+                    <ButtonLink
+                        href="https://app.stumbnail.com/login"
                         variant="primary"
                         className="h-[56px] px-10 text-lg rounded-2xl"
                         icon="/assets/icons/sparkle.svg"
@@ -67,8 +77,8 @@ export default function AboutPage() {
                             backgroundColor: '#ff6f61',
                         }}
                     >
-                        Start Free Trial
-                    </Button>
+                        Get Started
+                    </ButtonLink>
                 </div>
             </section>
 
@@ -454,9 +464,10 @@ export default function AboutPage() {
                             fontFamily: 'var(--font-body)',
                         }}
                     >
-                        Join thousands of creators who are saving time and getting more clicks.
+                        Join creators who want better thumbnails without the design rabbit hole.
                     </p>
-                    <Button
+                    <ButtonLink
+                        href="https://app.stumbnail.com/login"
                         variant="primary"
                         className="h-[56px] px-10 text-lg rounded-2xl"
                         icon="/assets/icons/sparkle.svg"
@@ -466,8 +477,8 @@ export default function AboutPage() {
                             backgroundColor: '#ff6f61',
                         }}
                     >
-                        Start Free Trial
-                    </Button>
+                        Get Started
+                    </ButtonLink>
                 </div>
             </section>
 

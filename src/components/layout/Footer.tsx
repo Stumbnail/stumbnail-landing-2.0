@@ -37,14 +37,14 @@ export function Footer() {
                             fontFamily: 'var(--font-heading)',
                         }}
                     >
-                        Still scrolling? C&apos;mon, just{' '}
+                        Ready to make better thumbnails?{' '}
                         <Link
                             href="https://app.stumbnail.com/login"
                             className="text-[#ff6f61] hover:underline underline-offset-4"
                         >
-                            try it already
+                            Get started
                         </Link>
-                        . 🙄
+                        .
                     </p>
                 </div>
 
@@ -70,11 +70,38 @@ export function Footer() {
                             </li>
                             <li>
                                 <Link
+                                    href="/youtube-thumbnail-maker"
+                                    className="text-sm transition-colors hover:text-[#ff6f61]"
+                                    style={{ color: 'var(--color-foreground)' }}
+                                >
+                                    YouTube Thumbnail Maker
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    href="/best-ai-youtube-thumbnail-generator"
+                                    className="text-sm transition-colors hover:text-[#ff6f61]"
+                                    style={{ color: 'var(--color-foreground)' }}
+                                >
+                                    Best AI Thumbnail Generator
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
                                     href="/blog"
                                     className="text-sm transition-colors hover:text-[#ff6f61]"
                                     style={{ color: 'var(--color-foreground)' }}
                                 >
                                     Blog
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    href="/pricing"
+                                    className="text-sm transition-colors hover:text-[#ff6f61]"
+                                    style={{ color: 'var(--color-foreground)' }}
+                                >
+                                    Pricing
                                 </Link>
                             </li>
                         </ul>
@@ -89,6 +116,15 @@ export function Footer() {
                             Tools
                         </h4>
                         <ul className="space-y-3">
+                            <li>
+                                <Link
+                                    href="/tools"
+                                    className="text-sm transition-colors hover:text-[#ff6f61]"
+                                    style={{ color: 'var(--color-foreground)' }}
+                                >
+                                    Free Tools
+                                </Link>
+                            </li>
                             <li>
                                 <Link
                                     href="/tools/youtube-thumbnail-previewer"

@@ -5,6 +5,15 @@ import { Footer } from '@/components/layout/Footer';
 export const metadata: Metadata = {
   title: 'What\'s New - Stumbnail',
   description: 'Stay up to date with the latest features and improvements to Stumbnail. See what\'s new in our thumbnail creation platform.',
+  alternates: {
+    canonical: 'https://stumbnail.com/whats-new',
+  },
+  openGraph: {
+    title: "What's New - Stumbnail",
+    description: "Stay up to date with the latest features and improvements to Stumbnail. See what's new in our thumbnail creation platform.",
+    url: 'https://stumbnail.com/whats-new',
+    type: 'website',
+  },
 };
 
 // Changelog data

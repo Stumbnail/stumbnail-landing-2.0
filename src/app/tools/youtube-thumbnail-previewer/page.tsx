@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { Footer } from '@/components/layout/Footer'
 import { ThumbnailPreviewer } from '@/components/tools/ThumbnailPreview'
 
@@ -41,7 +42,7 @@ export const metadata: Metadata = {
     description: 'Preview your YouTube thumbnail on home, search, sidebar & mobile views. Free tool - no sign up required. Test unlimited thumbnails privately in your browser.',
     images: [
       {
-        url: '/og-thumbnail-previewer.png',
+        url: '/assets/opengraph.png',
         width: 1200,
         height: 630,
         alt: 'YouTube Thumbnail Previewer Tool - Free Preview',
@@ -52,7 +53,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Free YouTube Thumbnail Previewer | Stumbnail',
     description: 'See how your thumbnail looks on YouTube before uploading. Test on home, search, sidebar & mobile. Free, private, no sign up.',
-    images: ['/og-thumbnail-previewer.png'],
+    images: ['/assets/opengraph.png'],
     creator: '@stumbnail',
   },
   alternates: {
@@ -265,7 +266,7 @@ export default function ThumbnailPreviewerPage() {
               <p className="text-sm sm:text-base mb-4" style={{ color: 'var(--color-text-muted)' }}>
                 Need help creating stunning thumbnails?
               </p>
-              <a
+              <Link
                 href="/"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-base font-medium transition-all duration-200 hover:scale-[1.02]"
                 style={{
@@ -278,7 +279,7 @@ export default function ThumbnailPreviewerPage() {
                   <path d="M12 5v14M5 12h14" />
                 </svg>
                 Try Stumbnail&apos;s AI Thumbnail Generator
-              </a>
+              </Link>
             </div>
           </div>
         </section>

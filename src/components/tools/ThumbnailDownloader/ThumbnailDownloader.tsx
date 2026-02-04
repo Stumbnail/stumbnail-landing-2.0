@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useCallback, useEffect } from 'react'
+import { useMemo, useState, useCallback, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
@@ -38,9 +38,13 @@ function getThumbnailUrls(videoId: string): ThumbnailResult[] {
 
 export function ThumbnailDownloader() {
     const [url, setUrl] = useState('')
-    const [videoId, setVideoId] = useState<string | null>(null)
-    const [thumbnails, setThumbnails] = useState<ThumbnailResult[]>([])
     const [autoDownload, setAutoDownload] = useState(false)
+
+    const videoId = useMemo(() => extractVideoId(url.trim()), [url])
+    const thumbnails = useMemo(
+        () => (videoId ? getThumbnailUrls(videoId) : []),
+        [videoId]
+    )
 
     // Download max resolution helper
     const downloadMaxRes = useCallback(async (id: string) => {
@@ -61,22 +65,19 @@ export function ThumbnailDownloader() {
         }
     }, [])
 
-    // Auto-fetch on URL change
     useEffect(() => {
-        const id = extractVideoId(url.trim())
-        if (id && id !== videoId) {
-            setVideoId(id)
-            setThumbnails(getThumbnailUrls(id))
-            // Track tool usage
-            trackToolUse('downloader')
-            // Auto-download if toggle is on
-            if (autoDownload) {
-                downloadMaxRes(id)
-            }
-        }
-    }, [url, videoId, autoDownload, downloadMaxRes])
+        if (!videoId) return
+        trackToolUse('downloader')
+    }, [videoId])
+
+    // Auto-download if toggle is on
+    useEffect(() => {
+        if (!autoDownload || !videoId) return
+        downloadMaxRes(videoId)
+    }, [autoDownload, videoId, downloadMaxRes])
 
     const handleDownload = useCallback(async (thumbnailUrl: string, quality: string) => {
+        if (!videoId) return
         try {
             const response = await fetch(thumbnailUrl)
             const blob = await response.blob()
@@ -95,8 +96,6 @@ export function ThumbnailDownloader() {
 
     const clearResults = useCallback(() => {
         setUrl('')
-        setVideoId(null)
-        setThumbnails([])
     }, [])
 
     return (

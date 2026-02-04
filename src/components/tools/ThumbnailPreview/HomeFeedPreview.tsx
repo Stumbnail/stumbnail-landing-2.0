@@ -1,6 +1,5 @@
 'use client'
 
-import { useMemo } from 'react'
 import { YOUTUBE_VIDEOS, YouTubeVideo } from '@/lib/constants'
 import { YouTubeVideoCard } from './YouTubeVideoCard'
 import { YouTubeHeader } from './YouTubeHeader'
@@ -12,13 +11,11 @@ interface HomeFeedPreviewProps {
 }
 
 export function HomeFeedPreview({ userThumbnail, userTitle, userChannel }: HomeFeedPreviewProps) {
-  const videos = [...YOUTUBE_VIDEOS]
-
-  // Randomize user thumbnail position on each load
-  const userPosition = useMemo(() => Math.floor(Math.random() * 6), [])
+  const videos = YOUTUBE_VIDEOS
+  const userPosition = 1
 
   // Create display videos with user thumbnail at random position
-  const displayVideos = useMemo(() => {
+  const displayVideos = (() => {
     const result: (YouTubeVideo | { isUser: true })[] = []
     let videoIndex = 0
     for (let i = 0; i < 6; i++) {
@@ -30,7 +27,7 @@ export function HomeFeedPreview({ userThumbnail, userTitle, userChannel }: HomeF
       }
     }
     return result
-  }, [userPosition, videos])
+  })()
 
   return (
     <div className="w-full rounded-xl overflow-hidden border" style={{ backgroundColor: 'var(--color-background)', borderColor: 'var(--color-border)' }}>

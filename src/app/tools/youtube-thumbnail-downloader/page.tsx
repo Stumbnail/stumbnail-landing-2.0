@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { Footer } from '@/components/layout/Footer'
 import { ThumbnailDownloader } from '@/components/tools/ThumbnailDownloader'
 
@@ -238,7 +239,7 @@ export default function ThumbnailDownloaderPage() {
                             <p className="text-sm mb-4" style={{ color: 'var(--color-text-muted)' }}>
                                 Need to create your own thumbnails?
                             </p>
-                            <a
+                            <Link
                                 href="/"
                                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium transition-all hover:scale-[1.02]"
                                 style={{
@@ -248,7 +249,7 @@ export default function ThumbnailDownloaderPage() {
                                 }}
                             >
                                 Try Stumbnail&apos;s AI Thumbnail Generator
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </section>

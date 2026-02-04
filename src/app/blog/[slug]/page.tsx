@@ -86,7 +86,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             name: 'Stumbnail',
             logo: {
                 '@type': 'ImageObject',
-                url: 'https://stumbnail.com/logo.png',
+                url: 'https://stumbnail.com/assets/logo.svg',
             },
         },
         mainEntityOfPage: {
@@ -214,7 +214,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                                     fontFamily: 'var(--font-heading)',
                                 }}
                             >
-                                Try Stumbnail Free
+                                Try Stumbnail
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                     <path d="M5 12h14M12 5l7 7-7 7" />
                                 </svg>

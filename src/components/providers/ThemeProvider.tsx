@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useEffect, useState, ReactNode } from 'react'
+import { createContext, useContext, ReactNode, useSyncExternalStore } from 'react'
 
 type Theme = 'light' | 'dark'
 
@@ -14,34 +14,45 @@ const ThemeContext = createContext<ThemeContextType>({
   toggleTheme: () => {},
 })
 
-export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('light')
-  const [mounted, setMounted] = useState(false)
+type ThemeListener = () => void
 
-  useEffect(() => {
-    setMounted(true)
-    // Read from classList set by inline script in layout
-    const currentTheme = document.documentElement.classList.contains('dark')
-      ? 'dark'
-      : 'light'
-    setTheme(currentTheme)
-  }, [])
+const themeListeners = new Set<ThemeListener>()
 
-  const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light'
-    setTheme(newTheme)
+function subscribe(listener: ThemeListener) {
+  themeListeners.add(listener)
+  return () => {
+    themeListeners.delete(listener)
+  }
+}
 
-    // Update DOM
+function getThemeSnapshot(): Theme {
+  if (typeof document === 'undefined') return 'light'
+  return document.documentElement.classList.contains('dark') ? 'dark' : 'light'
+}
+
+function notifyThemeListeners() {
+  for (const listener of themeListeners) listener()
+}
+
+function applyTheme(newTheme: Theme) {
+  if (typeof document !== 'undefined') {
     document.documentElement.classList.remove('light', 'dark')
     document.documentElement.classList.add(newTheme)
+  }
 
-    // Persist to localStorage
+  if (typeof localStorage !== 'undefined') {
     localStorage.setItem('theme', newTheme)
   }
 
-  // Prevent hydration mismatch
-  if (!mounted) {
-    return <>{children}</>
+  notifyThemeListeners()
+}
+
+export function ThemeProvider({ children }: { children: ReactNode }) {
+  const theme = useSyncExternalStore<Theme>(subscribe, getThemeSnapshot, () => 'light')
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light'
+    applyTheme(newTheme)
   }
 
   return (
