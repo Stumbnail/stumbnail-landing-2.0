@@ -90,7 +90,8 @@ const plans = [
     {
         id: 'starter',
         name: 'Starter',
-        monthlyPrice: 4,
+        monthlyPrice: 5,
+        weeklyPriceLabel: '~$1',
         credits: 590,
         highlight: false,
     },
@@ -98,14 +99,13 @@ const plans = [
         id: 'creator',
         name: 'Creator',
         monthlyPrice: 9.99,
+        weeklyPriceLabel: '~$2.3',
         credits: 1475,
         highlight: true,
     },
 ] as const;
 
-const weeksPerMonth = 52 / 12;
 const formatMonthlyPrice = (price: number) => (Number.isInteger(price) ? `$${price}` : `$${price.toFixed(2)}`);
-const formatWeeklyPrice = (monthlyPrice: number) => `$${(monthlyPrice / weeksPerMonth).toFixed(2)}`;
 
 const faqs = [
     {
@@ -206,12 +206,12 @@ export default function PricingPage() {
                                         </p>
                                         <div className="mt-3 flex items-baseline justify-center gap-1">
                                             <span className="text-4xl md:text-5xl font-bold tracking-tight" style={{ color: 'var(--color-foreground)' }}>
-                                                {formatWeeklyPrice(plan.monthlyPrice)}
+                                                {plan.weeklyPriceLabel}
                                             </span>
                                             <span style={{ color: 'var(--color-text-muted)' }}>/wk</span>
                                         </div>
                                         <p className="mt-2 text-sm" style={{ color: 'var(--color-text-muted)' }}>
-                                            Billed {formatMonthlyPrice(plan.monthlyPrice)}/mo
+                                            Billed {formatMonthlyPrice(plan.monthlyPrice)}/month
                                         </p>
                                         <p className="mt-3 font-bold text-lg" style={{ color: '#ff6f61' }}>
                                             {plan.credits.toLocaleString()} credits/mo

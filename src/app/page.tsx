@@ -7,6 +7,7 @@ import { InfiniteScroller } from '@/components/hero/InfiniteScroller'
 import { PartnersSection } from '@/components/sections/PartnersSection'
 import { CommunityGallerySection } from '@/components/sections/CommunityGallerySection'
 import { ViewsLiftSection } from '@/components/sections/ViewsLiftSection'
+import { ResultsScrollerSection } from '@/components/sections/ResultsScrollerSection'
 import { FAQSection } from '@/components/sections/FAQSection'
 import { FinalCTASection } from '@/components/sections/FinalCTASection'
 import { faqData } from '@/components/seo/StructuredData'
@@ -92,6 +93,8 @@ export default async function HomePage() {
         <CommunityGallerySection />
 
         <ViewsLiftSection />
+
+        <ResultsScrollerSection />
 
         <FAQSection />
 
