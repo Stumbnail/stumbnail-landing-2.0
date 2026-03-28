@@ -151,7 +151,7 @@ export function ThumbnailPreviewer() {
           borderBottom: '1px solid var(--color-border)',
         }}
       >
-        <div className="flex items-center justify-between gap-2 sm:gap-3">
+        <div className="flex flex-wrap items-center justify-between gap-2 sm:gap-3">
           {/* Left Section */}
           <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-shrink">
             {/* Logo/Home Link */}
@@ -239,9 +239,9 @@ export function ThumbnailPreviewer() {
 
           {/* Center: Preview Mode Tabs (when thumbnail uploaded) */}
           {hasUploadedThumbnail && (
-            <div className="flex items-center flex-shrink-0">
+            <div className="order-3 w-full md:order-none md:w-auto">
               <div
-                className="flex items-center gap-0.5 p-0.5 sm:p-1 rounded-lg sm:rounded-xl"
+                className="scrollbar-hide flex max-w-full items-center gap-0.5 overflow-x-auto rounded-lg p-0.5 sm:rounded-xl sm:p-1"
                 style={{ backgroundColor: 'var(--color-button-bg)' }}
               >
                 {PREVIEW_MODES.map((mode, index) => (
@@ -313,7 +313,7 @@ export function ThumbnailPreviewer() {
         {/* Step 1: Upload Interface */}
         {!hasUploadedThumbnail && (
           <div
-            className={`w-full flex items-center justify-center min-h-[calc(100vh-56px)] py-8 transition-opacity duration-300 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}
+            className={`flex min-h-[calc(100svh-56px)] w-full items-center justify-center py-8 transition-opacity duration-300 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}
           >
             <div
               className="w-full max-w-sm p-6 sm:p-8 rounded-2xl"
@@ -468,7 +468,7 @@ export function ThumbnailPreviewer() {
             </div>
 
             {/* YouTube Preview */}
-            <div className={`pb-4 transition-all duration-300 ${isTransitioning ? 'blur-sm' : ''}`}>
+            <div className={`overflow-x-hidden pb-4 transition-all duration-300 ${isTransitioning ? 'blur-sm' : ''}`}>
               <div className={activeMode === 'mobile' ? 'flex justify-center' : 'w-full'}>
                 {activeMode === 'home' && (
                   <HomeFeedPreview

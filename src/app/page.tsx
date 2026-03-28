@@ -3,15 +3,14 @@ import { IslandHeader } from '@/components/layout/IslandHeader'
 import { Footer } from '@/components/layout/Footer'
 import { HeroSection } from '@/components/hero/HeroSection'
 import { HeroContent } from '@/components/hero/HeroContent'
-import { HeroThumbnails } from '@/components/hero/HeroThumbnails'
 import { InfiniteScroller } from '@/components/hero/InfiniteScroller'
 import { PartnersSection } from '@/components/sections/PartnersSection'
-import { MainFeaturesSection } from '@/components/sections/MainFeaturesSection'
-import { WhyStumbnailSection } from '@/components/sections/WhyStumbnailSection'
 import { CommunityGallerySection } from '@/components/sections/CommunityGallerySection'
+import { ViewsLiftSection } from '@/components/sections/ViewsLiftSection'
 import { FAQSection } from '@/components/sections/FAQSection'
 import { FinalCTASection } from '@/components/sections/FinalCTASection'
 import { faqData } from '@/components/seo/StructuredData'
+import { getThumbnailFiles } from '@/lib/thumbnail-files'
 
 export const metadata: Metadata = {
   alternates: {
@@ -66,7 +65,9 @@ const homeJsonLd = {
   ],
 }
 
-export default function HomePage() {
+export default async function HomePage() {
+  const thumbnailFiles = await getThumbnailFiles()
+
   return (
     <>
       <script
@@ -74,24 +75,23 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd) }}
       />
 
-      <main className="min-h-screen">
+      <main className="min-h-screen overflow-x-hidden">
         <IslandHeader />
 
         <HeroSection>
-          <HeroThumbnails />
-          <HeroContent />
-          <div className="w-full mt-auto z-20">
-            <InfiniteScroller />
+          <div className="landing-shell-wide relative z-20 flex w-full justify-center px-4 pb-24 sm:px-6 sm:pb-28 md:px-8 md:pb-40 lg:pb-44">
+            <HeroContent />
+          </div>
+          <div className="absolute inset-x-0 bottom-0 z-30">
+            <InfiniteScroller images={thumbnailFiles} />
           </div>
         </HeroSection>
 
         <PartnersSection />
 
-        <MainFeaturesSection />
-
-        <WhyStumbnailSection />
-
         <CommunityGallerySection />
+
+        <ViewsLiftSection />
 
         <FAQSection />
 

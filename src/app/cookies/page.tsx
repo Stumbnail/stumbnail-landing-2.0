@@ -227,20 +227,7 @@ export default function CookiesPage() {
 
             {/* Hero Section */}
             <section className="relative pt-32 pb-16 md:pt-40 md:pb-20 overflow-hidden">
-                {/* Background glow */}
-                <div
-                    className="absolute pointer-events-none"
-                    style={{
-                        left: '50%',
-                        top: '0',
-                        transform: 'translateX(-50%)',
-                        width: '800px',
-                        height: '400px',
-                        background: 'radial-gradient(ellipse at center, rgba(255, 111, 97, 0.12) 0%, transparent 70%)',
-                    }}
-                />
-
-                <div className="relative max-w-4xl mx-auto px-6 text-center">
+                <div className="relative max-w-4xl mx-auto px-4 sm:px-6 text-center">
                     <div
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
                         style={{
@@ -255,7 +242,7 @@ export default function CookiesPage() {
                     </div>
 
                     <h1
-                        className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
+                            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
                         style={{
                             fontFamily: 'var(--font-heading)',
                             color: 'var(--color-foreground)',
@@ -512,11 +499,11 @@ export default function CookiesPage() {
                                         Faster Response
                                     </p>
                                     <a
-                                        href="mailto:Stumbnail@gmail.com"
+                                        href="mailto:Hello@stumbnail.com"
                                         className="font-semibold hover:underline"
                                         style={{ color: '#ff6f61' }}
                                     >
-                                        Stumbnail@gmail.com
+                                        Hello@stumbnail.com
                                     </a>
                                 </div>
                             </div>

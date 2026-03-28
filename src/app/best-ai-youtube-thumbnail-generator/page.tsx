@@ -173,21 +173,9 @@ export default function BestAiYouTubeThumbnailGeneratorPage() {
 
         {/* Hero */}
         <section className="relative pt-32 pb-14 md:pt-40 md:pb-16 overflow-hidden">
-          <div
-            className="absolute pointer-events-none"
-            style={{
-              left: '50%',
-              top: '0',
-              transform: 'translateX(-50%)',
-              width: '900px',
-              height: '420px',
-              background: 'radial-gradient(ellipse at center, rgba(255, 111, 97, 0.12) 0%, transparent 70%)',
-            }}
-          />
-
-          <div className="relative max-w-4xl mx-auto px-6 text-center">
+          <div className="relative max-w-4xl mx-auto px-4 sm:px-6 text-center">
             <h1
-              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
               style={{
                 fontFamily: 'var(--font-heading)',
                 color: 'var(--color-foreground)',
@@ -214,24 +202,15 @@ export default function BestAiYouTubeThumbnailGeneratorPage() {
               <ButtonLink
                 href="https://app.stumbnail.com/login"
                 variant="primary"
-                className="h-[56px] px-10 text-lg rounded-2xl"
+                size="xl"
                 icon="/assets/icons/sparkle.svg"
-                style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontWeight: 600,
-                  backgroundColor: '#ff6f61',
-                }}
               >
                 Try Stumbnail Free
               </ButtonLink>
               <ButtonLink
                 href="/pricing"
                 variant="secondary"
-                className="h-[56px] px-10 text-lg rounded-2xl"
-                style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontWeight: 600,
-                }}
+                size="xl"
               >
                 See Pricing
               </ButtonLink>
@@ -249,7 +228,7 @@ export default function BestAiYouTubeThumbnailGeneratorPage() {
 
         {/* Criteria */}
         <section className="pb-12 md:pb-16">
-          <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6">
             <h2
               className="text-2xl md:text-3xl font-bold mb-6"
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-foreground)' }}
@@ -330,13 +309,9 @@ export default function BestAiYouTubeThumbnailGeneratorPage() {
                   <ButtonLink
                     href={tool.ctaHref}
                     variant={tool.highlight ? 'primary' : 'secondary'}
-                    className="mt-auto h-[48px] px-6 text-base rounded-2xl"
+                    size="lg"
+                    className="mt-auto"
                     icon={tool.highlight ? '/assets/icons/sparkle.svg' : undefined}
-                    style={{
-                      fontFamily: 'var(--font-heading)',
-                      fontWeight: 600,
-                      ...(tool.highlight ? { backgroundColor: '#ff6f61' } : {}),
-                    }}
                   >
                     {tool.ctaLabel}
                   </ButtonLink>

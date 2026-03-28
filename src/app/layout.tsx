@@ -1,9 +1,28 @@
 import type { Metadata } from 'next'
-import { spaceGrotesk, lexend, merriweather } from './fonts'
+import { Caveat, Inter, Plus_Jakarta_Sans } from 'next/font/google'
 import { ThemeProvider } from '@/components/providers/ThemeProvider'
 import { AnalyticsProvider } from '@/components/providers/AnalyticsProvider'
 import { StructuredData } from '@/components/seo/StructuredData'
 import './globals.css'
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+})
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  variable: '--font-plus-jakarta',
+  display: 'swap',
+})
+
+const caveat = Caveat({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-caveat',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://stumbnail.com'),
@@ -70,12 +89,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Lexend:wght@100..900&family=Merriweather:wght@300;400;700;900&display=swap"
-        />
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -89,7 +102,7 @@ export default function RootLayout({
         />
         <StructuredData />
       </head>
-      <body className={`${spaceGrotesk.variable} ${lexend.variable} ${merriweather.variable} antialiased`}>
+      <body className={`${inter.variable} ${plusJakartaSans.variable} ${caveat.variable}`}>
         <ThemeProvider>
           <AnalyticsProvider>{children}</AnalyticsProvider>
         </ThemeProvider>

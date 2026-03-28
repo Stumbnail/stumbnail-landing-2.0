@@ -1,0 +1,354 @@
+- main [ref=e2]:
+  - generic [ref=e4]:
+    - link "Stumbnail Stumbnail" [ref=e6] [cursor=pointer]:
+      - /url: /
+      - img "Stumbnail" [ref=e7]
+      - generic [ref=e8]: Stumbnail
+    - navigation "Main navigation" [ref=e9]:
+      - link "What's New" [ref=e10] [cursor=pointer]:
+        - /url: /whats-new
+        - generic [ref=e13]: What's New
+      - link "Blog" [ref=e14] [cursor=pointer]:
+        - /url: /blog
+        - generic [ref=e17]: Blog
+      - link "Free Tools" [ref=e18] [cursor=pointer]:
+        - /url: /tools
+        - generic [ref=e21]: Free Tools
+      - link "Pricing" [ref=e22] [cursor=pointer]:
+        - /url: /pricing
+        - generic [ref=e25]: Pricing
+      - link "About Us" [ref=e26] [cursor=pointer]:
+        - /url: /about
+        - generic [ref=e29]: About Us
+      - link "Contact" [ref=e30] [cursor=pointer]:
+        - /url: /contact
+        - generic [ref=e33]: Contact
+    - generic [ref=e34]:
+      - button "Toggle theme" [ref=e35] [cursor=pointer]
+      - link "Get Started" [ref=e39] [cursor=pointer]:
+        - /url: https://app.stumbnail.com/login
+      - link "Login" [ref=e40] [cursor=pointer]:
+        - /url: https://app.stumbnail.com/login
+  - generic [ref=e41]:
+    - generic:
+      - generic:
+        - generic:
+          - img "Skull Trooper Thumbnail"
+      - generic:
+        - generic:
+          - img "Featured Thumbnail"
+    - generic [ref=e42]:
+      - paragraph [ref=e43]: Built for creators who need faster thumbnail iteration
+      - heading "AI YouTube Thumbnail Generator" [level=1] [ref=e44]
+      - paragraph [ref=e46]:
+        - text: Create click-worthy thumbnails in minutes, not hours.
+        - text: Generate with AI, refine on a canvas, and export true 16:9.
+      - list [ref=e47]:
+        - listitem [ref=e48]:
+          - generic [ref=e49]:
+            - generic [ref=e50]: True 16:9
+            - generic [ref=e51]: YouTube-ready exports
+        - listitem [ref=e53]:
+          - generic [ref=e54]:
+            - generic [ref=e55]: Canvas editor
+            - generic [ref=e56]: Adjust text and layout
+        - listitem [ref=e58]:
+          - generic [ref=e59]:
+            - generic [ref=e60]: Fast variations
+            - generic [ref=e61]: Iterate quickly
+      - link "Try Stumbnail Free" [ref=e63] [cursor=pointer]:
+        - /url: https://app.stumbnail.com/login
+      - paragraph [ref=e64]: No design skills needed.
+  - region "Powered by modern AI models" [ref=e106]:
+    - generic [ref=e108]:
+      - generic [ref=e109]:
+        - paragraph [ref=e110]: Model stack
+        - heading "Powered by modern AI models" [level=2] [ref=e111]
+        - paragraph [ref=e112]: Stumbnail is built on multiple image models so creators can generate faster, iterate more often, and choose the visual style that fits the channel.
+      - paragraph [ref=e113]: Logos are trademarks of their respective owners and do not imply endorsement.
+    - generic [ref=e115]:
+      - generic [ref=e116]:
+        - img "OpenAI"
+      - generic [ref=e118]:
+        - img "Gemini"
+      - generic [ref=e120]:
+        - img "ByteDance"
+      - generic [ref=e122]:
+        - img "Replicate"
+      - generic [ref=e124]:
+        - img "Black Forest Labs"
+  - region "Start from a prompt, a video, or your own assets" [ref=e127]:
+    - generic [ref=e128]:
+      - generic [ref=e129]:
+        - paragraph [ref=e130]: Three starting points
+        - heading "Start from a prompt, a video, or your own assets" [level=2] [ref=e131]
+        - paragraph [ref=e132]: The workflow stays structured whichever way you think. Pick the input that matches the job, then refine the result in a real thumbnail workspace.
+      - generic [ref=e134]:
+        - button "Smart Merge" [ref=e135] [cursor=pointer]:
+          - img [ref=e137]
+          - text: Smart Merge
+        - button "YouTube Link" [ref=e139] [cursor=pointer]:
+          - img [ref=e141]
+          - text: YouTube Link
+        - button "Prompt" [ref=e144] [cursor=pointer]:
+          - img [ref=e146]
+          - text: Prompt
+      - generic [ref=e148]:
+        - generic [ref=e149]:
+          - generic [ref=e150]:
+            - img [ref=e152]
+            - generic [ref=e154]: The AI thumbnail maker that thinks like a designer
+          - heading "Smart Merge" [level=3] [ref=e155]
+          - paragraph [ref=e156]: "Select your assets on the canvas: your face, props, backgrounds. Our AI thumbnail generator combines them into a professional thumbnail automatically. No design skills needed."
+          - link "Get started" [ref=e157] [cursor=pointer]:
+            - /url: https://app.stumbnail.com/login
+        - generic [ref=e159]:
+          - img "Floating thumbnail" [ref=e161]
+          - img "Floating thumbnail" [ref=e163]
+  - region "Because chatbots cannot do this." [ref=e166]:
+    - generic [ref=e167]:
+      - generic [ref=e168]:
+        - paragraph [ref=e169]: "\"Why not just use ChatGPT?\""
+        - heading "Because chatbots cannot do this." [level=2] [ref=e170]
+      - generic [ref=e171]:
+        - generic [ref=e173]:
+          - heading "Paste a link. Clone the thumbnail." [level=3] [ref=e174]
+          - paragraph [ref=e175]: See a thumbnail you like? Drop the YouTube link. Get it in full quality. Edit it, swap your face in, change the text. Make it yours.
+        - generic [ref=e181]:
+          - heading "Drop your assets. Get a thumbnail." [level=3] [ref=e182]
+          - paragraph [ref=e183]: Your face. Your text. Your background. Stumbnail merges them intelligently - proper composition, right tone, click-worthy hierarchy.
+        - generic [ref=e184]:
+          - generic [ref=e185]:
+            - heading "A workspace. Not a chatbox." [level=3] [ref=e186]
+            - paragraph [ref=e187]: Full design studio. Layers. Compare mode. Real editing tools. Iterate like a designer, not like you're prompting an AI.
+          - img "Stumbnail workspace" [ref=e190]
+        - generic [ref=e191]:
+          - generic [ref=e193]:
+            - img "French" [ref=e195]
+            - img "English" [ref=e197]
+            - img [ref=e200]
+            - generic [ref=e202]: English
+            - generic [ref=e203]: French
+          - generic [ref=e204]:
+            - heading "Any language. Proper typography." [level=3] [ref=e205]
+            - paragraph [ref=e206]: Global audience? Generate text in their language with correct glyphs and cultural context. One tool for every market.
+      - generic [ref=e207]:
+        - generic [ref=e208]:
+          - generic [ref=e209]:
+            - generic [ref=e211]:
+              - generic [ref=e215]: "1"
+              - generic [ref=e218]: "2"
+              - generic [ref=e220]: HIGH CTR
+            - generic [ref=e221]:
+              - generic [ref=e222]:
+                - strong [ref=e223]: "1"
+                - text: Face
+              - generic [ref=e224]:
+                - strong [ref=e225]: "2"
+                - text: Text
+          - heading "Trained on thumbnails" [level=4] [ref=e226]
+          - paragraph [ref=e227]: Understands faces, text hierarchy, and what gets clicks. Not trained on random images.
+        - generic [ref=e228]:
+          - generic [ref=e230]:
+            - generic [ref=e231]:
+              - generic [ref=e232]: Real
+              - generic [ref=e233]: Art
+              - generic [ref=e234]: Film
+            - img [ref=e241]
+          - heading "Multiple AI models" [level=4] [ref=e251]
+          - paragraph [ref=e252]: Photorealistic. Illustrated. Cinematic. Pick what fits your channel.
+        - generic [ref=e253]:
+          - generic [ref=e254]:
+            - generic [ref=e256]:
+              - generic [ref=e257]:
+                - generic [ref=e258]:
+                  - generic [ref=e260]: 1:1
+                  - img [ref=e262]
+                - generic [ref=e264]: ChatGPT
+              - img [ref=e265]
+              - generic [ref=e267]:
+                - generic [ref=e268]:
+                  - generic [ref=e270]: 16:9
+                  - img [ref=e272]
+                - generic [ref=e274]: Stumbnail
+            - generic [ref=e275]: YouTube-ready
+          - heading "True 16:9 output" [level=4] [ref=e276]
+          - paragraph [ref=e277]: Perfect dimensions every time. ChatGPT gives you squares. We give you thumbnails.
+  - region "Made by creators like you" [ref=e278]:
+    - generic [ref=e279]:
+      - generic [ref=e280]:
+        - paragraph [ref=e281]: Community gallery
+        - heading "Made by creators like you" [level=2] [ref=e282]
+        - paragraph [ref=e283]: Real thumbnails. Real channels. Real proof that the workflow scales beyond one polished demo.
+      - generic [ref=e284]:
+        - generic [ref=e285]:
+          - img "Thumbnail by DrakeViews" [ref=e287]
+          - generic [ref=e288]:
+            - generic [ref=e290]: D
+            - generic [ref=e291]: DrakeViews
+        - generic [ref=e292]:
+          - img "Thumbnail by TechInsider" [ref=e294]
+          - generic [ref=e295]:
+            - generic [ref=e297]: T
+            - generic [ref=e298]: TechInsider
+        - generic [ref=e299]:
+          - img "Thumbnail by RockNation" [ref=e301]
+          - generic [ref=e302]:
+            - generic [ref=e304]: R
+            - generic [ref=e305]: RockNation
+        - generic [ref=e306]:
+          - img "Thumbnail by PirateCreator" [ref=e308]
+          - generic [ref=e309]:
+            - generic [ref=e311]: P
+            - generic [ref=e312]: PirateCreator
+        - generic [ref=e313]:
+          - img "Thumbnail by YeezyStudio" [ref=e315]
+          - generic [ref=e316]:
+            - generic [ref=e318]: "Y"
+            - generic [ref=e319]: YeezyStudio
+        - generic [ref=e320]:
+          - img "Thumbnail by HistoryBuff" [ref=e322]
+          - generic [ref=e323]:
+            - generic [ref=e325]: H
+            - generic [ref=e326]: HistoryBuff
+      - generic [ref=e327]:
+        - button "Go to page 1" [ref=e328] [cursor=pointer]
+        - button "Go to page 2" [ref=e329] [cursor=pointer]
+      - button "View All" [ref=e331] [cursor=pointer]
+  - region "Frequently asked questions" [ref=e332]:
+    - generic [ref=e333]:
+      - generic [ref=e334]:
+        - paragraph [ref=e335]: FAQ
+        - heading "Frequently asked questions" [level=2] [ref=e336]
+        - paragraph [ref=e337]: Everything you need to know about how Stumbnail fits into a thumbnail workflow.
+      - generic [ref=e338]:
+        - generic [ref=e339]:
+          - button "What does your thumbnail creator actually do?" [ref=e340] [cursor=pointer]:
+            - generic [ref=e341]: What does your thumbnail creator actually do?
+            - img [ref=e343]
+          - paragraph [ref=e345]: We're an AI YouTube thumbnail generator that turns your ideas into click-worthy visuals in seconds. Just describe what you want or paste your video title, and our AI generates a clean, creator-ready thumbnail. You can adjust colors, personas, text, and layout without starting over. It's built to give you fast results while keeping full creative control in your hands.
+        - generic [ref=e346]:
+          - button "Do I need design skills to use this?" [ref=e347] [cursor=pointer]:
+            - generic [ref=e348]: Do I need design skills to use this?
+            - img [ref=e350]
+          - paragraph [ref=e352]: Not at all. The whole point is that you don't need to know Photoshop or spend hours learning design software. If you can type a sentence, you can make a thumbnail. Our thumbnail maker AI handles the heavy lifting like composition, style, and readability so you can focus on your content.
+        - generic [ref=e353]:
+          - button "What's the right YouTube thumbnail size?" [ref=e354] [cursor=pointer]:
+            - generic [ref=e355]: What's the right YouTube thumbnail size?
+            - img [ref=e357]
+          - paragraph [ref=e359]: The recommended YouTube thumbnail size is 1280 × 720 pixels with a 16:9 aspect ratio. This is the standard that YouTube expects, and all thumbnails we generate follow this spec automatically. You don't need to resize anything. What you download is ready to upload.
+        - generic [ref=e360]:
+          - button "Can I generate a thumbnail from my video?" [ref=e361] [cursor=pointer]:
+            - generic [ref=e362]: Can I generate a thumbnail from my video?
+            - img [ref=e364]
+          - paragraph [ref=e366]: Yes. You can generate a thumbnail from video by giving us context about what your video covers. Describe the topic, the vibe, or paste your title and we'll create a thumbnail that fits. You're not limited to screenshots; you get original, AI-generated visuals designed for clicks.
+        - generic [ref=e367]:
+          - button "Do you offer a free plan?" [ref=e368] [cursor=pointer]:
+            - generic [ref=e369]: Do you offer a free plan?
+            - img [ref=e371]
+          - paragraph [ref=e373]: We’ve discontinued the free tier. With our small budget, we couldn’t fund it anymore, so we can’t keep providing free credits. We’re really sorry. You’re still welcome to try Stumbnail with a paid plan.
+        - generic [ref=e374]:
+          - button "Can I use this for gaming thumbnails?" [ref=e375] [cursor=pointer]:
+            - generic [ref=e376]: Can I use this for gaming thumbnails?
+            - img [ref=e378]
+          - paragraph [ref=e380]: Absolutely. We support gaming thumbnail creation for any game like Minecraft, Fortnite, Call of Duty, whatever you play. Just describe the scene or vibe you want, and the AI generates something that fits the energy of gaming content.
+        - generic [ref=e381]:
+          - button "Do you have thumbnail templates I can use?" [ref=e382] [cursor=pointer]:
+            - generic [ref=e383]: Do you have thumbnail templates I can use?
+            - img [ref=e385]
+          - paragraph [ref=e387]: We take a different approach. Instead of static YouTube thumbnail templates, our AI generates fresh designs based on your input every time. This means your thumbnails don't look like everyone else's, and you're not stuck tweaking a template that doesn't quite fit.
+        - generic [ref=e388]:
+          - button "Can I add text to my thumbnails?" [ref=e389] [cursor=pointer]:
+            - generic [ref=e390]: Can I add text to my thumbnails?
+            - img [ref=e392]
+          - paragraph [ref=e394]: Yes. Our thumbnail text generator lets you add bold, readable text directly on your thumbnail. You control the wording, size, and placement. The AI suggests layouts that keep text legible even at small sizes because that's where most people see thumbnails first.
+        - generic [ref=e395]:
+          - button "How is this different from Canva or Photoshop?" [ref=e396] [cursor=pointer]:
+            - generic [ref=e397]: How is this different from Canva or Photoshop?
+            - img [ref=e399]
+          - paragraph [ref=e401]: Canva and Photoshop are general design tools. We're built specifically for YouTube creators. Our AI thumbnail maker understands what makes thumbnails click like faces, contrast, and text placement, then generates designs with that in mind. No templates to dig through, no learning curve. Just describe and generate.
+  - region "Ready to Get More Clicks?" [ref=e402]:
+    - generic [ref=e405]:
+      - generic [ref=e406]:
+        - img [ref=e407]
+        - generic [ref=e409]: Get Started
+      - heading "Ready to Get More Clicks?" [level=2] [ref=e410]
+      - paragraph [ref=e411]: Join creators using Stumbnail to stand out with click-worthy thumbnails. Start free and make your next thumbnail today.
+      - generic [ref=e412]:
+        - link "Get Started" [ref=e413] [cursor=pointer]:
+          - /url: https://app.stumbnail.com/login
+        - link "See Pricing" [ref=e414] [cursor=pointer]:
+          - /url: /pricing
+  - generic [ref=e416]:
+    - paragraph [ref=e418]:
+      - text: Ready to make better thumbnails?
+      - link "Get started" [ref=e419] [cursor=pointer]:
+        - /url: https://app.stumbnail.com/login
+      - text: .
+    - generic [ref=e420]:
+      - generic [ref=e421]:
+        - heading "Product" [level=4] [ref=e422]
+        - list [ref=e423]:
+          - listitem [ref=e424]:
+            - link "Get Started" [ref=e425] [cursor=pointer]:
+              - /url: https://app.stumbnail.com/login
+          - listitem [ref=e426]:
+            - link "YouTube Thumbnail Maker" [ref=e427] [cursor=pointer]:
+              - /url: /youtube-thumbnail-maker
+          - listitem [ref=e428]:
+            - link "Best AI Thumbnail Generator" [ref=e429] [cursor=pointer]:
+              - /url: /best-ai-youtube-thumbnail-generator
+          - listitem [ref=e430]:
+            - link "Blog" [ref=e431] [cursor=pointer]:
+              - /url: /blog
+          - listitem [ref=e432]:
+            - link "Pricing" [ref=e433] [cursor=pointer]:
+              - /url: /pricing
+      - generic [ref=e434]:
+        - heading "Tools" [level=4] [ref=e435]
+        - list [ref=e436]:
+          - listitem [ref=e437]:
+            - link "Free Tools" [ref=e438] [cursor=pointer]:
+              - /url: /tools
+          - listitem [ref=e439]:
+            - link "Thumbnail Previewer" [ref=e440] [cursor=pointer]:
+              - /url: /tools/youtube-thumbnail-previewer
+          - listitem [ref=e441]:
+            - link "Thumbnail Downloader" [ref=e442] [cursor=pointer]:
+              - /url: /tools/youtube-thumbnail-downloader
+      - generic [ref=e443]:
+        - heading "Company" [level=4] [ref=e444]
+        - list [ref=e445]:
+          - listitem [ref=e446]:
+            - link "About Us" [ref=e447] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=e448]:
+            - link "Contact" [ref=e449] [cursor=pointer]:
+              - /url: /contact
+      - generic [ref=e450]:
+        - heading "Legal" [level=4] [ref=e451]
+        - list [ref=e452]:
+          - listitem [ref=e453]:
+            - link "Privacy Policy" [ref=e454] [cursor=pointer]:
+              - /url: /privacy
+          - listitem [ref=e455]:
+            - link "Terms of Service" [ref=e456] [cursor=pointer]:
+              - /url: /terms
+          - listitem [ref=e457]:
+            - link "Cookie Policy" [ref=e458] [cursor=pointer]:
+              - /url: /cookies
+      - generic [ref=e459]:
+        - heading "Connect" [level=4] [ref=e460]
+        - list [ref=e461]:
+          - listitem [ref=e462]:
+            - link "Twitter / X" [ref=e463] [cursor=pointer]:
+              - /url: https://twitter.com/stumbnail
+          - listitem [ref=e464]:
+            - link "YouTube" [ref=e465] [cursor=pointer]:
+              - /url: https://youtube.com/@stumbnail
+    - generic [ref=e466]:
+      - link "Stumbnail Stumbnail" [ref=e467] [cursor=pointer]:
+        - /url: /
+        - img "Stumbnail" [ref=e468]
+        - generic [ref=e469]: Stumbnail
+      - paragraph [ref=e470]: Copyright 2026 Stumbnail. All rights reserved.

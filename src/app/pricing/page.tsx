@@ -1,6 +1,5 @@
 'use client'
 
-import Link from 'next/link'
 import { IslandHeader } from '@/components/layout/IslandHeader'
 import { Footer } from '@/components/layout/Footer'
 import { ButtonLink } from '@/components/ui/Button'
@@ -138,22 +137,9 @@ export default function PricingPage() {
 
             {/* Hero Section */}
             <section className="relative pt-32 pb-12 md:pt-40 md:pb-16 overflow-hidden">
-                {/* Background glow */}
-                <div
-                    className="absolute pointer-events-none"
-                    style={{
-                        left: '50%',
-                        top: '0',
-                        transform: 'translateX(-50%)',
-                        width: '800px',
-                        height: '400px',
-                        background: 'radial-gradient(ellipse at center, rgba(255, 111, 97, 0.15) 0%, transparent 70%)',
-                    }}
-                />
-
-                <div className="relative max-w-4xl mx-auto px-6 text-center">
+                <div className="relative max-w-4xl mx-auto px-4 sm:px-6 text-center">
                     <h1
-                        className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
+                        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
                         style={{
                             fontFamily: 'var(--font-heading)',
                             color: 'var(--color-foreground)',
@@ -191,9 +177,6 @@ export default function PricingPage() {
 
             {/* Pricing Cards Section */}
             <section className="relative py-12 px-4 overflow-hidden">
-                {/* Subtle background glow */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-[#ff6f61] opacity-[0.03] blur-[100px] rounded-full pointer-events-none" />
-
                 <div className="max-w-5xl mx-auto relative z-10">
                     {/* Pricing Layout - Side by Side */}
                     <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto items-stretch">
@@ -235,17 +218,15 @@ export default function PricingPage() {
                                         </p>
                                     </div>
 
-                                    <Link
+                                    <ButtonLink
                                         href="https://app.stumbnail.com/login"
-                                        className="block w-full py-3.5 px-6 rounded-xl font-bold text-center transition-all duration-200 mt-auto"
-                                        style={{
-                                            backgroundColor: '#ff6f61',
-                                            color: 'white',
-                                            boxShadow: '0 4px 14px rgba(255, 111, 97, 0.25)',
-                                        }}
+                                        variant="primary"
+                                        size="lg"
+                                        fullWidth
+                                        className="mt-auto"
                                     >
                                         Choose {plan.name}
-                                    </Link>
+                                    </ButtonLink>
                                 </div>
                             </div>
                         ))}
@@ -280,7 +261,7 @@ export default function PricingPage() {
 
             {/* How Credits Work Section */}
             <section className="py-16 md:py-24">
-                <div className="max-w-4xl mx-auto px-6">
+                <div className="max-w-4xl mx-auto px-4 sm:px-6">
                     <div className="text-center mb-12">
                         <h2
                             className="text-3xl md:text-4xl font-bold mb-4"
@@ -326,7 +307,7 @@ export default function PricingPage() {
 
             {/* FAQ Section */}
             <section className="py-16 md:py-24" style={{ backgroundColor: 'var(--color-background-alt)' }}>
-                <div className="max-w-4xl mx-auto px-6">
+                <div className="max-w-4xl mx-auto px-4 sm:px-6">
                     <div className="text-center mb-12">
                         <h2
                             className="text-3xl md:text-4xl font-bold mb-4"
@@ -385,7 +366,7 @@ export default function PricingPage() {
 
             {/* CTA Section */}
             <section className="py-16 md:py-24">
-                <div className="max-w-4xl mx-auto px-6 text-center">
+                <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
                     <h2
                         className="text-3xl md:text-4xl font-bold mb-6"
                         style={{
@@ -407,13 +388,8 @@ export default function PricingPage() {
                     <ButtonLink
                         href="https://app.stumbnail.com/login"
                         variant="primary"
-                        className="h-[56px] px-10 text-lg rounded-2xl"
+                        size="xl"
                         icon="/assets/icons/sparkle.svg"
-                        style={{
-                            fontFamily: 'var(--font-heading)',
-                            fontWeight: 600,
-                            backgroundColor: '#ff6f61',
-                        }}
                     >
                         Get Started
                     </ButtonLink>

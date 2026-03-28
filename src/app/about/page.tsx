@@ -25,22 +25,9 @@ export default function AboutPage() {
 
             {/* Hero Section */}
             <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
-                {/* Background glow */}
-                <div
-                    className="absolute pointer-events-none"
-                    style={{
-                        left: '50%',
-                        top: '0',
-                        transform: 'translateX(-50%)',
-                        width: '800px',
-                        height: '400px',
-                        background: 'radial-gradient(ellipse at center, rgba(255, 111, 97, 0.15) 0%, transparent 70%)',
-                    }}
-                />
-
-                <div className="relative max-w-4xl mx-auto px-6 text-center">
+                <div className="relative max-w-4xl mx-auto px-4 sm:px-6 text-center">
                     <h1
-                        className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
+                        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
                         style={{
                             fontFamily: 'var(--font-heading)',
                             color: 'var(--color-foreground)',
@@ -69,13 +56,8 @@ export default function AboutPage() {
                     <ButtonLink
                         href="https://app.stumbnail.com/login"
                         variant="primary"
-                        className="h-[56px] px-10 text-lg rounded-2xl"
+                        size="xl"
                         icon="/assets/icons/sparkle.svg"
-                        style={{
-                            fontFamily: 'var(--font-heading)',
-                            fontWeight: 600,
-                            backgroundColor: '#ff6f61',
-                        }}
                     >
                         Get Started
                     </ButtonLink>
@@ -84,7 +66,7 @@ export default function AboutPage() {
 
             {/* The Problem Section */}
             <section className="py-16 md:py-24">
-                <div className="max-w-6xl mx-auto px-6">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6">
                     <div className="grid md:grid-cols-2 gap-12 items-center">
                         {/* Left - Image */}
                         <div
@@ -156,7 +138,7 @@ export default function AboutPage() {
 
             {/* So I Built Stumbnail Section */}
             <section className="py-16 md:py-24">
-                <div className="max-w-6xl mx-auto px-6">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6">
                     <div className="grid md:grid-cols-2 gap-12 items-center">
                         {/* Left - Content */}
                         <div>
@@ -230,7 +212,7 @@ export default function AboutPage() {
 
             {/* What Actually Makes Us Different Section */}
             <section className="py-16 md:py-24">
-                <div className="max-w-6xl mx-auto px-6">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6">
                     <div className="text-center mb-12">
                         <h2
                             className="text-3xl md:text-4xl font-bold mb-4"
@@ -317,7 +299,7 @@ export default function AboutPage() {
 
             {/* Who Am I Section */}
             <section className="py-16 md:py-24">
-                <div className="max-w-6xl mx-auto px-6">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6">
                     <div className="grid md:grid-cols-2 gap-12 items-center">
                         {/* Left - Content */}
                         <div>
@@ -366,7 +348,7 @@ export default function AboutPage() {
 
             {/* Where We're Going Section */}
             <section className="py-16 md:py-24">
-                <div className="max-w-6xl mx-auto px-6">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6">
                     <div className="grid md:grid-cols-2 gap-12 items-center">
                         {/* Left - Community Thumbnails */}
                         <div className="grid grid-cols-2 gap-4">
@@ -447,7 +429,7 @@ export default function AboutPage() {
 
             {/* CTA Section */}
             <section className="py-16 md:py-24">
-                <div className="max-w-4xl mx-auto px-6 text-center">
+                <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
                     <h2
                         className="text-3xl md:text-4xl font-bold mb-6"
                         style={{
@@ -469,13 +451,8 @@ export default function AboutPage() {
                     <ButtonLink
                         href="https://app.stumbnail.com/login"
                         variant="primary"
-                        className="h-[56px] px-10 text-lg rounded-2xl"
+                        size="xl"
                         icon="/assets/icons/sparkle.svg"
-                        style={{
-                            fontFamily: 'var(--font-heading)',
-                            fontWeight: 600,
-                            backgroundColor: '#ff6f61',
-                        }}
                     >
                         Get Started
                     </ButtonLink>

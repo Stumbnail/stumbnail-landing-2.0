@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { faqData } from '@/components/seo/StructuredData'
 import { trackFaqExpand } from '@/lib/analytics'
+import { SectionHeading } from '@/components/ui/SectionHeading'
 
 interface FAQItem {
     question: string
@@ -45,46 +46,20 @@ export function FAQSection() {
 
     return (
         <section
+            aria-labelledby="faq-title"
             className="relative py-20 md:py-28 overflow-hidden"
             style={{
                 backgroundColor: 'var(--color-background)',
             }}
         >
-            {/* Background glow */}
-            <div
-                className="absolute pointer-events-none"
-                style={{
-                    right: '-200px',
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                    width: '500px',
-                    height: '500px',
-                    background: 'radial-gradient(ellipse at center, rgba(255, 111, 97, 0.1) 0%, transparent 70%)',
-                }}
-            />
-
-            <div className="relative max-w-3xl mx-auto px-6 lg:px-8">
-                {/* Section Header */}
-                <div className="text-center mb-12">
-                    <h2
-                        className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4"
-                        style={{
-                            fontFamily: 'var(--font-heading)',
-                            color: 'var(--color-foreground)',
-                        }}
-                    >
-                        Frequently Asked Questions
-                    </h2>
-                    <p
-                        className="text-lg md:text-xl"
-                        style={{
-                            fontFamily: 'var(--font-body)',
-                            color: 'var(--color-foreground-muted)',
-                        }}
-                    >
-                        Everything you need to know about our AI thumbnail generator
-                    </p>
-                </div>
+            <div className="landing-shell-narrow relative">
+                <SectionHeading
+                    eyebrow="FAQ"
+                    title="Frequently asked questions"
+                    description="Everything you need to know about how Stumbnail fits into a thumbnail workflow."
+                    titleId="faq-title"
+                    className="mb-12"
+                />
 
                 {/* FAQ Items */}
                 <div className="space-y-3">
@@ -102,11 +77,7 @@ export function FAQSection() {
                                 className="w-full flex items-center justify-between gap-4 p-5 md:p-6 text-left"
                             >
                                 <span
-                                    className="text-base md:text-lg font-semibold"
-                                    style={{
-                                        fontFamily: 'var(--font-heading)',
-                                        color: 'var(--color-foreground)',
-                                    }}
+                                    className="font-heading text-base font-semibold text-[var(--color-foreground)] md:text-lg"
                                 >
                                     {faq.question}
                                 </span>
@@ -120,11 +91,7 @@ export function FAQSection() {
                                     }`}
                             >
                                 <p
-                                    className="px-5 md:px-6 pb-5 md:pb-6 text-base leading-relaxed"
-                                    style={{
-                                        fontFamily: 'var(--font-body)',
-                                        color: 'var(--color-foreground-muted)',
-                                    }}
+                                    className="font-body px-5 pb-5 text-base leading-relaxed text-[var(--color-foreground-muted)] md:px-6 md:pb-6"
                                 >
                                     {faq.answer}
                                 </p>

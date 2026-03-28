@@ -1,163 +1,50 @@
 'use client'
 
-import { useRef, useState } from 'react'
 import Image from 'next/image'
 
 const PARTNERS = [
-    { name: 'OpenAI', logo: '/assets/partners/openai.webp' },
-    { name: 'Gemini', logo: '/assets/partners/gemini.webp' },
-    { name: 'ByteDance', logo: '/assets/partners/bytedance.webp' },
-    { name: 'Replicate', logo: '/assets/partners/replicate.webp' },
-    { name: 'Black Forest Labs', logo: '/assets/partners/blackforest-labs.webp' },
+  { name: 'OpenAI', logo: '/assets/partners/openai.webp' },
+  { name: 'Gemini', logo: '/assets/partners/gemini.webp' },
+  { name: 'ByteDance', logo: '/assets/partners/bytedance.webp' },
+  { name: 'Replicate', logo: '/assets/partners/replicate.webp' },
+  { name: 'Black Forest Labs', logo: '/assets/partners/blackforest-labs.webp' },
 ]
 
 export function PartnersSection() {
-    const scrollRef = useRef<HTMLDivElement>(null)
-    const [isDragging, setIsDragging] = useState(false)
-    const [startX, setStartX] = useState(0)
-    const [scrollLeft, setScrollLeft] = useState(0)
+  return (
+    <section
+      aria-labelledby="partners-title"
+      className="relative w-full overflow-hidden py-20 md:py-24"
+    >
+      <div className="landing-shell">
+        <div className="mx-auto max-w-3xl text-center">
+          <p
+            id="partners-title"
+            className="font-ui text-sm font-semibold uppercase tracking-[0.2em] md:text-[0.95rem]"
+            style={{ color: 'var(--color-text-muted)' }}
+          >
+            Powered by modern AI models
+          </p>
+        </div>
 
-    const handleMouseDown = (e: React.MouseEvent) => {
-        if (!scrollRef.current) return
-        setIsDragging(true)
-        setStartX(e.pageX - scrollRef.current.offsetLeft)
-        setScrollLeft(scrollRef.current.scrollLeft)
-        scrollRef.current.style.cursor = 'grabbing'
-    }
-
-    const handleMouseUp = () => {
-        setIsDragging(false)
-        if (scrollRef.current) {
-            scrollRef.current.style.cursor = 'grab'
-        }
-    }
-
-    const handleMouseMove = (e: React.MouseEvent) => {
-        if (!isDragging || !scrollRef.current) return
-        e.preventDefault()
-        const x = e.pageX - scrollRef.current.offsetLeft
-        const walk = (x - startX) * 1.5 // Scroll speed multiplier
-        scrollRef.current.scrollLeft = scrollLeft - walk
-    }
-
-    const handleMouseLeave = () => {
-        setIsDragging(false)
-        if (scrollRef.current) {
-            scrollRef.current.style.cursor = 'grab'
-        }
-    }
-
-    return (
-        <section className="relative w-full py-16 md:py-20 overflow-hidden">
-            {/* Subtle top border gradient */}
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-x-10 gap-y-6 md:mt-12 md:gap-x-14 md:gap-y-7">
+          {PARTNERS.map((partner) => (
             <div
-                className="absolute top-0 left-1/2 -translate-x-1/2 h-[1px] w-3/4 max-w-[800px]"
-                style={{
-                    background: 'linear-gradient(90deg, transparent, var(--color-border), transparent)',
-                }}
-            />
-
-            <div className="max-w-[1400px] mx-auto px-6 md:px-8">
-                {/* Section Header */}
-                <div className="text-center mb-4 md:mb-5">
-                    <p
-                        className="text-sm md:text-base uppercase tracking-[0.2em] font-medium mb-2"
-                        style={{
-                            color: 'var(--color-text-muted)',
-                            fontFamily: 'var(--font-heading)',
-                        }}
-                    >
-                        Built with leading AI
-                    </p>
-                    <h2
-                        className="text-2xl md:text-3xl font-semibold"
-                        style={{
-                            fontFamily: 'var(--font-heading)',
-                            color: 'var(--color-foreground)',
-                        }}
-                    >
-                        Powered by <span style={{ color: '#ff6f61' }}>modern AI models</span>
-                    </h2>
-                    <p
-                        className="text-xs md:text-sm mt-2"
-                        style={{
-                            color: 'var(--color-text-muted)',
-                            fontFamily: 'var(--font-body)',
-                        }}
-                    >
-                        Logos are trademarks of their respective owners and do not imply endorsement.
-                    </p>
-                </div>
+              key={partner.name}
+              className="flex items-center justify-center px-2 opacity-80 transition-opacity duration-300 hover:opacity-100"
+            >
+              <Image
+                src={partner.logo}
+                alt={partner.name}
+                width={240}
+                height={96}
+                className="h-14 w-auto object-contain md:h-16 lg:h-[4.5rem]"
+                style={{ filter: 'var(--logo-filter)' }}
+              />
             </div>
-
-            {/* Scrollable Partners Row */}
-            <div className="relative w-full">
-                {/* Left fade gradient */}
-                <div
-                    className="absolute left-0 top-0 bottom-0 w-16 md:w-32 z-10 pointer-events-none"
-                    style={{
-                        background: 'linear-gradient(to right, var(--color-background), transparent)',
-                    }}
-                />
-
-                {/* Right fade gradient */}
-                <div
-                    className="absolute right-0 top-0 bottom-0 w-16 md:w-32 z-10 pointer-events-none"
-                    style={{
-                        background: 'linear-gradient(to left, var(--color-background), transparent)',
-                    }}
-                />
-
-                {/* Horizontal scroll container with drag support */}
-                <div
-                    ref={scrollRef}
-                    className="flex justify-center gap-6 md:gap-10 px-8 md:px-16 py-4 overflow-x-auto scrollbar-hide select-none"
-                    style={{
-                        scrollBehavior: isDragging ? 'auto' : 'smooth',
-                        cursor: 'grab',
-                    }}
-                    onMouseDown={handleMouseDown}
-                    onMouseUp={handleMouseUp}
-                    onMouseMove={handleMouseMove}
-                    onMouseLeave={handleMouseLeave}
-                >
-                    {PARTNERS.map((partner) => (
-                        <div
-                            key={partner.name}
-                            className="group relative flex-shrink-0 flex items-center justify-center px-6 md:px-10 py-4 transition-all duration-300"
-                        >
-                            {/* Hover glow effect */}
-                            <div
-                                className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                                style={{
-                                    background: 'radial-gradient(circle at center, rgba(255, 111, 97, 0.1) 0%, transparent 70%)',
-                                }}
-                            />
-
-                            <Image
-                                src={partner.logo}
-                                alt={partner.name}
-                                width={300}
-                                height={120}
-                                className="w-auto h-24 md:h-32 lg:h-40 object-contain transition-all duration-300 pointer-events-none"
-                                style={{
-                                    filter: 'var(--logo-filter)',
-                                    opacity: 0.7,
-                                }}
-                                draggable={false}
-                            />
-                        </div>
-                    ))}
-                </div>
-            </div>
-
-            {/* Subtle bottom border gradient */}
-            <div
-                className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[1px] w-3/4 max-w-[800px]"
-                style={{
-                    background: 'linear-gradient(90deg, transparent, var(--color-border), transparent)',
-                }}
-            />
-        </section>
-    )
+          ))}
+        </div>
+      </div>
+    </section>
+  )
 }

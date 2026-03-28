@@ -38,12 +38,6 @@ export function ThemeToggle() {
           <span className="absolute top-[16px] left-[36px] w-[1px] h-[1px] bg-white/60 rounded-full" />
           <span className="absolute top-[8px] left-[40px] w-[1px] h-[1px] bg-white/65 rounded-full" />
           <span className="absolute top-[22px] left-[45px] w-[1px] h-[1px] bg-white/50 rounded-full" />
-
-          {/* Subtle purple/blue nebula glow */}
-          <span
-            className="absolute top-[2px] right-[4px] w-[20px] h-[12px] rounded-full opacity-30 blur-[3px]"
-            style={{ background: 'radial-gradient(ellipse, rgba(138, 43, 226, 0.6) 0%, transparent 70%)' }}
-          />
         </>
       )}
 

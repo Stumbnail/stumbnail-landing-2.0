@@ -64,22 +64,9 @@ export function ContactPageContent() {
 
             {/* Hero Section */}
             <section className="relative pt-32 pb-16 md:pt-40 md:pb-20 overflow-hidden">
-                {/* Background glow */}
-                <div
-                    className="absolute pointer-events-none"
-                    style={{
-                        left: '50%',
-                        top: '0',
-                        transform: 'translateX(-50%)',
-                        width: '800px',
-                        height: '400px',
-                        background: 'radial-gradient(ellipse at center, rgba(255, 111, 97, 0.15) 0%, transparent 70%)',
-                    }}
-                />
-
-                <div className="relative max-w-4xl mx-auto px-6 text-center">
+                <div className="relative max-w-4xl mx-auto px-4 sm:px-6 text-center">
                     <h1
-                        className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
+                        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
                         style={{
                             fontFamily: 'var(--font-heading)',
                             color: 'var(--color-foreground)',
@@ -119,7 +106,7 @@ export function ContactPageContent() {
                     <ChatBubbleIllustration isDark={isDark} />
                 </div>
 
-                <div className="max-w-6xl mx-auto px-6">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6">
                     <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-start">
                         {/* Left - What to expect */}
                         <div>
@@ -166,10 +153,10 @@ export function ContactPageContent() {
                                 backgroundColor: isDark ? 'var(--color-button-bg)' : '#f8f8f8',
                                 border: isDark
                                     ? '1px solid rgba(255, 255, 255, 0.06)'
-                                    : '1px solid rgba(0, 0, 0, 0.08)',
+                                    : '1px solid rgba(var(--color-ink-rgb), 0.08)',
                                 boxShadow: isDark
                                     ? 'none'
-                                    : '0 4px 24px rgba(0, 0, 0, 0.06)',
+                                    : '0 4px 24px rgba(var(--color-ink-rgb), 0.06)',
                             }}
                         >
                             {/* Email Card */}
@@ -177,14 +164,14 @@ export function ContactPageContent() {
                                 className="flex items-start gap-4 p-4 rounded-xl mb-4"
                                 style={{
                                     backgroundColor: isDark
-                                        ? 'rgba(0, 0, 0, 0.2)'
+                                        ? 'rgba(var(--color-ink-rgb), 0.2)'
                                         : 'white',
                                     border: isDark
                                         ? '1px solid rgba(255, 255, 255, 0.04)'
-                                        : '1px solid rgba(0, 0, 0, 0.06)',
+                                        : '1px solid rgba(var(--color-ink-rgb), 0.06)',
                                     boxShadow: isDark
                                         ? 'none'
-                                        : '0 2px 8px rgba(0, 0, 0, 0.04)',
+                                        : '0 2px 8px rgba(var(--color-ink-rgb), 0.04)',
                                 }}
                             >
                                 <div
@@ -204,11 +191,11 @@ export function ContactPageContent() {
                                         Email
                                     </h3>
                                     <a
-                                        href="mailto:Stumbnail@gmail.com"
+                                        href="mailto:Hello@stumbnail.com"
                                         className="text-[#ff6f61] hover:underline underline-offset-2 font-medium"
                                         style={{ fontFamily: 'var(--font-body)' }}
                                     >
-                                        Stumbnail@gmail.com
+                                        Hello@stumbnail.com
                                     </a>
                                     <p
                                         className="text-sm mt-2"
@@ -227,14 +214,14 @@ export function ContactPageContent() {
                                 className="flex items-start gap-4 p-4 rounded-xl"
                                 style={{
                                     backgroundColor: isDark
-                                        ? 'rgba(0, 0, 0, 0.2)'
+                                        ? 'rgba(var(--color-ink-rgb), 0.2)'
                                         : 'white',
                                     border: isDark
                                         ? '1px solid rgba(255, 255, 255, 0.04)'
-                                        : '1px solid rgba(0, 0, 0, 0.06)',
+                                        : '1px solid rgba(var(--color-ink-rgb), 0.06)',
                                     boxShadow: isDark
                                         ? 'none'
-                                        : '0 2px 8px rgba(0, 0, 0, 0.04)',
+                                        : '0 2px 8px rgba(var(--color-ink-rgb), 0.04)',
                                 }}
                             >
                                 <div

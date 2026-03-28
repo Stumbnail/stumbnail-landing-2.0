@@ -75,21 +75,9 @@ export default function ToolsPage() {
 
       {/* Hero */}
       <section className="relative pt-32 pb-14 md:pt-40 md:pb-16 overflow-hidden">
-        <div
-          className="absolute pointer-events-none"
-          style={{
-            left: '50%',
-            top: '0',
-            transform: 'translateX(-50%)',
-            width: '900px',
-            height: '420px',
-            background: 'radial-gradient(ellipse at center, rgba(255, 111, 97, 0.12) 0%, transparent 70%)',
-          }}
-        />
-
-        <div className="relative max-w-4xl mx-auto px-6 text-center">
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <h1
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
             style={{
               fontFamily: 'var(--font-heading)',
               color: 'var(--color-foreground)',
@@ -114,7 +102,7 @@ export default function ToolsPage() {
 
       {/* Tools */}
       <section className="pb-20 md:pb-28">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="grid md:grid-cols-2 gap-6">
             {tools.map((tool) => (
               <Link
@@ -203,24 +191,15 @@ export default function ToolsPage() {
               <ButtonLink
                 href="https://app.stumbnail.com/login"
                 variant="primary"
-                className="h-[56px] px-10 text-lg rounded-2xl"
+                size="xl"
                 icon="/assets/icons/sparkle.svg"
-                style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontWeight: 600,
-                  backgroundColor: '#ff6f61',
-                }}
               >
                 Try Stumbnail Free
               </ButtonLink>
               <ButtonLink
                 href="/pricing"
                 variant="secondary"
-                className="h-[56px] px-10 text-lg rounded-2xl"
-                style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontWeight: 600,
-                }}
+                size="xl"
               >
                 See Pricing
               </ButtonLink>

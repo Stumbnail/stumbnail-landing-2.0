@@ -1,0 +1,25 @@
+[     521ms] [WARNING] Firebase Analytics initialization failed: FirebaseError: Installations: Missing App configuration value: "projectId" (installations/missing-app-config-values).
+    at Y (http://127.0.0.1:3001/_next/static/chunks/202-c7e55b9cf68fe5ea.js:1:25642)
+    at http://127.0.0.1:3001/_next/static/chunks/202-c7e55b9cf68fe5ea.js:1:25938
+    at n.instanceFactory (http://127.0.0.1:3001/_next/static/chunks/202-c7e55b9cf68fe5ea.js:1:26042)
+    at s.getOrInitializeService (http://127.0.0.1:3001/_next/static/chunks/202-c7e55b9cf68fe5ea.js:1:3431)
+    at s.getImmediate (http://127.0.0.1:3001/_next/static/chunks/202-c7e55b9cf68fe5ea.js:1:1390)
+    at n.instanceFactory (http://127.0.0.1:3001/_next/static/chunks/202-c7e55b9cf68fe5ea.js:1:26272)
+    at s.getOrInitializeService (http://127.0.0.1:3001/_next/static/chunks/202-c7e55b9cf68fe5ea.js:1:3431)
+    at s.getImmediate (http://127.0.0.1:3001/_next/static/chunks/202-c7e55b9cf68fe5ea.js:1:1390)
+    at n.instanceFactory (http://127.0.0.1:3001/_next/static/chunks/202-c7e55b9cf68fe5ea.js:1:35534)
+    at s.getOrInitializeService (http://127.0.0.1:3001/_next/static/chunks/202-c7e55b9cf68fe5ea.js:1:3431) @ http://127.0.0.1:3001/_next/static/chunks/app/layout-1d216122417224db.js:0
+[     535ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:3001/_vercel/insights/script.js:0
+[    1391ms] [ERROR] Access to fetch at 'https://api.stumbnail.com/api/thumbnail/feed?limit=12&sort=recent' from origin 'http://127.0.0.1:3001' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://127.0.0.1:3001/:0
+[    1391ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.stumbnail.com/api/thumbnail/feed?limit=12&sort=recent:0
+[    1391ms] [ERROR] Error fetching community thumbnails: TypeError: Failed to fetch
+    at http://127.0.0.1:3001/_next/static/chunks/app/page-1cc0da84bd4ebc32.js:1:9460
+    at http://127.0.0.1:3001/_next/static/chunks/app/page-1cc0da84bd4ebc32.js:1:9706
+    at iy (http://127.0.0.1:3001/_next/static/chunks/4bd1b696-67e30520d621c4dd.js:1:92270)
+    at um (http://127.0.0.1:3001/_next/static/chunks/4bd1b696-67e30520d621c4dd.js:1:116120)
+    at up (http://127.0.0.1:3001/_next/static/chunks/4bd1b696-67e30520d621c4dd.js:1:115782)
+    at um (http://127.0.0.1:3001/_next/static/chunks/4bd1b696-67e30520d621c4dd.js:1:116165)
+    at up (http://127.0.0.1:3001/_next/static/chunks/4bd1b696-67e30520d621c4dd.js:1:115782)
+    at um (http://127.0.0.1:3001/_next/static/chunks/4bd1b696-67e30520d621c4dd.js:1:116165)
+    at up (http://127.0.0.1:3001/_next/static/chunks/4bd1b696-67e30520d621c4dd.js:1:115782)
+    at um (http://127.0.0.1:3001/_next/static/chunks/4bd1b696-67e30520d621c4dd.js:1:116165) @ http://127.0.0.1:3001/_next/static/chunks/app/page-1cc0da84bd4ebc32.js:0

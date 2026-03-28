@@ -1,9 +1,5 @@
 export const NAV_ITEMS = [
-  { label: "What's New", href: '/whats-new' },
   { label: 'Blog', href: '/blog' },
-  { label: 'Free Tools', href: '/tools' },
-  { label: 'Pricing', href: '/pricing' },
-  { label: 'About Us', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ] as const
 

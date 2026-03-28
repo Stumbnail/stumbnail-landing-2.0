@@ -155,7 +155,7 @@ export function ThumbnailDownloader() {
 
             {/* Main Content */}
             <div className="px-4 sm:px-6 lg:px-8">
-                <div className="w-full flex flex-col items-center min-h-[calc(100vh-56px)] py-8">
+                <div className="w-full flex min-h-[calc(100svh-56px)] flex-col items-center py-8">
                     {/* Input Card */}
                     <div
                         className="w-full max-w-md p-6 rounded-2xl mb-8"
@@ -221,7 +221,7 @@ export function ThumbnailDownloader() {
                             </div>
 
                             {/* 2x2 Grid */}
-                            <div className="grid grid-cols-2 gap-3">
+                            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                                 {thumbnails.map((thumb) => (
                                     <div
                                         key={thumb.quality}
@@ -243,8 +243,8 @@ export function ThumbnailDownloader() {
                                         </div>
 
                                         {/* Info */}
-                                        <div className="p-3 flex items-center justify-between">
-                                            <div>
+                                        <div className="flex flex-col gap-3 p-3 sm:flex-row sm:items-center sm:justify-between">
+                                            <div className="min-w-0">
                                                 <p className="text-sm font-medium" style={{ color: 'var(--color-foreground)' }}>
                                                     {thumb.quality}
                                                 </p>
@@ -254,7 +254,7 @@ export function ThumbnailDownloader() {
                                             </div>
                                             <button
                                                 onClick={() => handleDownload(thumb.url, thumb.quality)}
-                                                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium"
+                                                className="flex items-center justify-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium"
                                                 style={{ backgroundColor: '#ff6f61', color: 'white' }}
                                             >
                                                 <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

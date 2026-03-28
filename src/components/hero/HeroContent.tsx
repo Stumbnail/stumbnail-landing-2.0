@@ -1,74 +1,57 @@
 'use client'
 
-import Link from 'next/link'
+import type { CSSProperties } from 'react'
+import { Caveat } from 'next/font/google'
 import { ButtonLink } from '@/components/ui/Button'
-import { trackHeroCtaClick, trackExternalLinkClick } from '@/lib/analytics'
+import { trackExternalLinkClick, trackHeroCtaClick } from '@/lib/analytics'
+
+const caveat = Caveat({
+  subsets: ['latin'],
+  weight: ['600', '700'],
+  display: 'swap',
+})
 
 export function HeroContent() {
+  const heroButtonStyle = {
+    '--button-bg': 'rgba(255, 250, 247, 0.98)',
+    '--button-text': '#1f1a19',
+    '--button-hover-text': '#ffffff',
+    '--button-ring': 'rgba(255, 250, 247, 0.28)',
+    '--button-hover-ring': 'rgba(255, 111, 97, 0.28)',
+    '--button-orb-bg': '#ff6f61',
+    '--button-icon-filter': 'brightness(0) saturate(100%) opacity(0.84)',
+    '--button-icon-filter-hover': 'none',
+  } as CSSProperties
+
+  const heroTextStyle = {
+    color: '#24201f',
+    textShadow: '0 1px 10px rgba(255, 255, 255, 0.18)',
+  } as CSSProperties
+
   return (
-    <div className="relative z-30 w-full max-w-[900px] mx-auto px-6 md:px-8 flex-grow flex flex-col justify-center items-center text-center mt-8 md:mt-12">
-      {/* Main Headline */}
+    <div className="relative z-30 mt-6 flex w-full max-w-[880px] flex-grow flex-col items-center justify-start px-1 pt-6 text-center md:mt-14 md:justify-center md:px-0 md:pt-0">
       <h1
-        className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.05] mb-6 md:mb-10"
-        style={{ fontFamily: 'var(--font-heading)' }}
+        className="mb-6 max-w-[760px] font-heading text-[clamp(2.35rem,4vw,4.15rem)] font-medium leading-[1.04] tracking-[-0.04em] md:mb-10"
+        style={heroTextStyle}
       >
-        <span style={{ color: 'var(--color-foreground)' }}>AI YouTube </span>
-        <span style={{ color: '#ff6f61' }}>Thumbnail</span>
-        <span style={{ color: 'var(--color-foreground)' }}> Generator</span>
+        Create{' '}
+        <span className={`${caveat.className} inline-block pb-[0.08em] pr-[0.04em] leading-[1.04]`}>
+          Click-Worthy
+        </span>{' '}
+        YouTube Thumbnails With AI
       </h1>
 
-      {/* Subtext */}
-      <div className="flex flex-col items-center gap-5 md:gap-6 mb-10 md:mb-14">
+      <div className="mb-8 md:mb-12">
         <p
-          className="text-lg md:text-xl lg:text-2xl mx-auto max-w-[863px] leading-relaxed"
-          style={{
-            fontFamily: 'var(--font-body)',
-            fontWeight: 400,
-            color: 'var(--color-foreground)',
-            opacity: 0.85,
-          }}
+          className="hero-summary mx-auto max-w-[520px] text-[clamp(0.94rem,1.05vw,1.05rem)] leading-[1.76] text-[rgba(36,32,31,0.9)]"
+          style={heroTextStyle}
         >
-          Create click-worthy thumbnails in minutes, not hours.
-          <br className="hidden md:block" />
-          Generate with AI, refine on a canvas, and export true 16:9.
+          Turn ideas into thumbnails people actually click in seconds. No
+          design skills needed.
         </p>
       </div>
 
-      {/* Key Value Props */}
-      <div
-        className="flex flex-wrap justify-center items-center gap-5 md:gap-8 mb-8 md:mb-10"
-        style={{ fontFamily: 'var(--font-heading)' }}
-      >
-        <div className="flex flex-col items-center">
-          <span className="text-xl md:text-2xl font-bold" style={{ color: '#ff6f61' }}>
-            True 16:9
-          </span>
-          <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
-            YouTube-ready exports
-          </span>
-        </div>
-        <div className="hidden sm:block w-px h-8" style={{ backgroundColor: 'var(--color-border)' }} />
-        <div className="flex flex-col items-center">
-          <span className="text-xl md:text-2xl font-bold" style={{ color: '#ff6f61' }}>
-            Canvas editor
-          </span>
-          <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
-            Adjust text and layout
-          </span>
-        </div>
-        <div className="hidden sm:block w-px h-8" style={{ backgroundColor: 'var(--color-border)' }} />
-        <div className="flex flex-col items-center">
-          <span className="text-xl md:text-2xl font-bold" style={{ color: '#ff6f61' }}>
-            Fast variations
-          </span>
-          <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
-            Iterate quickly
-          </span>
-        </div>
-      </div>
-
-      {/* CTA Button */}
-      <div className="flex justify-center mb-5 md:mb-6">
+      <div className="mb-2 flex justify-center md:mb-1">
         <ButtonLink
           href="https://app.stumbnail.com/login"
           onClick={() => {
@@ -76,28 +59,14 @@ export function HeroContent() {
             trackExternalLinkClick('https://app.stumbnail.com/login')
           }}
           variant="primary"
-          className="h-[60px] md:h-[68px] px-8 md:px-10 text-lg md:text-xl rounded-2xl"
+          size="hero"
+          className="w-full max-w-[20rem] px-8 py-3 text-base sm:min-w-[228px] sm:w-auto"
+          style={heroButtonStyle}
           icon="/assets/icons/try-stumbnail.svg"
-          style={{
-            fontFamily: 'var(--font-heading)',
-            fontWeight: 600,
-            backgroundColor: '#ff6f61',
-            minWidth: '260px',
-          }}
         >
           Try Stumbnail Free
         </ButtonLink>
       </div>
-
-      <p
-        className="text-sm md:text-base mb-16 md:mb-20"
-        style={{
-          fontFamily: 'var(--font-body)',
-          color: 'var(--color-text-muted)',
-        }}
-      >
-        No design skills needed.
-      </p>
     </div>
   )
 }

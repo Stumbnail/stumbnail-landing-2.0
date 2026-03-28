@@ -2,7 +2,8 @@
 
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
-import { Button } from '@/components/ui/Button'
+import { ButtonLink } from '@/components/ui/Button'
+import { SectionHeading } from '@/components/ui/SectionHeading'
 
 // Type for community thumbnail from API
 interface CommunityThumbnail {
@@ -139,45 +140,19 @@ export function CommunityGallerySection() {
 
     return (
         <section
+            aria-labelledby="community-title"
             className="relative py-16 md:py-24 overflow-hidden"
             style={{
                 backgroundColor: 'var(--color-background)',
             }}
         >
-            {/* Subtle coral glow - top left */}
-            <div
-                className="absolute pointer-events-none"
-                style={{
-                    left: '-200px',
-                    top: '-100px',
-                    width: '500px',
-                    height: '500px',
-                    background: 'radial-gradient(ellipse at center, rgba(255, 111, 97, 0.15) 0%, transparent 70%)',
-                }}
-            />
-
-            <div className="relative max-w-[1200px] mx-auto px-6 lg:px-8">
-                {/* Section Header */}
-                <div className="text-center mb-12">
-                    <h2
-                        className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4"
-                        style={{
-                            fontFamily: 'var(--font-heading)',
-                            color: 'var(--color-foreground)',
-                        }}
-                    >
-                        Made by Creators Like You
-                    </h2>
-                    <p
-                        className="text-lg md:text-xl max-w-2xl mx-auto"
-                        style={{
-                            fontFamily: 'var(--font-body)',
-                            color: 'var(--color-foreground-muted)',
-                        }}
-                    >
-                        Real thumbnails. Real results.
-                    </p>
-                </div>
+            <div className="landing-shell relative">
+                <SectionHeading
+                    title="Made by creators like you"
+                    titleId="community-title"
+                    className="mb-12"
+                    width="narrow"
+                />
 
                 {/* Thumbnail Cards Grid - 3 columns x 2 rows */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -201,6 +176,7 @@ export function CommunityGallerySection() {
                                     alt={`Thumbnail by ${thumb.ownerName}`}
                                     fill
                                     className="object-cover"
+                                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                                     unoptimized={thumb.thumbnailUrl.startsWith('http')}
                                 />
                             </div>
@@ -215,6 +191,7 @@ export function CommunityGallerySection() {
                                             alt={thumb.ownerName}
                                             fill
                                             className="object-cover"
+                                            sizes="40px"
                                             unoptimized
                                         />
                                     ) : (
@@ -228,11 +205,7 @@ export function CommunityGallerySection() {
                                 </div>
                                 {/* Username */}
                                 <span
-                                    className="text-base font-bold"
-                                    style={{
-                                        color: 'var(--color-foreground)',
-                                        fontFamily: 'var(--font-heading)',
-                                    }}
+                                    className="font-ui text-base font-bold text-[var(--color-foreground)]"
                                 >
                                     {thumb.ownerName || 'Creator'}
                                 </span>
@@ -262,19 +235,15 @@ export function CommunityGallerySection() {
 
                 {/* View All Button */}
                 <div className="flex justify-center mt-8">
-                    <Button
+                    <ButtonLink
+                        href="https://app.stumbnail.com/community"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         variant="primary"
-                        className="h-[56px] px-10 text-lg rounded-2xl"
-                        style={{
-                            fontFamily: 'var(--font-heading)',
-                            fontWeight: 600,
-                            backgroundColor: '#ff6f61',
-                            minWidth: '200px',
-                        }}
-                        onClick={() => window.open('https://app.stumbnail.com/community', '_blank')}
+                        size="xl"
                     >
                         View All
-                    </Button>
+                    </ButtonLink>
                 </div>
             </div>
         </section>

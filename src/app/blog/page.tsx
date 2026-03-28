@@ -138,22 +138,9 @@ export default function BlogPage() {
 
             {/* Hero Section */}
             <section className="relative pt-32 pb-16 md:pt-40 md:pb-20 overflow-hidden">
-                {/* Background glow */}
-                <div
-                    className="absolute pointer-events-none"
-                    style={{
-                        left: '50%',
-                        top: '0',
-                        transform: 'translateX(-50%)',
-                        width: '800px',
-                        height: '400px',
-                        background: 'radial-gradient(ellipse at center, rgba(255, 111, 97, 0.12) 0%, transparent 70%)',
-                    }}
-                />
-
-                <div className="relative max-w-4xl mx-auto px-6 text-center">
-                    <h1
-                        className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 text-center">
+          <h1
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
                         style={{
                             fontFamily: 'var(--font-heading)',
                             color: 'var(--color-foreground)',
