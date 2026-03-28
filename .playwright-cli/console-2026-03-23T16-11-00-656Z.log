@@ -1,2 +1,0 @@
-[      28ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://127.0.0.1:3001/_next/static/css/5fecf8bdd8f56c51.css:0
-[     190ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://127.0.0.1:3001/_next/static/chunks/272-f58134b9c128193e.js:0

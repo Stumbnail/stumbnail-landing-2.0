@@ -64,7 +64,7 @@ export function HeroContent() {
           style={heroButtonStyle}
           icon="/assets/icons/try-stumbnail.svg"
         >
-          Try Stumbnail Free
+          Start Creating
         </ButtonLink>
       </div>
     </div>

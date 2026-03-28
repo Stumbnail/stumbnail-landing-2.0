@@ -74,7 +74,7 @@ const comparisons = [
       'Canvas workflow for refining text/layout without restarting.',
       'Good fit when you care about CTR and iteration speed.',
     ],
-    ctaLabel: 'Try Stumbnail Free',
+    ctaLabel: 'Get Started',
     ctaHref: 'https://app.stumbnail.com/login',
     highlight: true,
   },
@@ -205,7 +205,7 @@ export default function BestAiYouTubeThumbnailGeneratorPage() {
                 size="xl"
                 icon="/assets/icons/sparkle.svg"
               >
-                Try Stumbnail Free
+                Start Creating
               </ButtonLink>
               <ButtonLink
                 href="/pricing"

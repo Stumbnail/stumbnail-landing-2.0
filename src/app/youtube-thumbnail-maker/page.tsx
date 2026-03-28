@@ -7,7 +7,7 @@ import { ButtonLink } from '@/components/ui/Button'
 export const metadata: Metadata = {
   title: 'YouTube Thumbnail Maker (AI) - Create Click-Worthy Thumbnails | Stumbnail',
   description:
-    'Use Stumbnail as your AI YouTube thumbnail maker: generate thumbnail ideas fast, edit on a clean canvas, and export YouTube-ready 16:9 thumbnails. Start free.',
+    'Use Stumbnail as your AI YouTube thumbnail maker: generate thumbnail ideas fast, edit on a clean canvas, and export YouTube-ready 16:9 thumbnails. Choose a plan and start creating.',
   keywords: [
     'youtube thumbnail maker',
     'ai youtube thumbnail maker',
@@ -80,7 +80,7 @@ const jsonLd = {
       url: 'https://stumbnail.com/youtube-thumbnail-maker',
       name: 'YouTube Thumbnail Maker (AI) - Create Click-Worthy Thumbnails | Stumbnail',
       description:
-        'Use Stumbnail as your AI YouTube thumbnail maker: generate thumbnail ideas fast, edit on a clean canvas, and export YouTube-ready 16:9 thumbnails. Start free.',
+        'Use Stumbnail as your AI YouTube thumbnail maker: generate thumbnail ideas fast, edit on a clean canvas, and export YouTube-ready 16:9 thumbnails. Choose a plan and start creating.',
       isPartOf: { '@id': 'https://stumbnail.com/#website' },
       about: { '@id': 'https://stumbnail.com/#software' },
       breadcrumb: {
@@ -148,7 +148,7 @@ export default function YouTubeThumbnailMakerPage() {
                 size="xl"
                 icon="/assets/icons/sparkle.svg"
               >
-                Try Stumbnail Free
+                Start Creating
               </ButtonLink>
               <ButtonLink
                 href="/pricing"

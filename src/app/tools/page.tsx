@@ -194,7 +194,7 @@ export default function ToolsPage() {
                 size="xl"
                 icon="/assets/icons/sparkle.svg"
               >
-                Try Stumbnail Free
+                Start Creating
               </ButtonLink>
               <ButtonLink
                 href="/pricing"

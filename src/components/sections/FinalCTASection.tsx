@@ -55,7 +55,7 @@ export function FinalCTASection() {
 
             <p className="section-lead mx-auto mb-10 max-w-2xl" style={finalLeadStyle}>
               Join creators using Stumbnail to stand out with click-worthy
-              thumbnails. Start free and make your next thumbnail today.
+              thumbnails. Get started and make your next thumbnail today.
             </p>
 
             <div className="flex items-center justify-center">
