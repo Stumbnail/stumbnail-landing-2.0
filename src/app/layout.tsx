@@ -1,8 +1,11 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import { Caveat, Inter, Plus_Jakarta_Sans } from 'next/font/google'
+import { ConsentProvider } from '@/components/providers/ConsentProvider'
 import { ThemeProvider } from '@/components/providers/ThemeProvider'
 import { AnalyticsProvider } from '@/components/providers/AnalyticsProvider'
 import { StructuredData } from '@/components/seo/StructuredData'
+import { CONSENT_STORAGE_KEY } from '@/lib/consent'
 import './globals.css'
 
 const inter = Inter({
@@ -23,6 +26,37 @@ const caveat = Caveat({
   variable: '--font-caveat',
   display: 'swap',
 })
+
+const googleTagId =
+  process.env.NEXT_PUBLIC_GOOGLE_TAG_ID ?? process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
+
+const consentBootstrapScript = `
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){window.dataLayer.push(arguments);}
+  window.gtag = window.gtag || gtag;
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    wait_for_update: 500
+  });
+  gtag('set', 'ads_data_redaction', true);
+  try {
+    var rawConsent = window.localStorage.getItem('${CONSENT_STORAGE_KEY}');
+    if (rawConsent) {
+      var parsedConsent = JSON.parse(rawConsent);
+      if (parsedConsent && parsedConsent.hasInteracted === true) {
+        gtag('consent', 'update', {
+          ad_storage: 'denied',
+          ad_user_data: 'denied',
+          ad_personalization: 'denied',
+          analytics_storage: parsedConsent.analytics ? 'granted' : 'denied'
+        });
+      }
+    }
+  } catch (error) {}
+`
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://stumbnail.com'),
@@ -89,6 +123,29 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <Script id="google-consent-bootstrap" strategy="beforeInteractive">
+          {consentBootstrapScript}
+        </Script>
+        {googleTagId ? (
+          <>
+            <Script
+              id="google-tag-loader"
+              src={`https://www.googletagmanager.com/gtag/js?id=${googleTagId}`}
+              strategy="beforeInteractive"
+            />
+            <Script id="google-tag-config" strategy="beforeInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){window.dataLayer.push(arguments);}
+                window.gtag = window.gtag || gtag;
+                gtag('js', new Date());
+                gtag('config', '${googleTagId}', {
+                  anonymize_ip: true
+                });
+              `}
+            </Script>
+          </>
+        ) : null}
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -104,7 +161,9 @@ export default function RootLayout({
       </head>
       <body className={`${inter.variable} ${plusJakartaSans.variable} ${caveat.variable}`}>
         <ThemeProvider>
-          <AnalyticsProvider>{children}</AnalyticsProvider>
+          <ConsentProvider>
+            <AnalyticsProvider>{children}</AnalyticsProvider>
+          </ConsentProvider>
         </ThemeProvider>
       </body>
     </html>
