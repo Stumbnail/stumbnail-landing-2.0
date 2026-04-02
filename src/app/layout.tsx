@@ -27,8 +27,16 @@ const caveat = Caveat({
   display: 'swap',
 })
 
-const googleTagId =
-  process.env.NEXT_PUBLIC_GOOGLE_TAG_ID ?? process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
+const googleAdsTagId = 'AW-17277705517'
+const googleTagIds = Array.from(
+  new Set(
+    [
+      process.env.NEXT_PUBLIC_GOOGLE_TAG_ID,
+      process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
+      googleAdsTagId,
+    ].filter((value): value is string => Boolean(value))
+  )
+)
 
 const consentBootstrapScript = `
   window.dataLayer = window.dataLayer || [];
@@ -126,11 +134,11 @@ export default function RootLayout({
         <Script id="google-consent-bootstrap" strategy="beforeInteractive">
           {consentBootstrapScript}
         </Script>
-        {googleTagId ? (
+        {googleTagIds.length > 0 ? (
           <>
             <Script
               id="google-tag-loader"
-              src={`https://www.googletagmanager.com/gtag/js?id=${googleTagId}`}
+              src={`https://www.googletagmanager.com/gtag/js?id=${googleTagIds[0]}`}
               strategy="beforeInteractive"
             />
             <Script id="google-tag-config" strategy="beforeInteractive">
@@ -139,9 +147,13 @@ export default function RootLayout({
                 function gtag(){window.dataLayer.push(arguments);}
                 window.gtag = window.gtag || gtag;
                 gtag('js', new Date());
-                gtag('config', '${googleTagId}', {
+                ${googleTagIds
+                  .map(
+                    (tagId) => `gtag('config', '${tagId}', {
                   anonymize_ip: true
-                });
+                });`
+                  )
+                  .join('\n')}
               `}
             </Script>
           </>
