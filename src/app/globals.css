@@ -56,6 +56,17 @@
   --button-secondary-icon-filter-hover: none;
   --button-ghost-text: var(--color-foreground-muted);
   --button-ghost-bg-hover: rgba(255, 111, 97, 0.08);
+  --hero-background:
+    radial-gradient(circle at 18% 16%, rgba(154, 222, 255, 0.34) 0%, rgba(154, 222, 255, 0) 26%),
+    radial-gradient(circle at 82% 18%, rgba(255, 229, 188, 0.3) 0%, rgba(255, 229, 188, 0) 22%),
+    linear-gradient(180deg, #dff4ff 0%, #eef9ff 34%, #fff5e8 72%, #fffaf5 100%);
+  --hero-text-color: #24201f;
+  --hero-text-shadow: 0 1px 10px rgba(255, 255, 255, 0.18);
+  --hero-button-bg: rgba(255, 250, 247, 0.98);
+  --hero-button-text: #1f1a19;
+  --hero-button-ring: rgba(255, 250, 247, 0.28);
+  --hero-button-hover-ring: rgba(255, 111, 97, 0.28);
+  --hero-button-icon-filter: brightness(0) saturate(100%) opacity(0.84);
 }
 
 .dark {
@@ -83,6 +94,17 @@
   --button-secondary-icon-filter-hover: none;
   --button-ghost-text: var(--color-foreground-muted);
   --button-ghost-bg-hover: rgba(255, 111, 97, 0.12);
+  --hero-background:
+    radial-gradient(circle at 22% 18%, rgba(79, 172, 214, 0.18) 0%, rgba(79, 172, 214, 0) 24%),
+    radial-gradient(circle at 82% 16%, rgba(255, 167, 92, 0.14) 0%, rgba(255, 167, 92, 0) 18%),
+    linear-gradient(180deg, #0d1923 0%, #10202d 34%, #171d26 68%, #1a1415 100%);
+  --hero-text-color: rgba(250, 250, 250, 0.96);
+  --hero-text-shadow: 0 1px 18px rgba(0, 0, 0, 0.34);
+  --hero-button-bg: rgba(24, 29, 35, 0.92);
+  --hero-button-text: rgba(250, 250, 250, 0.92);
+  --hero-button-ring: rgba(255, 255, 255, 0.12);
+  --hero-button-hover-ring: rgba(255, 111, 97, 0.2);
+  --hero-button-icon-filter: none;
 }
 
 html {

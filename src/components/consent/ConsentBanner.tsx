@@ -1,6 +1,5 @@
 'use client'
 
-import { useMemo } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
 import type { ConsentState } from '@/lib/consent'
@@ -63,176 +62,111 @@ export function ConsentBanner({
   onAcceptAnalytics,
 }: ConsentBannerProps) {
   const bannerOpen = !consent.hasInteracted || preferencesOpen
-  const lastUpdatedLabel = useMemo(() => {
-    if (!consent.updatedAt) {
-      return null
-    }
-
-    return new Date(consent.updatedAt).toLocaleString(undefined, {
-      dateStyle: 'medium',
-      timeStyle: 'short',
-    })
-  }, [consent.updatedAt])
+  const showExpanded = preferencesOpen || consent.hasInteracted
 
   if (!bannerOpen) {
-    return (
-      <button
-        type="button"
-        onClick={onOpenPreferences}
-        className="fixed right-4 bottom-4 z-[60] inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold shadow-[0_18px_50px_rgba(0,0,0,0.16)] transition-transform hover:-translate-y-0.5"
-        style={{
-          background:
-            'linear-gradient(135deg, rgba(255,255,255,0.96) 0%, rgba(255,248,246,0.98) 100%)',
-          color: 'var(--color-foreground)',
-          border: '1px solid rgba(255, 111, 97, 0.22)',
-          backdropFilter: 'blur(20px)',
-        }}
-        aria-label="Open cookie settings"
-      >
-        <span
-          className="inline-flex h-6 w-6 items-center justify-center rounded-full"
-          style={{ backgroundColor: 'rgba(255, 111, 97, 0.12)', color: '#ff6f61' }}
-        >
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
-          >
-            <path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5" />
-            <path d="M8.5 8.5v.01" />
-            <path d="M16 15.5v.01" />
-            <path d="M12 12v.01" />
-          </svg>
-        </span>
-        Cookie settings
-      </button>
-    )
+    return null
   }
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-[70] px-3 pb-3 sm:px-5 sm:pb-5">
       <div
-        className="mx-auto w-full max-w-[920px] overflow-hidden rounded-[2rem] border"
+        className="mx-auto w-full max-w-[1100px] overflow-hidden rounded-[1.5rem] border"
         style={{
           background:
-            'linear-gradient(140deg, rgba(255,255,255,0.97) 0%, rgba(255,249,247,0.98) 54%, rgba(255,241,237,0.99) 100%)',
+            'linear-gradient(140deg, rgba(255,255,255,0.97) 0%, rgba(255,250,248,0.99) 100%)',
           borderColor: 'rgba(255, 111, 97, 0.18)',
-          boxShadow: '0 28px 80px rgba(0, 0, 0, 0.18)',
-          backdropFilter: 'blur(24px)',
+          boxShadow: '0 18px 55px rgba(0, 0, 0, 0.14)',
+          backdropFilter: 'blur(20px)',
         }}
       >
-        <div className="grid gap-6 p-5 sm:p-6 lg:grid-cols-[1.35fr_0.95fr] lg:p-7">
-          <div className="space-y-5">
-            <div className="flex items-start justify-between gap-4">
-              <div className="space-y-3">
-                <div
-                  className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em]"
-                  style={{
-                    backgroundColor: 'rgba(255, 111, 97, 0.1)',
-                    color: '#ff6f61',
-                  }}
-                >
-                  Privacy Choices
-                </div>
-                <div className="space-y-2">
-                  <h2 className="font-heading text-2xl font-semibold leading-tight text-[var(--color-foreground)] sm:text-[2rem]">
-                    Choose how Stumbnail measures site usage.
-                  </h2>
-                  <p className="max-w-[58ch] text-sm leading-7 text-[var(--color-text-muted)] sm:text-[0.98rem]">
-                    Essential cookies stay on so the site can work. Optional analytics help us
-                    understand page performance and feature usage. We keep advertising-related
-                    consent denied because this site does not use advertising cookies.
-                  </p>
-                </div>
-              </div>
-
-              {consent.hasInteracted ? (
-                <button
-                  type="button"
-                  onClick={onClosePreferences}
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-full transition-colors"
-                  style={{
-                    backgroundColor: 'rgba(var(--color-ink-rgb), 0.05)',
-                    color: 'var(--color-foreground)',
-                  }}
-                  aria-label="Close cookie settings"
-                >
-                  <svg
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M18 6 6 18" />
-                    <path d="m6 6 12 12" />
-                  </svg>
-                </button>
-              ) : null}
+        <div className={showExpanded ? 'space-y-4 p-4 sm:p-5' : 'space-y-3 p-3 sm:p-4'}>
+          <div className="flex items-start justify-between gap-4">
+            <div className="space-y-2">
+              <h2
+                className={`font-heading font-semibold text-[var(--color-foreground)] ${
+                  showExpanded ? 'text-xl sm:text-2xl' : 'text-lg sm:text-xl'
+                }`}
+              >
+                Cookies
+              </h2>
+              <p
+                className={`max-w-[52ch] text-[var(--color-text-muted)] ${
+                  showExpanded ? 'text-sm leading-6' : 'text-xs leading-5 sm:text-sm'
+                }`}
+              >
+                Essential cookies keep the site working. Analytics helps us improve it.
+              </p>
             </div>
 
+            {showExpanded ? (
+              <button
+                type="button"
+                onClick={onClosePreferences}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full transition-colors"
+                style={{
+                  backgroundColor: 'rgba(var(--color-ink-rgb), 0.05)',
+                  color: 'var(--color-foreground)',
+                }}
+                aria-label="Close cookie settings"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M18 6 6 18" />
+                  <path d="m6 6 12 12" />
+                </svg>
+              </button>
+              ) : null}
+          </div>
+
+          {showExpanded ? (
             <div className="grid gap-3 sm:grid-cols-2">
               <div
-                className="rounded-[1.5rem] border p-4"
+                className="flex items-center justify-between rounded-[1.1rem] border px-4 py-3"
                 style={{
-                  backgroundColor: 'rgba(255,255,255,0.7)',
+                  backgroundColor: 'rgba(255,255,255,0.76)',
                   borderColor: 'rgba(var(--color-ink-rgb), 0.08)',
                 }}
               >
-                <div className="mb-3 flex items-center justify-between gap-3">
-                  <div>
-                    <p className="text-sm font-semibold text-[var(--color-foreground)]">
-                      Essential cookies
-                    </p>
-                    <p className="text-xs text-[var(--color-text-muted)]">
-                      Required for security and core site behavior.
-                    </p>
-                  </div>
-                  <CookieToggle checked disabled />
+                <div>
+                  <p className="text-sm font-semibold text-[var(--color-foreground)]">
+                    Essential
+                  </p>
+                  <p className="text-xs text-[var(--color-text-muted)]">Always on</p>
                 </div>
-                <p className="text-sm leading-6 text-[var(--color-text-muted)]">
-                  Includes session integrity, protection against abuse, and storing this privacy
-                  preference after you choose.
-                </p>
+                <CookieToggle checked disabled />
               </div>
 
               <div
-                className="rounded-[1.5rem] border p-4"
+                className="flex items-center justify-between rounded-[1.1rem] border px-4 py-3"
                 style={{
-                  backgroundColor: 'rgba(255,255,255,0.7)',
+                  backgroundColor: 'rgba(255,255,255,0.76)',
                   borderColor: analyticsEnabled
                     ? 'rgba(255, 111, 97, 0.22)'
                     : 'rgba(var(--color-ink-rgb), 0.08)',
                 }}
               >
-                <div className="mb-3 flex items-center justify-between gap-3">
-                  <div>
-                    <p className="text-sm font-semibold text-[var(--color-foreground)]">
-                      Analytics cookies
-                    </p>
-                    <p className="text-xs text-[var(--color-text-muted)]">
-                      Optional insights for traffic, flows, and product usage.
-                    </p>
-                  </div>
-                  <CookieToggle checked={analyticsEnabled} onChange={onAnalyticsChange} />
+                <div>
+                  <p className="text-sm font-semibold text-[var(--color-foreground)]">
+                    Analytics
+                  </p>
+                  <p className="text-xs text-[var(--color-text-muted)]">Optional</p>
                 </div>
-                <p className="text-sm leading-6 text-[var(--color-text-muted)]">
-                  Controls Google Consent Mode analytics storage and whether Vercel/Firebase
-                  analytics run in the browser.
-                </p>
+                <CookieToggle checked={analyticsEnabled} onChange={onAnalyticsChange} />
               </div>
             </div>
+          ) : null}
 
+          {showExpanded ? (
             <div className="flex flex-wrap items-center gap-3 text-sm text-[var(--color-text-muted)]">
               <Link
                 href="/cookies"
@@ -247,58 +181,72 @@ export function ConsentBanner({
               >
                 Privacy Policy
               </Link>
-              {lastUpdatedLabel ? (
-                <>
-                  <span className="hidden h-1 w-1 rounded-full bg-[rgba(var(--color-ink-rgb),0.25)] sm:block" />
-                  <span>Saved: {lastUpdatedLabel}</span>
-                </>
-              ) : null}
             </div>
-          </div>
+          ) : null}
 
           <div
-            className="flex flex-col justify-between rounded-[1.75rem] border p-5"
-            style={{
-              background:
-                'linear-gradient(160deg, rgba(255,111,97,0.08) 0%, rgba(255,255,255,0.62) 42%, rgba(255,255,255,0.92) 100%)',
-              borderColor: 'rgba(255, 111, 97, 0.16)',
-            }}
+            className={`flex gap-2 ${
+              showExpanded
+                ? 'flex-col sm:flex-row sm:flex-wrap sm:items-center sm:justify-end'
+                : 'flex-col sm:flex-row sm:items-center sm:justify-end'
+            }`}
           >
-            <div className="space-y-3">
-              <p className="font-heading text-xl font-semibold text-[var(--color-foreground)]">
-                Current setup
-              </p>
-              <ul className="space-y-3 text-sm leading-6 text-[var(--color-text-muted)]">
-                <li className="flex gap-3">
-                  <span className="mt-1.5 h-2 w-2 rounded-full bg-[#ff6f61]" />
-                  Google Consent Mode v2 starts with denied defaults before measurement commands.
-                </li>
-                <li className="flex gap-3">
-                  <span className="mt-1.5 h-2 w-2 rounded-full bg-[#ff6f61]" />
-                  Advertising-related consent stays denied unless the product changes policy later.
-                </li>
-                <li className="flex gap-3">
-                  <span className="mt-1.5 h-2 w-2 rounded-full bg-[#ff6f61]" />
-                  Your choice is stored locally and reused on future page loads.
-                </li>
-              </ul>
-            </div>
-
-            <div className="mt-6 flex flex-col gap-3">
-              <Button variant="ghost" size="md" onClick={onRejectOptional}>
-                Reject optional
+            {!showExpanded ? (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={onOpenPreferences}
+                className="min-w-[124px]"
+                style={{
+                  color: 'var(--color-text-muted)',
+                  border: '1px solid rgba(var(--color-ink-rgb), 0.1)',
+                  background: 'rgba(255,255,255,0.55)',
+                }}
+              >
+                Manage
               </Button>
+            ) : null}
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={onRejectOptional}
+              className="min-w-[124px]"
+              style={{
+                color: 'var(--color-text-muted)',
+                border: '1px solid rgba(var(--color-ink-rgb), 0.1)',
+                background: 'rgba(255,255,255,0.55)',
+              }}
+            >
+              Reject optional
+            </Button>
+            {showExpanded ? (
               <Button
                 variant="secondary"
-                size="md"
+                size="sm"
                 onClick={() => onSaveConsent(analyticsEnabled)}
+                className="min-w-[124px]"
+                style={{
+                  background: 'rgba(255,255,255,0.92)',
+                  color: 'var(--color-foreground)',
+                  boxShadow: '0 0 0 1px rgba(var(--color-ink-rgb), 0.12)',
+                }}
               >
                 Save choices
               </Button>
-              <Button variant="primary" size="md" onClick={onAcceptAnalytics}>
-                Allow analytics
-              </Button>
-            </div>
+            ) : null}
+            <Button
+              variant="primary"
+              size="sm"
+              onClick={onAcceptAnalytics}
+              className="min-w-[124px]"
+              style={{
+                background: '#ff6f61',
+                color: '#ffffff',
+                boxShadow: '0 0 0 1px rgba(255, 111, 97, 0.18)',
+              }}
+            >
+              Allow analytics
+            </Button>
           </div>
         </div>
       </div>

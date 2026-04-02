@@ -23,6 +23,9 @@ export const defaultConsentState: ConsentState = {
   updatedAt: null,
 }
 
+let cachedConsentRaw: string | null | undefined
+let cachedConsentState: ConsentState = defaultConsentState
+
 declare global {
   interface Window {
     dataLayer?: unknown[]
@@ -65,24 +68,36 @@ export function readStoredConsent(): ConsentState {
   try {
     const rawValue = window.localStorage.getItem(CONSENT_STORAGE_KEY)
 
+    if (rawValue === cachedConsentRaw) {
+      return cachedConsentState
+    }
+
     if (!rawValue) {
-      return defaultConsentState
+      cachedConsentRaw = rawValue
+      cachedConsentState = defaultConsentState
+      return cachedConsentState
     }
 
     const parsedValue = JSON.parse(rawValue) as unknown
 
     if (!isStoredConsent(parsedValue)) {
-      return defaultConsentState
+      cachedConsentRaw = null
+      cachedConsentState = defaultConsentState
+      return cachedConsentState
     }
 
-    return {
+    cachedConsentRaw = rawValue
+    cachedConsentState = {
       essential: true,
       analytics: parsedValue.analytics,
       hasInteracted: parsedValue.hasInteracted,
       updatedAt: parsedValue.updatedAt,
     }
+    return cachedConsentState
   } catch {
-    return defaultConsentState
+    cachedConsentRaw = null
+    cachedConsentState = defaultConsentState
+    return cachedConsentState
   }
 }
 
@@ -101,7 +116,10 @@ export function persistConsent(consent: ConsentState) {
     updatedAt: consent.updatedAt ?? new Date().toISOString(),
   }
 
-  window.localStorage.setItem(CONSENT_STORAGE_KEY, JSON.stringify(storedConsent))
+  const rawValue = JSON.stringify(storedConsent)
+  cachedConsentRaw = rawValue
+  cachedConsentState = consent
+  window.localStorage.setItem(CONSENT_STORAGE_KEY, rawValue)
   window.dispatchEvent(new CustomEvent(CONSENT_CHANGE_EVENT, { detail: consent }))
 }
 

@@ -13,19 +13,19 @@ const caveat = Caveat({
 
 export function HeroContent() {
   const heroButtonStyle = {
-    '--button-bg': 'rgba(255, 250, 247, 0.98)',
-    '--button-text': '#1f1a19',
+    '--button-bg': 'var(--hero-button-bg)',
+    '--button-text': 'var(--hero-button-text)',
     '--button-hover-text': '#ffffff',
-    '--button-ring': 'rgba(255, 250, 247, 0.28)',
-    '--button-hover-ring': 'rgba(255, 111, 97, 0.28)',
+    '--button-ring': 'var(--hero-button-ring)',
+    '--button-hover-ring': 'var(--hero-button-hover-ring)',
     '--button-orb-bg': '#ff6f61',
-    '--button-icon-filter': 'brightness(0) saturate(100%) opacity(0.84)',
+    '--button-icon-filter': 'var(--hero-button-icon-filter)',
     '--button-icon-filter-hover': 'none',
   } as CSSProperties
 
   const heroTextStyle = {
-    color: '#24201f',
-    textShadow: '0 1px 10px rgba(255, 255, 255, 0.18)',
+    color: 'var(--hero-text-color)',
+    textShadow: 'var(--hero-text-shadow)',
   } as CSSProperties
 
   return (
@@ -43,7 +43,7 @@ export function HeroContent() {
 
       <div className="mb-8 md:mb-12">
         <p
-          className="hero-summary mx-auto max-w-[520px] text-[clamp(0.94rem,1.05vw,1.05rem)] leading-[1.76] text-[rgba(36,32,31,0.9)]"
+          className="hero-summary mx-auto max-w-[520px] text-[clamp(0.94rem,1.05vw,1.05rem)] leading-[1.76]"
           style={heroTextStyle}
         >
           Turn ideas into thumbnails people actually click in seconds. No
