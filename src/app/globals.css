@@ -207,7 +207,7 @@ select {
   width: min(1720px, calc(100vw - 0.1rem));
   margin: 0 auto;
   border-radius: 4rem;
-  background: #ddd2c4;
+  background: #e3d9c8;
 }
 
 .feature-section-band__inner {
@@ -215,7 +215,7 @@ select {
 }
 
 .dark .feature-section-band {
-  background: #221d1b;
+  background: #211b19;
 }
 
 .section-heading {
