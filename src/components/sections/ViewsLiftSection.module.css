@@ -3,6 +3,22 @@
   padding: 1.5rem 0 5rem;
 }
 
+.frame {
+  border-radius: 3rem;
+  background: #efe4d7;
+  padding: 1rem;
+}
+
+.surface {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(195, 184, 176, 0.82);
+  border-radius: 2.25rem;
+  background: rgba(255, 250, 246, 0.98);
+  box-shadow: none;
+  padding: 2rem 2.5rem;
+}
+
 .layout {
   display: grid;
   align-items: center;
@@ -33,7 +49,7 @@
   font-family: var(--font-app), sans-serif;
   font-size: clamp(1rem, 1.2vw, 1.12rem);
   line-height: 1.65;
-  color: rgba(82, 71, 71, 0.68);
+  color: rgba(68, 58, 58, 0.8);
 }
 
 .cta {
@@ -47,11 +63,11 @@
 
 .featureCard {
   width: 100%;
-  max-width: 420px;
-  border: 1px solid rgba(229, 231, 235, 0.92);
+  max-width: 392px;
+  border: 1px solid rgba(214, 218, 223, 0.96);
   border-radius: 24px;
-  background: rgba(255, 255, 255, 0.92);
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: none;
   display: flex;
   flex-direction: column;
   perspective: 1000px;
@@ -69,7 +85,7 @@
   aspect-ratio: 16 / 9;
   position: relative;
   border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  box-shadow: none;
   transform-style: preserve-3d;
   transition:
     transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1),
@@ -111,7 +127,7 @@
 
 .statHeader {
   margin: 0 0 0.4rem;
-  color: #606060;
+  color: #525252;
   font-family: var(--font-ui), sans-serif;
   font-size: 1.05rem;
   font-weight: 500;
@@ -172,7 +188,7 @@
   stroke-width: 3.5;
   stroke-linecap: round;
   stroke-linejoin: round;
-  filter: drop-shadow(0 4px 8px rgba(62, 166, 255, 0.3));
+  filter: none;
 }
 
 .history .graphClip {
@@ -182,9 +198,7 @@
 
 .upgrade .thumbFlipper {
   transform: rotateX(180deg);
-  box-shadow:
-    0 0 32px rgba(255, 222, 0, 0.45),
-    0 12px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: none;
 }
 
 .spike .graphClip {
@@ -197,9 +211,28 @@
   transform: rotate(0deg);
 }
 
+:global(.dark) .surface {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(29, 24, 23, 0.98);
+  box-shadow: none;
+}
+
+:global(.dark) .frame {
+  background: #2f2725;
+}
+
+:global(.dark) .featureCard {
+  border-color: rgba(214, 218, 223, 0.96);
+  background: rgba(255, 255, 255, 0.98);
+}
+
+:global(.dark) .statHeader {
+  color: #525252;
+}
+
 @media (min-width: 960px) {
   .layout {
-    grid-template-columns: minmax(0, 1fr) minmax(420px, 420px);
+    grid-template-columns: minmax(0, 1fr) minmax(392px, 392px);
     align-items: start;
     gap: 3rem;
   }
@@ -208,12 +241,30 @@
     padding: 1.5rem 0 6rem;
   }
 
+  .surface {
+    padding: 2.6rem 3.75rem;
+  }
+
+  .frame {
+    padding: 1.2rem;
+  }
+
   .demoContainer {
     justify-content: flex-end;
   }
 }
 
 @media (max-width: 639px) {
+  .frame {
+    border-radius: 2.2rem;
+    padding: 0.65rem;
+  }
+
+  .surface {
+    border-radius: 1.7rem;
+    padding: 1.35rem 1.4rem;
+  }
+
   .featureCard {
     max-width: none;
   }

@@ -203,6 +203,21 @@ select {
   width: var(--page-shell-narrow);
 }
 
+.feature-section-band {
+  width: min(1720px, calc(100vw - 0.1rem));
+  margin: 0 auto;
+  border-radius: 4rem;
+  background: #ddd2c4;
+}
+
+.feature-section-band__inner {
+  padding: 1.15rem 0;
+}
+
+.dark .feature-section-band {
+  background: #221d1b;
+}
+
 .section-heading {
   display: flex;
   flex-direction: column;
@@ -544,4 +559,15 @@ select {
   overflow: hidden;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+}
+
+@media (max-width: 899px) {
+  .feature-section-band {
+    width: min(1720px, calc(100vw - 0.1rem));
+    border-radius: 2.6rem;
+  }
+
+  .feature-section-band__inner {
+    padding: 0.8rem 0;
+  }
 }

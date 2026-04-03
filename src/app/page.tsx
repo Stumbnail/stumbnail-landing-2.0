@@ -92,9 +92,13 @@ export default async function HomePage() {
 
         <CommunityGallerySection />
 
-        <ViewsLiftSection />
+        <div className="feature-section-band">
+          <div className="feature-section-band__inner">
+            <ViewsLiftSection />
 
-        <ResultsScrollerSection />
+            <ResultsScrollerSection />
+          </div>
+        </div>
 
         <FAQSection />
 

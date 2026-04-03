@@ -130,60 +130,64 @@ export function ResultsScrollerSection() {
   return (
     <section aria-labelledby="results-scroller-title" className={styles.section}>
       <div className="landing-shell">
-        <div className={styles.layout}>
-          <div className={styles.copy}>
-            <h2 id="results-scroller-title" className={styles.title}>
-              Better thumbnails. Better results.
-            </h2>
-            <p className={styles.subheadline}>
-              Create, iterate, and improve your click-through rate.
-            </p>
-            <ButtonLink
-              href="https://app.stumbnail.com/login"
-              variant="primary"
-              size="lg"
-              className={styles.cta}
-              onClick={() => trackExternalLinkClick('https://app.stumbnail.com/login')}
-            >
-              Start here
-            </ButtonLink>
-          </div>
+        <div className={styles.frame}>
+          <div className={styles.surface}>
+            <div className={styles.layout}>
+              <div className={styles.copy}>
+                <h2 id="results-scroller-title" className={styles.title}>
+                  Better thumbnails. Better results.
+                </h2>
+                <p className={styles.subheadline}>
+                  Create, iterate, and improve your click-through rate.
+                </p>
+                <ButtonLink
+                  href="https://app.stumbnail.com/login"
+                  variant="primary"
+                  size="lg"
+                  className={styles.cta}
+                  onClick={() => trackExternalLinkClick('https://app.stumbnail.com/login')}
+                >
+                  Start here
+                </ButtonLink>
+              </div>
 
-          <div className={styles.demoWrap}>
-            <div className={styles.card} aria-label="Scrolling thumbnail performance illustration">
-              <div className={styles.fadeLeft} />
-              <div className={styles.fadeRight} />
+              <div className={styles.demoWrap}>
+                <div className={styles.card} aria-label="Scrolling thumbnail performance illustration">
+                  <div className={styles.fadeLeft} />
+                  <div className={styles.fadeRight} />
 
-              <div ref={viewportRef} className={styles.viewport}>
-                <div className={styles.track}>
-                  {loopItems.map((item, index) => {
-                    const isSelected = index === selectedIndex
+                  <div ref={viewportRef} className={styles.viewport}>
+                    <div className={styles.track}>
+                      {loopItems.map((item, index) => {
+                        const isSelected = index === selectedIndex
 
-                    return (
-                      <div
-                        key={`${item.tone}-${item.ctr}-${index}`}
-                        ref={(element) => {
-                          itemRefs.current[index] = element
-                        }}
-                        className={[
-                          styles.item,
-                          styles[item.direction],
-                          isSelected ? styles.selected : '',
-                        ].join(' ')}
-                      >
-                        <div className={styles.ctr}>
-                          <span className={styles.icon}>
-                            <ArrowIcon direction={item.direction} />
-                          </span>
-                          <span>{item.ctr}</span>
-                        </div>
+                        return (
+                          <div
+                            key={`${item.tone}-${item.ctr}-${index}`}
+                            ref={(element) => {
+                              itemRefs.current[index] = element
+                            }}
+                            className={[
+                              styles.item,
+                              styles[item.direction],
+                              isSelected ? styles.selected : '',
+                            ].join(' ')}
+                          >
+                            <div className={styles.ctr}>
+                              <span className={styles.icon}>
+                                <ArrowIcon direction={item.direction} />
+                              </span>
+                              <span>{item.ctr}</span>
+                            </div>
 
-                        <div className={styles.thumb}>
-                          <div className={[styles.thumbMedia, styles[item.tone]].join(' ')} />
-                        </div>
-                      </div>
-                    )
-                  })}
+                            <div className={styles.thumb}>
+                              <div className={[styles.thumbMedia, styles[item.tone]].join(' ')} />
+                            </div>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
