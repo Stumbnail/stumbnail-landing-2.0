@@ -27,16 +27,7 @@ const caveat = Caveat({
   display: 'swap',
 })
 
-const googleAdsTagId = 'AW-17277705517'
-const googleTagIds = Array.from(
-  new Set(
-    [
-      process.env.NEXT_PUBLIC_GOOGLE_TAG_ID,
-      process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
-      googleAdsTagId,
-    ].filter((value): value is string => Boolean(value))
-  )
-)
+const googleTagId = 'GT-T5P2FWBK'
 
 const consentBootstrapScript = `
   window.dataLayer = window.dataLayer || [];
@@ -134,30 +125,20 @@ export default function RootLayout({
         <Script id="google-consent-bootstrap" strategy="beforeInteractive">
           {consentBootstrapScript}
         </Script>
-        {googleTagIds.length > 0 ? (
-          <>
-            <Script
-              id="google-tag-loader"
-              src={`https://www.googletagmanager.com/gtag/js?id=${googleTagIds[0]}`}
-              strategy="beforeInteractive"
-            />
-            <Script id="google-tag-config" strategy="beforeInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){window.dataLayer.push(arguments);}
-                window.gtag = window.gtag || gtag;
-                gtag('js', new Date());
-                ${googleTagIds
-                  .map(
-                    (tagId) => `gtag('config', '${tagId}', {
-                  anonymize_ip: true
-                });`
-                  )
-                  .join('\n')}
-              `}
-            </Script>
-          </>
-        ) : null}
+        <Script
+          id="google-tag-loader"
+          src={`https://www.googletagmanager.com/gtag/js?id=${googleTagId}`}
+          strategy="beforeInteractive"
+        />
+        <Script id="google-tag-config" strategy="beforeInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){window.dataLayer.push(arguments);}
+            window.gtag = window.gtag || gtag;
+            gtag('js', new Date());
+            gtag('config', '${googleTagId}');
+          `}
+        </Script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
