@@ -125,7 +125,7 @@ const faqs = [
     },
     {
         question: "Do you offer refunds?",
-        answer: "Yes, we offer a 7-day money-back guarantee. If you're not satisfied with our YouTube thumbnail generator, contact us for a full refund."
+        answer: "Refund eligibility for prior purchases is described in our Refund Policy."
     }
 ];
 

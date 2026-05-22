@@ -416,6 +416,13 @@ export default function TermsPage() {
                         <h3 className="text-lg font-bold mb-3 mt-6" style={{ color: 'var(--color-foreground)' }}>
                             Refund Policy
                         </h3>
+                        <p>
+                            See our{' '}
+                            <Link href="/refund-policy" className="font-semibold hover:underline" style={{ color: '#ff6f61' }}>
+                                Refund Policy
+                            </Link>{' '}
+                            for refund eligibility and request details.
+                        </p>
                         <ul className="space-y-3 mt-3">
                             <li>
                                 <HighlightBox variant="warning">
