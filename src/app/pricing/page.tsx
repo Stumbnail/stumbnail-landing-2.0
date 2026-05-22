@@ -2,7 +2,6 @@
 
 import { IslandHeader } from '@/components/layout/IslandHeader'
 import { Footer } from '@/components/layout/Footer'
-import { ButtonLink } from '@/components/ui/Button'
 
 function MergeIcon({ className = "w-4 h-4" }: { className?: string }) {
     return (
@@ -118,7 +117,7 @@ const faqs = [
     },
     {
         question: "Can I try the AI thumbnail creator for free?",
-        answer: "We’ve discontinued the free tier. With our small budget, we couldn’t fund it anymore, so we can’t keep providing free credits. We’re really sorry. You can still try Stumbnail by starting with a paid plan (Starter or Creator)."
+        answer: "Stumbnail is winding up. We are not accepting any new payments."
     },
     {
         question: "How many thumbnails can I create with each plan?",
@@ -159,7 +158,7 @@ export default function PricingPage() {
                             lineHeight: '1.7',
                         }}
                     >
-                        Choose a plan that fits your workflow. Different AI models use different credits.
+                        Stumbnail is winding up. We are not accepting any new payments.
                     </p>
                     <div
                         className="mt-6 max-w-2xl mx-auto rounded-2xl border p-4 text-left text-sm"
@@ -170,7 +169,7 @@ export default function PricingPage() {
                         }}
                     >
                         <span style={{ color: 'var(--color-foreground)', fontWeight: 600 }}>Note:</span>{' '}
-                        We’ve discontinued the free tier. With our small budget, we couldn’t fund it anymore, so we can’t keep providing free credits. We’re really sorry. You’re still welcome to try Stumbnail with a paid plan below.
+                        New purchases are closed while we wind up the service.
                     </div>
                 </div>
             </section>
@@ -218,15 +217,14 @@ export default function PricingPage() {
                                         </p>
                                     </div>
 
-                                    <ButtonLink
-                                        href="https://app.stumbnail.com/login"
-                                        variant="primary"
-                                        size="lg"
-                                        fullWidth
-                                        className="mt-auto"
+                                    <button
+                                        type="button"
+                                        disabled
+                                        className="mt-auto w-full rounded-xl px-5 py-3 text-sm font-semibold opacity-70 cursor-not-allowed"
+                                        style={{ backgroundColor: '#ff6f61', color: 'white' }}
                                     >
-                                        Choose {plan.name}
-                                    </ButtonLink>
+                                        Payments Closed
+                                    </button>
                                 </div>
                             </div>
                         ))}
@@ -374,7 +372,7 @@ export default function PricingPage() {
                             color: 'var(--color-foreground)',
                         }}
                     >
-                        Ready to Create Click-Worthy Thumbnails?
+                        New Payments Are Closed
                     </h2>
                     <p
                         className="text-base md:text-lg max-w-2xl mx-auto mb-8"
@@ -383,16 +381,16 @@ export default function PricingPage() {
                             fontFamily: 'var(--font-body)',
                         }}
                     >
-                        Join creators using Stumbnail to stand out with click-worthy thumbnails.
+                        Stumbnail is winding up, so we are not accepting any new purchases.
                     </p>
-                    <ButtonLink
-                        href="https://app.stumbnail.com/login"
-                        variant="primary"
-                        size="xl"
-                        icon="/assets/icons/sparkle.svg"
+                    <button
+                        type="button"
+                        disabled
+                        className="rounded-2xl px-8 py-4 text-base font-semibold opacity-70 cursor-not-allowed"
+                        style={{ backgroundColor: '#ff6f61', color: 'white' }}
                     >
-                        Get Started
-                    </ButtonLink>
+                        Payments Closed
+                    </button>
                 </div>
             </section>
 
