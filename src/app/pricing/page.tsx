@@ -117,7 +117,7 @@ const faqs = [
     },
     {
         question: "Can I try the AI thumbnail creator for free?",
-        answer: "Stumbnail is winding up. We are not accepting any new payments."
+        answer: "We have temporarily stopped accepting new payments."
     },
     {
         question: "How many thumbnails can I create with each plan?",
@@ -158,7 +158,7 @@ export default function PricingPage() {
                             lineHeight: '1.7',
                         }}
                     >
-                        Stumbnail is winding up. We are not accepting any new payments.
+                        We have temporarily stopped accepting new payments.
                     </p>
                     <div
                         className="mt-6 max-w-2xl mx-auto rounded-2xl border p-4 text-left text-sm"
@@ -169,7 +169,7 @@ export default function PricingPage() {
                         }}
                     >
                         <span style={{ color: 'var(--color-foreground)', fontWeight: 600 }}>Note:</span>{' '}
-                        New purchases are closed while we wind up the service.
+                        New purchases are temporarily unavailable.
                     </div>
                 </div>
             </section>
@@ -381,7 +381,7 @@ export default function PricingPage() {
                             fontFamily: 'var(--font-body)',
                         }}
                     >
-                        Stumbnail is winding up, so we are not accepting any new purchases.
+                        We have temporarily stopped accepting new payments.
                     </p>
                     <button
                         type="button"

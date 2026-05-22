@@ -87,11 +87,11 @@ export default function RefundPolicyPage() {
                         }}
                     >
                         <p className="m-0 font-semibold" style={{ color: 'var(--color-foreground)' }}>
-                            New payments are closed.
+                            New payments are temporarily unavailable.
                         </p>
                         <p className="mb-0 mt-2 leading-7" style={{ color: 'var(--color-text-muted)' }}>
-                            Stumbnail is winding up and is not accepting new payments. This policy applies
-                            to prior purchases and any existing charges that need review.
+                            We have temporarily stopped accepting new payments. This policy applies to
+                            prior purchases and any existing charges that need review.
                         </p>
                     </div>
                     <p className="mt-5 text-sm" style={{ color: 'var(--color-text-muted)' }}>
